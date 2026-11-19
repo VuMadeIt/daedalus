@@ -3,28 +3,23 @@ interface DashboardHeaderProps {
 }
 
 const greetings = [
-  { heading: "Hey there", subtitle: "Ready to build something awesome?" },
-  { heading: "Welcome back", subtitle: "Let's make some magic happen!" },
-  { heading: "Hello", subtitle: "Great to see you again!" },
-  { heading: "What's up", subtitle: "Time to hack and have fun!" },
-  { heading: "Hi there", subtitle: "Your hackathon adventure awaits!" },
+  { heading: "Hey", subtitle: "Ready to build something?" },
+  { heading: "Welcome back", subtitle: "Here's what's happening this weekend." },
+  { heading: "Hello", subtitle: "Good to see you again." },
+  { heading: "Hey there", subtitle: "Everything you need is right here." },
+  { heading: "Hi", subtitle: "Grab a snack and let's get hacking." },
 ];
 
 export const DashboardHeader = ({ userName }: DashboardHeaderProps) => {
   const firstName = userName?.split(" ")[0] || "Hacker";
-
-  // Use a deterministic greeting based on the first letter of the name
-  const greetingIndex = firstName.charCodeAt(0) % greetings.length;
-  const { heading, subtitle } = greetings[greetingIndex];
+  const { heading, subtitle } = greetings[firstName.charCodeAt(0) % greetings.length];
 
   return (
-    <div className="overflow-hidden md:space-y-2">
-      <div className="from-primary to-primaryLight w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-        <h1 className="font-rubik text-3xl font-bold md:text-4xl xl:text-5xl">
-          {heading}, {firstName}!
-        </h1>
-      </div>
-      <p className="text-lg text-white/50 md:text-xl">{subtitle}</p>
+    <div className="space-y-1">
+      <h1 className="text-[28px] leading-tight font-medium text-textPrimary md:text-[32px]">
+        {heading}, {firstName}
+      </h1>
+      <p className="text-sm text-textMuted md:text-[15px]">{subtitle}</p>
     </div>
   );
 };

@@ -50,7 +50,7 @@ const RestoreRSVP = () => {
     <>
       {showConfirmation ? (
         <div className="space-y-2">
-          <p className="text-xs text-white/50 md:text-sm">
+          <p className="text-xs text-textMuted md:text-sm">
             Are you sure you want to restore your RSVP? You&apos;ll need to
             complete the RSVP form again to secure your spot.
           </p>
@@ -58,7 +58,7 @@ const RestoreRSVP = () => {
             <button
               type="button"
               onClick={() => setShowConfirmation(false)}
-              className="cursor-pointer text-xs text-white/50 hover:text-white/70 md:text-sm"
+              className="cursor-pointer text-xs text-textMuted hover:text-textSecondary md:text-sm"
             >
               Cancel
             </button>
@@ -76,7 +76,7 @@ const RestoreRSVP = () => {
         </div>
       ) : (
         <div className="space-y-2">
-          <p className="text-xs text-white/50 md:text-sm">
+          <p className="text-xs text-textMuted md:text-sm">
             Changed your mind? You can restore your RSVP and rejoin the event!
           </p>
           <form>
