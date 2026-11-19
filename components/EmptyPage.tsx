@@ -23,7 +23,7 @@ export const EmptyPage = ({ title, message }: EmptyPageProps) => {
       <h1 className="font-display mt-8 text-4xl text-balance text-textPrimary md:text-5xl">
         {title}
       </h1>
-      <p className="mt-3 max-w-md text-white/65">{message}</p>
+      <p className="mt-3 max-w-md text-textSecondary">{message}</p>
       <Link
         href="/"
         className="group mt-8 inline-flex items-center gap-3 rounded-full bg-primary py-2 pr-2 pl-6 font-medium text-white transition-colors hover:bg-primaryDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
