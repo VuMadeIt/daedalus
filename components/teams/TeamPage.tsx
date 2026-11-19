@@ -32,10 +32,10 @@ export function TeamPage({
         </Link>
       )}
       <header className="animate-in fade-in slide-in-from-bottom-1 mt-6 duration-500 motion-reduce:animate-none">
-        <h1 className="font-display text-4xl break-words text-textPrimary md:text-5xl">
+        <h1 className="text-3xl font-bold tracking-tight break-words text-textPrimary md:text-4xl">
           {title}
         </h1>
-        {lede && <p className="mt-3 max-w-2xl text-textMuted">{lede}</p>}
+        {lede && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-textSecondary">{lede}</p>}
         {meta && <div className="mt-4">{meta}</div>}
       </header>
       {children && (
