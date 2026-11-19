@@ -40,7 +40,7 @@ export function UploadResume({ control, watch }: UploadResumeProps) {
             {!resumeUrl && (
               <button
                 type="button"
-                className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-border bg-white p-6 text-center transition-all hover:border-primary/40 hover:bg-black/[0.05] disabled:cursor-not-allowed disabled:opacity-50"
+                className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-border bg-surface p-6 text-center transition-all hover:border-primary/40 hover:bg-black/[0.05] disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={() =>
                   document.getElementById("resume-upload")?.click()
                 }
@@ -130,7 +130,7 @@ export function UploadResume({ control, watch }: UploadResumeProps) {
               className="hidden"
             />
             {resumeUrl && (
-              <div className="mt-4 flex items-center justify-between rounded-xl border border-border bg-white p-4">
+              <div className="mt-4 flex items-center justify-between rounded-xl border border-border bg-surface p-4">
                 <div className="flex items-center gap-2">
                   <ExternalLink className="h-5 w-5 text-textMuted" />
                   {previewUrl ? (

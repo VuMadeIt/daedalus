@@ -51,7 +51,7 @@ export function RequestPane({
         role="dialog"
         aria-modal="true"
         aria-labelledby="requests-pane-title"
-        className="animate-in slide-in-from-right-8 fade-in absolute inset-y-0 right-0 flex w-full max-w-md flex-col border-l border-border bg-white shadow-2xl duration-300 ease-out motion-reduce:animate-none"
+        className="animate-in slide-in-from-right-8 fade-in absolute inset-y-0 right-0 flex w-full max-w-md flex-col border-l border-border bg-surface shadow-2xl duration-300 ease-out motion-reduce:animate-none"
       >
         <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-4">
           <div>

@@ -39,7 +39,7 @@ export function ApplyMark() {
         className="h-10 w-10 cursor-pointer"
       />
       <div className="pointer-events-none absolute top-full left-0 -translate-y-1 pt-2 opacity-0 transition duration-200 ease-out group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
-        <div className="w-max max-w-64 rounded-2xl border border-border bg-white p-1 shadow-lg shadow-black/5 backdrop-blur-md">
+        <div className="w-max max-w-64 rounded-2xl border border-border bg-surface p-1 shadow-lg shadow-black/5 backdrop-blur-md">
           {email && (
             <p className="truncate px-3 pt-2 pb-1 text-xs text-textMuted" title={email}>
               {email}

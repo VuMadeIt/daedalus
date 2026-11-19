@@ -41,7 +41,7 @@ export const ApplicationStatus = ({ status, role }: ApplicationStatusProps) => {
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden rounded-xl border border-border bg-white shadow-lg backdrop-blur-sm",
+        "relative w-full overflow-hidden rounded-xl border border-border bg-surface shadow-lg backdrop-blur-sm",
         statusStyles[status],
       )}
     >

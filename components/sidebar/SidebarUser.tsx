@@ -41,7 +41,7 @@ const SidebarUser = ({}: SidebarUserProps) => {
           <div className="truncate text-sm font-medium text-textPrimary">
             {data.user.name}
           </div>
-          <div className="text-[11px] font-medium text-coral">
+          <div className="text-[11px] font-medium text-brand">
             {roleLabel[data.user.role] ?? "Guest"}
           </div>
         </div>

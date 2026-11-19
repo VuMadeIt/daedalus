@@ -263,7 +263,7 @@ function Scenery({ id }: { id: ApplyTrack }) {
           {STARS.map(([left, top, size, delay]) => (
             <span
               key={`${left}-${top}`}
-              className="motion-safe:animate-twinkle absolute rounded-full bg-white"
+              className="motion-safe:animate-twinkle absolute rounded-full bg-surface"
               style={{
                 left: `${left}%`,
                 top: `${top}%`,

@@ -22,7 +22,7 @@ const palettes: Record<string, { band: string; ring: string }> = {
   event: { band: "bg-[#c9c6ff]", ring: "border-[#b3aff5]" },
   physical: { band: "bg-[#a6e3fb]", ring: "border-[#8dd4f2]" },
 };
-const fallback = { band: "bg-coralSoft", ring: "border-[#ecd2d2]" };
+const fallback = { band: "bg-brandSoft", ring: "border-[#ecd2d2]" };
 
 export const categoryLabel = (c: string) =>
   `${c.charAt(0).toUpperCase()}${c.slice(1)} Challenge`;
@@ -53,7 +53,7 @@ function Steps({ status }: { status: ChallengeStatus }) {
           <span
             className={cn(
               "relative grid size-4 place-items-center rounded-full border",
-              i <= at ? "border-ink bg-ink text-white" : "border-border bg-white",
+              i <= at ? "border-ink bg-ink text-white" : "border-border bg-surface",
             )}
           >
             {i <= at && <Check className="size-2.5" strokeWidth={3} />}
@@ -91,11 +91,11 @@ export function ChallengeCard({
         >
           <div className="flex items-center justify-between px-4 py-2">
             <span className="text-sm text-textSecondary">{categoryLabel(challenge.category)}</span>
-            <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-textPrimary">
+            <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-medium text-textPrimary">
               {done ? "Completed" : `${challenge.points} pts`}
             </span>
           </div>
-          <div className="flex min-h-[72px] items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4">
+          <div className="flex min-h-[72px] items-center justify-between gap-3 rounded-2xl bg-surface px-5 py-4">
             <span className="text-lg font-medium text-textPrimary">{challenge.name}</span>
             <span
               className={cn(

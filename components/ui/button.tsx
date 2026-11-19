@@ -14,7 +14,7 @@ const buttonVariants = cva(
         primary: "bg-primary px-8 py-2 text-white shadow-card hover:bg-primaryDark",
         destructive: "bg-error text-white hover:bg-error/90",
         outline:
-          "border border-border bg-white text-textPrimary hover:border-black/15 hover:bg-backgroundMuted",
+          "border border-border bg-surface text-textPrimary hover:border-black/15 hover:bg-backgroundMuted",
         secondary: "bg-ink text-white hover:bg-black",
         ghost: "text-textSecondary hover:bg-black/[0.04] hover:text-textPrimary",
         link: "text-primary underline-offset-4 hover:text-primaryDark hover:underline",

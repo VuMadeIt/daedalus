@@ -14,7 +14,7 @@ export const CountdownSection = () => {
   }
 
   return (
-    <div className="relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-card md:p-8 lg:col-span-2">
+    <div className="relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-card md:p-8 lg:col-span-2">
       <CountdownTimer targetDate={eventDate} />
       <div className="flex items-center gap-4">
         <Image

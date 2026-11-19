@@ -62,9 +62,9 @@ export default async function ShopsPage() {
 
         {/* Items Grid */}
         {items.length === 0 ? (
-          <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-white p-16 text-center">
-            <div className="mb-4 rounded-full bg-coralSoft p-4">
-              <Gift className="h-8 w-8 text-coral" />
+          <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface p-16 text-center">
+            <div className="mb-4 rounded-full bg-brandSoft p-4">
+              <Gift className="h-8 w-8 text-brand" />
             </div>
             <p className="text-lg font-semibold text-textPrimary">
               The shelf is empty for now

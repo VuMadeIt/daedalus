@@ -55,7 +55,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
   });
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-shadow duration-200 hover:shadow-float">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow duration-200 hover:shadow-float">
       <div className="absolute top-3 right-3 left-3 z-10 flex justify-between gap-2">
         {purchaseCount > 0 ? (
           <span className="rounded-full bg-mint px-2.5 py-0.5 text-[11px] font-medium text-[#2f7a3c]">
@@ -131,7 +131,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
                   </div>
 
                   {short ? (
-                    <div className="flex gap-2 rounded-lg border border-coral/30 bg-coralSoft p-3 text-coral">
+                    <div className="flex gap-2 rounded-lg border border-brand/30 bg-brandSoft p-3 text-brand">
                       <AlertCircle className="mt-0.5 size-4 shrink-0" />
                       <div className="text-xs">
                         <p className="font-bold">Not enough points</p>

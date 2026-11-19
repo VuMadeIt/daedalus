@@ -151,7 +151,7 @@ export function PointsManager() {
           </div>
 
           {showDropdown && results.length > 0 && (
-            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-white shadow-xl">
+            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-surface shadow-xl">
               {results.map((user) => (
                 <button
                   key={user.id}
@@ -215,7 +215,7 @@ export function PointsManager() {
 
       {/* Points Adjustment Form */}
       {selectedUser && (
-        <div className="space-y-4 rounded-lg border border-border bg-white p-5">
+        <div className="space-y-4 rounded-lg border border-border bg-surface p-5">
           <div className="space-y-2">
             <label className="text-sm font-medium text-textSecondary">Points</label>
             <Input

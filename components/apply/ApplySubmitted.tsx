@@ -168,7 +168,7 @@ export function ApplySubmitted({
                           : "Open your team"}
                       </span>
                     </span>
-                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-textPrimary shadow-lg transition-transform duration-500 ease-out group-hover:scale-110">
+                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-surface text-textPrimary shadow-lg transition-transform duration-500 ease-out group-hover:scale-110">
                       <ArrowRight
                         className="size-5 -rotate-45 transition-transform duration-500 ease-out group-hover:rotate-0"
                         aria-hidden

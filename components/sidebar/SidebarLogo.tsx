@@ -27,7 +27,7 @@ const SidebarLogo = ({ className }: Props) => {
         <span className="text-[15px] font-medium text-textPrimary">
           Hacker Dashboard
         </span>
-        <span className="text-[11px] font-medium text-coral">
+        <span className="text-[11px] font-medium text-brand">
           HC{String(hackathonYear).slice(-2)}
         </span>
       </span>

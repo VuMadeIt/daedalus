@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog";
 
 const pill =
-  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-textSecondary transition-colors hover:border-black/20 peer-checked:border-coral peer-checked:bg-coralSoft peer-checked:text-textPrimary peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-primary";
+  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-textSecondary transition-colors hover:border-black/20 peer-checked:border-brand peer-checked:bg-brandSoft peer-checked:text-textPrimary peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-primary";
 
 export function ShareTeamCard({
   teamName,
@@ -170,7 +170,7 @@ export function ShareTeamCard({
     <>
       <Button
         type="button"
-        className="min-h-12 w-full gap-2 rounded-xl bg-white text-base text-textPrimary hover:bg-white/90"
+        className="min-h-12 w-full gap-2 rounded-xl bg-surface text-base text-textPrimary hover:bg-white/90"
         onClick={() => setShown(true)}
       >
         <Sparkles className="size-4" aria-hidden />

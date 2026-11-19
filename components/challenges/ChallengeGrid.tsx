@@ -78,7 +78,7 @@ export function ChallengeGrid({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex overflow-x-auto rounded-lg border border-border bg-white">
+          <div className="flex overflow-x-auto rounded-lg border border-border bg-surface">
             {["all", ...categories].map((c) => (
               <button
                 key={c}
@@ -104,9 +104,9 @@ export function ChallengeGrid({
       </div>
 
       {shown.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-white px-6 py-14 text-center">
-          <div className="mb-4 rounded-full bg-coralSoft p-3">
-            <Trophy className="size-6 text-coral" />
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface px-6 py-14 text-center">
+          <div className="mb-4 rounded-full bg-brandSoft p-3">
+            <Trophy className="size-6 text-brand" />
           </div>
           <h3 className="text-lg font-bold text-textPrimary">
             {tab === "completed" ? "Nothing finished yet" : "No challenges right now"}

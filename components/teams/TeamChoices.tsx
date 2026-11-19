@@ -53,7 +53,7 @@ export function TeamChoices() {
         <PanelCopy
           title="Start a team"
           body="Name it, say who you need, and share the link."
-          button="bg-white text-textPrimary"
+          button="bg-surface text-textPrimary"
         />
       </Link>
 
@@ -65,7 +65,7 @@ export function TeamChoices() {
           {STARS.map(([left, top, size, delay]) => (
             <span
               key={`${left}-${top}`}
-              className="motion-safe:animate-twinkle absolute rounded-full bg-white"
+              className="motion-safe:animate-twinkle absolute rounded-full bg-surface"
               style={{
                 left: `${left}%`,
                 top: `${top}%`,

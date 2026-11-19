@@ -107,7 +107,7 @@ export function TeamCreateForm({ open }: { open: boolean }) {
                 className={cn(
                   "min-h-10 rounded-full px-5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
                   isPublic === option.value
-                    ? "bg-white text-textPrimary"
+                    ? "bg-surface text-textPrimary"
                     : "text-textSecondary hover:text-textPrimary",
                 )}
               >

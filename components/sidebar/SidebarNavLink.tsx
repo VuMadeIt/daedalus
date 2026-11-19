@@ -31,7 +31,7 @@ const SidebarNavLink = ({
       className={cn(
         "group flex items-center gap-3 rounded-lg px-3 py-2 text-[15px] transition-colors duration-150",
         isActive
-          ? "bg-coral text-white shadow-card"
+          ? "bg-brand text-white shadow-card"
           : "text-textSecondary hover:bg-black/[0.04] hover:text-textPrimary",
       )}
       onClick={() => setIsOpen?.(false)}

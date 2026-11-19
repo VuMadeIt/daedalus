@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import LockedState from "./LockedState";
 
 const tones = {
-  coral: "bg-coralSoft text-coral",
+  coral: "bg-brandSoft text-brand",
   cream: "bg-cream text-[#9a6b00]",
   mint: "bg-mint text-[#2f7a3c]",
   sky: "bg-sky text-[#3c6fb3]",
@@ -33,7 +33,7 @@ export const DashCard = ({
 }: Props) => (
   <div
     className={cn(
-      "relative flex h-full min-h-[220px] flex-col gap-3 rounded-2xl border border-border bg-white p-6 shadow-card transition-shadow duration-200 hover:shadow-float",
+      "relative flex h-full min-h-[220px] flex-col gap-3 rounded-2xl border border-border bg-surface p-6 shadow-card transition-shadow duration-200 hover:shadow-float",
       locked && "hover:shadow-card",
       className,
     )}

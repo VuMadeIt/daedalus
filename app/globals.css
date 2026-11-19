@@ -3,7 +3,49 @@
 @import "shadcn/tailwind.css";
 @import "react-phone-number-input/style.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --hc-primary: #1c74c9;
+  --hc-primary-dark: #155a9e;
+  --hc-brand-soft: #e8f2fd;
+  --hc-gold: #e0a45e;
+  --hc-gold-soft: #fdf3e2;
+  --hc-gold-ink: #8a5a16;
+  --hc-mint: #def5e8;
+  --hc-ink: #102b3d;
+  --hc-bg: #f6f8fb;
+  --hc-bg-muted: #eef2f7;
+  --hc-surface: #ffffff;
+  --hc-text: #0f2233;
+  --hc-text-2: #3b4a5a;
+  --hc-text-3: #66768a;
+  --hc-border: #e1e7ef;
+  --hc-shadow-card: 0 1px 2px rgba(16, 43, 61, 0.04), 0 2px 8px rgba(16, 43, 61, 0.05);
+  --hc-shadow-float: 0 4px 12px rgba(16, 43, 61, 0.06), 0 12px 32px rgba(16, 43, 61, 0.08);
+  color-scheme: light;
+}
+
+.dark {
+  --hc-primary: #4a9eef;
+  --hc-primary-dark: #2f86da;
+  --hc-brand-soft: #13293f;
+  --hc-gold: #f0b86c;
+  --hc-gold-soft: #2b2414;
+  --hc-gold-ink: #f3c784;
+  --hc-mint: #133426;
+  --hc-ink: #0a1824;
+  --hc-bg: #0a1520;
+  --hc-bg-muted: #12202e;
+  --hc-surface: #101d2a;
+  --hc-text: #eef3f8;
+  --hc-text-2: #c3cfdb;
+  --hc-text-3: #8b9cb0;
+  --hc-border: #1f3347;
+  --hc-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --hc-shadow-float: 0 8px 28px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
 
 @utility container {
   margin-inline: auto;
@@ -27,36 +69,37 @@
   --breakpoint-xs: 500px;
   --breakpoint-3xl: 1850px;
 
-  --color-primary: #d26666;
-  --color-primaryLight: #f5ecec;
-  --color-primaryDark: #bb5555;
-  --color-secondary: #292a27;
-  --color-secondaryLight: #ffeebe;
+  --color-primary: var(--hc-primary);
+  --color-primaryLight: var(--hc-brand-soft);
+  --color-primaryDark: var(--hc-primary-dark);
+  --color-secondary: var(--hc-ink);
+  --color-secondaryLight: var(--hc-gold-soft);
   --color-secondaryDark: #000000;
-  /* Dark mode colors */
-  --color-background: #fcfcf9;
-  --color-backgroundMuted: #f4f4ef;
-  --color-textPrimary: #292a27;
-  --color-textSecondary: #414146;
-  --color-textMuted: #77777c;
-  --color-border: #e5e7eb;
-  --color-ink: #292a27;
-  --color-coral: #d26666;
-  --color-coralSoft: #f5ecec;
-  --color-cream: #ffeebe;
-  --color-mint: #cbf6c0;
-  --color-sky: #f0f7ff;
-  --color-surface: #ffffff;
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-float: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --color-background: var(--hc-bg);
+  --color-backgroundMuted: var(--hc-bg-muted);
+  --color-textPrimary: var(--hc-text);
+  --color-textSecondary: var(--hc-text-2);
+  --color-textMuted: var(--hc-text-3);
+  --color-border: var(--hc-border);
+  --color-ink: #102b3d;
+  --color-brand: var(--hc-primary);
+  --color-brandSoft: var(--hc-brand-soft);
+  --color-gold: var(--hc-gold);
+  --color-goldSoft: var(--hc-gold-soft);
+  --color-goldInk: var(--hc-gold-ink);
+  --color-cream: var(--hc-gold-soft);
+  --color-mint: var(--hc-mint);
+  --color-sky: var(--hc-brand-soft);
+  --color-surface: var(--hc-surface);
+  --shadow-card: var(--hc-shadow-card);
+  --shadow-float: var(--hc-shadow-float);
   --color-shadow: #0000000f;
-  --color-success: #3d9a5b;
+  --color-success: #2f9e62;
   --color-warning: #d9982b;
   --color-error: #d14343;
-  --color-info: #4a86d6;
-  /* Glow colors */
-  --color-glow: rgba(210, 102, 102, 0.15);
-  --color-glowStrong: rgba(210, 102, 102, 0.3);
+  --color-info: #1c74c9;
+  --color-glow: rgba(28, 116, 201, 0.15);
+  --color-glowStrong: rgba(28, 116, 201, 0.3);
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   --color-foreground: hsl(var(--foreground));
@@ -214,31 +257,51 @@
 
 @layer base {
   :root {
-    --background: 60 23% 98%;
-    --foreground: 80 4% 16%;
+    --background: 216 33% 97%;
+    --foreground: 208 55% 13%;
     --card: 0 0% 100%;
-    --card-foreground: 80 4% 16%;
+    --card-foreground: 208 55% 13%;
     --popover: 0 0% 100%;
-    --popover-foreground: 80 4% 16%;
-    --primary: 0 54% 61%;
+    --popover-foreground: 208 55% 13%;
+    --primary: 209 76% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 33% 94%;
-    --secondary-foreground: 80 4% 16%;
-    --muted: 60 12% 95%;
-    --muted-foreground: 240 2% 47%;
-    --accent: 0 33% 94%;
-    --accent-foreground: 80 4% 16%;
+    --secondary: 212 82% 95%;
+    --secondary-foreground: 208 55% 13%;
+    --muted: 214 33% 95%;
+    --muted-foreground: 213 15% 47%;
+    --accent: 212 82% 95%;
+    --accent-foreground: 208 55% 13%;
     --destructive: 0 61% 54%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 0 54% 61%;
+    --border: 214 30% 91%;
+    --input: 214 30% 91%;
+    --ring: 209 76% 45%;
     --radius: 0.75rem;
-    --chart-1: 0 54% 61%;
+    --chart-1: 209 76% 45%;
     --chart-2: 140 40% 45%;
     --chart-3: 40 85% 60%;
     --chart-4: 215 60% 55%;
     --chart-5: 270 45% 60%;
+  }
+
+  .dark {
+    --background: 210 52% 8%;
+    --foreground: 210 40% 95%;
+    --card: 210 45% 11%;
+    --card-foreground: 210 40% 95%;
+    --popover: 210 45% 11%;
+    --popover-foreground: 210 40% 95%;
+    --primary: 209 84% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 51% 16%;
+    --secondary-foreground: 210 40% 95%;
+    --muted: 210 44% 13%;
+    --muted-foreground: 212 17% 62%;
+    --accent: 210 51% 16%;
+    --accent-foreground: 210 40% 95%;
+    --border: 210 39% 20%;
+    --input: 210 39% 20%;
+    --ring: 209 84% 61%;
   }
 }
 

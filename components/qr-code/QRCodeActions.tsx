@@ -139,7 +139,7 @@ export function QRCodeActions({
         size="sm"
         onClick={handleDownload}
         disabled={isDownloading}
-        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900"
+        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-surface hover:text-slate-900"
       >
         <Download className="h-4 w-4" />
         {isDownloading ? "Downloading..." : "Download"}
@@ -150,7 +150,7 @@ export function QRCodeActions({
         size="sm"
         onClick={handleSendEmail}
         disabled={isEmailSending}
-        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900"
+        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-surface hover:text-slate-900"
       >
         <Mail className="h-4 w-4" />
         {isEmailSending ? "Sending..." : "Send to Email"}

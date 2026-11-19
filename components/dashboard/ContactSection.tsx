@@ -17,8 +17,8 @@ export const ContactSection = () => {
   const { features } = useHackathonPhase();
 
   return (
-    <div className="flex h-full flex-col gap-3 rounded-2xl border border-border bg-coralSoft p-6">
-      <span className="grid size-9 place-items-center rounded-xl bg-white text-coral">
+    <div className="flex h-full flex-col gap-3 rounded-2xl border border-border bg-brandSoft p-6">
+      <span className="grid size-9 place-items-center rounded-xl bg-surface text-brand">
         <HelpCircle className="size-[18px]" />
       </span>
       <h2 className="text-lg font-bold text-textPrimary">Need a hand?</h2>
