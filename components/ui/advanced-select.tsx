@@ -90,7 +90,7 @@ export function AdvancedSelect({
           backgroundColor: state.isSelected 
             ? "#f5ecec" 
             : state.isFocused 
-              ? "#e5e7eb" 
+              ? "#f4f4ef" 
               : "transparent",
           color: state.isSelected ? "#292a27" : "#414146",
           cursor: "pointer",
