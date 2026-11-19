@@ -120,7 +120,7 @@ export function AuthScene() {
             <p className="font-display text-7xl leading-[0.9] text-textPrimary xl:text-8xl">
               {COPY[scene].title}
             </p>
-            <p className="mt-5 max-w-xs text-lg text-white/70">
+            <p className="mt-5 max-w-xs text-lg text-textSecondary">
               {COPY[scene].line}
             </p>
           </div>
