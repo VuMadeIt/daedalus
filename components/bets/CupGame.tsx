@@ -97,6 +97,7 @@ export function CupGame({
   const [busy, setBusy] = useState(false);
   const max = Math.min(CUPS_MAX_STAKE, points);
   const canPlay = playsLeft > 0 && max >= CUPS_MIN_STAKE;
+  const bet = Math.min(Math.max(stake, CUPS_MIN_STAKE), Math.max(max, CUPS_MIN_STAKE));
 
   function start() {
     setResult(null);
@@ -112,7 +113,7 @@ export function CupGame({
       const res = await fetch("/api/games/cups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stake, guess: i }),
+        body: JSON.stringify({ stake: bet, guess: i }),
       });
       const body = await res.json();
       if (!res.ok || !body.success) throw new Error(body.message);
@@ -186,7 +187,7 @@ export function CupGame({
             min={CUPS_MIN_STAKE}
             max={Math.max(max, CUPS_MIN_STAKE)}
             step={5}
-            value={stake}
+            value={bet}
             disabled={!canPlay}
             onChange={(e) => setStake(Number(e.target.value))}
             className="mt-3 w-full accent-[var(--hc-primary)]"

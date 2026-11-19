@@ -40,11 +40,12 @@ export function BetSlip({
   const router = useRouter();
   const max = Math.min(BET_MAX, points);
   const [side, setSide] = useState<BetSide>(initialSide);
-  const [amount, setAmount] = useState(
+  const [rawAmount, setAmount] = useState(
     Math.min(Math.max(BET_MIN, 25), Math.max(max, BET_MIN)),
   );
   const [busy, setBusy] = useState(false);
   const canBet = max >= BET_MIN;
+  const amount = Math.min(Math.max(rawAmount, BET_MIN), Math.max(max, BET_MIN));
   const yesBack = projectedReturn(amount, "yes", market.yesPool, market.noPool);
   const noBack = projectedReturn(amount, "no", market.yesPool, market.noPool);
   const mood =
