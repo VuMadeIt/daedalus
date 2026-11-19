@@ -145,7 +145,7 @@ export function TeamManage({
           <h2 id="invite-title" className="font-display text-3xl leading-none">
             {openSpots > 0 ? "Invite people" : "Team is full"}
           </h2>
-          <p className="mt-2 text-textSecondary">
+          <p className="mt-2 text-white/85">
             {openSpots > 0
               ? `${openSpots} ${openSpots === 1 ? "spot" : "spots"} open. Anyone with the link can ask to join, and ${team.isOwner ? "you" : "the owner"} decide${team.isOwner ? "" : "s"} who gets in.`
               : `You have all ${MAX_TEAM_SIZE} people.`}
@@ -154,9 +154,9 @@ export function TeamManage({
             type="button"
             onClick={copyLink}
             aria-label={copied ? "Link copied" : "Copy team link"}
-            className="mt-5 flex w-full items-center gap-2 rounded-xl bg-[#043251]/40 py-2.5 pr-3 pl-4 text-left ring-1 ring-white/15 transition-colors hover:bg-[#043251]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="mt-5 flex w-full items-center gap-2 rounded-xl bg-black/15 py-2.5 pr-3 pl-4 text-left ring-1 ring-white/15 transition-colors hover:bg-black/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
           >
-            <span className="min-w-0 flex-1 truncate font-mono text-sm text-textSecondary">
+            <span className="min-w-0 flex-1 truncate font-mono text-sm text-white/85">
               {team.invitePath}
             </span>
             <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium">
@@ -180,7 +180,7 @@ export function TeamManage({
           {team.isOwner && (
             <button
               type="button"
-              className="mt-4 text-sm text-textMuted underline-offset-4 transition-colors hover:text-textPrimary hover:underline disabled:opacity-50"
+              className="mt-4 text-sm text-white/75 underline-offset-4 transition-colors hover:text-white hover:underline disabled:opacity-50"
               disabled={!open || pending}
               onClick={() => {
                 if (
