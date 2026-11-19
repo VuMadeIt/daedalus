@@ -80,8 +80,8 @@ const ApplicationsOpenHeader = () => {
   return (
     <header className="mb-8 space-y-2">
       <div className="text-textPrimary  w-fit">
-        <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">
-          Your Journey Starts Here!
+        <h1 className="text-[28px] leading-tight font-bold tracking-tight md:text-[32px]">
+          Applications
         </h1>
       </div>
       <p className="text-textMuted max-md:text-sm">
@@ -99,28 +99,28 @@ const ApplicationsClosedHeader = ({ phase }: { phase: string }) => {
     switch (phase) {
       case "pre-registration":
         return {
-          title: "Something Big is Coming! ✨",
-          message: `Hack Canada ${hackathonYear} applications are opening soon! Get ready to join the most exciting hackathon in Canada.`,
+          title: "Applications open soon",
+          message: `Hack Canada ${hackathonYear} applications open soon. Check back here when they do.`,
         };
       case "pre-event":
         return {
-          title: "The Countdown is On! ⏰",
-          message: `Applications are closed, but the excitement is just beginning! Accepted hackers, check your dashboard for updates.`,
+          title: "Applications are closed",
+          message: `Decisions are out. If you were accepted, your home page has everything you need for the weekend.`,
         };
       case "during-event":
         return {
-          title: "We're Live! 🔥",
-          message: `Hack Canada ${hackathonYear} is happening RIGHT NOW! The energy is incredible. See you next year!`,
+          title: "Applications are closed",
+          message: `Hack Canada ${hackathonYear} is happening now. Applications for next year open in the fall.`,
         };
       case "post-event":
         return {
-          title: "What a Journey! 🎉",
-          message: `Hack Canada ${hackathonYear} was absolutely legendary! Thanks for being part of it. Can't wait to see you at Hack Canada ${hackathonYear + 1}!`,
+          title: "Thanks for coming",
+          message: `Thanks for being part of Hack Canada ${hackathonYear}. We hope to see you at Hack Canada ${hackathonYear + 1}.`,
         };
       default:
         return {
-          title: "Stay Tuned! 📣",
-          message: `Applications for Hack Canada ${hackathonYear} are currently closed. Follow us for updates!`,
+          title: "Applications are closed",
+          message: `Applications for Hack Canada ${hackathonYear} are closed for now.`,
         };
     }
   };
@@ -130,9 +130,9 @@ const ApplicationsClosedHeader = ({ phase }: { phase: string }) => {
   return (
     <header className="mb-8 space-y-2">
       <div className="text-textPrimary  w-fit">
-        <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">{title}</h1>
+        <h1 className="text-[28px] leading-tight font-bold tracking-tight md:text-[32px]">{title}</h1>
       </div>
-      <p className="text-textMuted max-md:text-sm">{message}</p>
+      <p className="text-[15px] text-textSecondary">{message}</p>
     </header>
   );
 };
