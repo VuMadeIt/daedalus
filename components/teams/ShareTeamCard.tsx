@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog";
 
 const pill =
-  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-textSecondary transition-colors hover:border-black/20 peer-checked:border-sky-300 peer-checked:bg-sky-300/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-white";
+  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-textSecondary transition-colors hover:border-black/20 peer-checked:border-coral peer-checked:bg-coralSoft peer-checked:text-textPrimary peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-primary";
 
 export function ShareTeamCard({
   teamName,
