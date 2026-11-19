@@ -39,7 +39,10 @@ export default async function BetLeaderboardPage() {
                     {r.rank}
                   </span>
                   <p className="mt-2 w-full truncate text-sm font-bold text-textPrimary">{r.name}</p>
-                  <p className="text-lg font-bold text-success tabular-nums">+{r.net}</p>
+                  <p className={cn("text-lg font-bold tabular-nums", r.net >= 0 ? "text-success" : "text-textSecondary")}>
+                    {r.net >= 0 ? "+" : ""}
+                    {r.net}
+                  </p>
                 </div>
               );
             })}

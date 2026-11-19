@@ -9,12 +9,32 @@ import { CUPS_COUNT, CUPS_MAX_STAKE, CUPS_MIN_STAKE } from "@/config/betting";
 import { cn } from "@/lib/utils";
 
 type Phase = "stake" | "shuffling" | "pick" | "reveal";
-type Result = { ball: number; won: boolean; delta: number; balance: number; playsLeft: number };
+type Result = {
+  ball: number;
+  won: boolean;
+  delta: number;
+  balance: number;
+  playsLeft: number;
+};
 
 const SHUFFLE_MS = 1800;
 
-function Cup({ lifted, ball, selected, onClick, disabled, shuffling, index }: {
-  lifted: boolean; ball: boolean; selected: boolean; onClick?: () => void; disabled: boolean; shuffling: boolean; index: number;
+function Cup({
+  lifted,
+  ball,
+  selected,
+  onClick,
+  disabled,
+  shuffling,
+  index,
+}: {
+  lifted: boolean;
+  ball: boolean;
+  selected: boolean;
+  onClick?: () => void;
+  disabled: boolean;
+  shuffling: boolean;
+  index: number;
 }) {
   return (
     <button
@@ -24,13 +44,13 @@ function Cup({ lifted, ball, selected, onClick, disabled, shuffling, index }: {
       aria-label={`Cup ${index + 1}`}
       className={cn(
         "relative flex h-40 w-24 items-end justify-center rounded-2xl transition-colors sm:h-48 sm:w-32",
-        selected && "bg-brandSoft ring-2 ring-primary",
+        selected && "bg-brandSoft ring-primary ring-2",
         !disabled && "hover:bg-backgroundMuted",
       )}
     >
       <span
         className={cn(
-          "absolute bottom-4 size-7 rounded-full bg-gold shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
+          "bg-gold absolute bottom-4 size-7 rounded-full shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
           lifted && ball ? "opacity-100" : "opacity-0",
         )}
       />
@@ -42,20 +62,35 @@ function Cup({ lifted, ball, selected, onClick, disabled, shuffling, index }: {
           shuffling && "animate-[cup-shuffle_0.45s_ease-in-out_infinite]",
         )}
       >
-        <span className="absolute inset-x-0 bottom-0 h-full rounded-t-[40%] rounded-b-md bg-gradient-to-b from-[#2b8be6] to-[#155a9e] shadow-float" />
-        <span className="absolute inset-x-2 top-5 h-1.5 rounded-full bg-white/30" />
-        <span className="absolute inset-x-2 top-9 h-1.5 rounded-full bg-white/20" />
-        <span className="absolute -inset-x-1 bottom-0 h-3 rounded-md bg-[#0f4a85]" />
+        <span
+          className="shadow-float absolute inset-0 bg-gradient-to-r from-[#155a9e] via-[#2b8be6] to-[#155a9e]"
+          style={{
+            clipPath: "polygon(16% 0, 84% 0, 100% 100%, 0 100%)",
+            borderRadius: "6px",
+          }}
+        />
+        <span className="absolute inset-x-[14%] top-0 h-2.5 rounded-full bg-[#0f4a85]" />
+        <span className="absolute inset-x-[22%] top-[38%] h-1 rounded-full bg-white/25" />
+        <span className="absolute inset-x-[18%] top-[58%] h-1 rounded-full bg-white/20" />
+        <span className="absolute -inset-x-0.5 bottom-0 h-3 rounded-md bg-[#0f4a85]" />
       </span>
-      <span className="absolute bottom-1 h-2 w-20 rounded-full bg-ink/10 blur-[2px]" />
+      <span className="bg-ink/10 absolute bottom-1 h-2 w-20 rounded-full blur-[2px]" />
     </button>
   );
 }
 
-export function CupGame({ points, playsLeft: initialPlays }: { points: number; playsLeft: number }) {
+export function CupGame({
+  points,
+  playsLeft: initialPlays,
+}: {
+  points: number;
+  playsLeft: number;
+}) {
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>("stake");
-  const [stake, setStake] = useState(Math.min(25, Math.max(points, CUPS_MIN_STAKE)));
+  const [stake, setStake] = useState(
+    Math.min(25, Math.max(points, CUPS_MIN_STAKE)),
+  );
   const [pick, setPick] = useState<number | null>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [playsLeft, setPlaysLeft] = useState(initialPlays);
@@ -105,10 +140,12 @@ export function CupGame({ points, playsLeft: initialPlays }: { points: number; p
           : "Cup shuffle";
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 rounded-3xl border border-border bg-surface px-5 py-8 shadow-card md:px-10 md:py-10">
+    <div className="border-border bg-surface shadow-card mx-auto flex w-full max-w-2xl flex-col items-center gap-6 rounded-3xl border px-5 py-8 md:px-10 md:py-10">
       <div className="text-center">
-        <h2 className="text-2xl font-bold tracking-tight text-textPrimary md:text-3xl">{heading}</h2>
-        <p className="mt-1 text-sm text-textMuted">
+        <h2 className="text-textPrimary text-2xl font-bold tracking-tight md:text-3xl">
+          {heading}
+        </h2>
+        <p className="text-textMuted mt-1 text-sm">
           {phase === "reveal" && result
             ? `${result.delta > 0 ? "+" : ""}${result.delta} pts · ${playsLeft} ${playsLeft === 1 ? "play" : "plays"} left today`
             : `Find the ball to double your stake. ${playsLeft} ${playsLeft === 1 ? "play" : "plays"} left today.`}
@@ -131,12 +168,17 @@ export function CupGame({ points, playsLeft: initialPlays }: { points: number; p
       </div>
 
       {phase === "stake" && (
-        <div className="w-full max-w-md rounded-2xl border border-border bg-background p-5">
+        <div className="border-border bg-background w-full max-w-md rounded-2xl border p-5">
           <div className="flex items-baseline justify-between">
-            <label htmlFor="cup-stake" className="text-sm font-medium text-textPrimary">
-              How many points would you like to bet?
+            <label
+              htmlFor="cup-stake"
+              className="text-textPrimary text-sm font-medium"
+            >
+              Your stake
             </label>
-            <span className="text-xl font-bold text-textPrimary tabular-nums">{stake} pts</span>
+            <span className="text-textPrimary shrink-0 text-xl font-bold tabular-nums">
+              {stake} pts
+            </span>
           </div>
           <input
             id="cup-stake"
@@ -153,29 +195,36 @@ export function CupGame({ points, playsLeft: initialPlays }: { points: number; p
             type="button"
             onClick={start}
             disabled={!canPlay}
-            className="mt-4 w-full rounded-xl bg-primary px-4 py-3 text-[15px] font-bold text-white transition-colors hover:bg-primaryDark disabled:cursor-not-allowed disabled:opacity-50"
+            className="bg-primary hover:bg-primaryDark mt-4 w-full rounded-xl px-4 py-3 text-[15px] font-bold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {playsLeft <= 0 ? "Out of plays for today" : canPlay ? "Start shuffle" : `You need ${CUPS_MIN_STAKE} pts to play`}
+            {playsLeft <= 0
+              ? "Out of plays for today"
+              : canPlay
+                ? "Start shuffle"
+                : `You need ${CUPS_MIN_STAKE} pts to play`}
           </button>
         </div>
       )}
 
       {phase === "pick" && (
-        <p className="flex items-center gap-2 text-sm font-medium text-primary">
+        <p className="text-primary flex items-center gap-2 text-sm font-medium">
           {busy && <Loader2 className="size-4 animate-spin" />} Tap a cup
         </p>
       )}
 
       {phase === "reveal" && (
         <div className="flex w-full max-w-md gap-2">
-          <a href="/bets" className="flex-1 rounded-xl bg-backgroundMuted px-4 py-3 text-center text-sm font-bold text-textPrimary hover:bg-border">
+          <a
+            href="/bets"
+            className="bg-backgroundMuted text-textPrimary hover:bg-border flex-1 rounded-xl px-4 py-3 text-center text-sm font-bold"
+          >
             Back to bets
           </a>
           <button
             type="button"
             onClick={() => setPhase("stake")}
             disabled={playsLeft <= 0}
-            className="flex-1 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white hover:bg-primaryDark disabled:opacity-50"
+            className="bg-primary hover:bg-primaryDark flex-1 rounded-xl px-4 py-3 text-sm font-bold text-white disabled:opacity-50"
           >
             {playsLeft > 0 ? "Play again" : "Out of plays"}
           </button>
