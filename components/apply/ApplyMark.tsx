@@ -24,7 +24,7 @@ export function ApplyMark() {
         alt="Hack Canada"
         width={40}
         height={40}
-        className="pointer-events-none fixed top-4 left-4 z-20 h-10 w-10"
+        className="pointer-events-none fixed top-4 left-4 z-20 h-10 w-10 max-lg:absolute"
       />
     );
   }
