@@ -39,21 +39,28 @@ const stepFor: Record<ChallengeStatus, number> = {
 function Steps({ status }: { status: ChallengeStatus }) {
   const at = stepFor[status];
   return (
-    <ol className="flex items-center gap-2">
+    <ol className="grid grid-cols-4">
       {steps.map((label, i) => (
-        <li key={label} className="flex flex-1 items-center gap-2 last:flex-none">
+        <li key={label} className="relative flex flex-col items-center gap-1.5 text-center">
+          {i > 0 && (
+            <span
+              className={cn(
+                "absolute top-2 right-1/2 h-px w-full -translate-y-1/2",
+                i <= at ? "bg-ink" : "bg-border",
+              )}
+            />
+          )}
           <span
             className={cn(
-              "grid size-4 shrink-0 place-items-center rounded-full border",
+              "relative grid size-4 place-items-center rounded-full border",
               i <= at ? "border-ink bg-ink text-white" : "border-border bg-white",
             )}
           >
             {i <= at && <Check className="size-2.5" strokeWidth={3} />}
           </span>
-          <span className={cn("text-[11px] whitespace-nowrap", i <= at ? "text-textPrimary" : "text-textMuted")}>
+          <span className={cn("px-1 text-[11px] leading-tight", i <= at ? "text-textPrimary" : "text-textMuted")}>
             {label}
           </span>
-          {i < steps.length - 1 && <span className={cn("h-px flex-1", i < at ? "bg-ink" : "bg-border")} />}
         </li>
       ))}
     </ol>
@@ -102,7 +109,7 @@ export function ChallengeCard({
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90dvh] gap-5 overflow-y-auto sm:max-w-[680px]">
+      <DialogContent className="gap-5 sm:max-w-[680px] [&>*]:min-w-0">
         <DialogHeader className="text-left">
           <span className={cn("w-fit rounded-full px-2.5 py-0.5 text-xs text-textSecondary", p.band)}>
             {categoryLabel(challenge.category)} · {challenge.points} pts · {challenge.difficulty}
