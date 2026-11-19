@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getCurrentUser } from "@/auth";
-import { eq } from "drizzle-orm";
+import { and, eq, ne } from "drizzle-orm";
 import { z } from "zod";
 
 import { db } from "@/lib/db";
@@ -44,10 +44,9 @@ export async function PATCH(req: NextRequest) {
     const [market] = await db
       .update(betMarkets)
       .set({ status })
-      .where(eq(betMarkets.id, marketId))
+      .where(and(eq(betMarkets.id, marketId), ne(betMarkets.status, "resolved")))
       .returning();
-    if (!market) return fail("That market doesn't exist", 404);
-    if (market.outcome) return fail("This market is already settled");
+    if (!market) return fail("That market doesn't exist or is already settled", 404);
     return NextResponse.json({ success: true, message: `Market ${status}`, data: market });
   } catch (error) {
     return handleError(error, "Market update error:");
