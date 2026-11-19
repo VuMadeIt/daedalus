@@ -26,7 +26,7 @@ export const CountdownSection = () => {
         />
         <div>
           <p className="font-bold text-textPrimary">Doors open soon</p>
-          <p className="text-sm text-textMuted">Pack a charger. We'll handle the snacks.</p>
+          <p className="text-sm text-textMuted">Pack a charger. We&apos;ll handle the snacks.</p>
         </div>
       </div>
     </div>

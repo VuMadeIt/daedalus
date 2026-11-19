@@ -148,7 +148,7 @@ export function ChallengeCard({
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-textMuted">No hints for this one. You've got it.</p>
+              <p className="text-sm text-textMuted">No hints for this one. You&apos;ve got it.</p>
             )}
             {challenge.qrCode && (
               <p className="mt-auto text-xs text-textMuted">{challenge.submissionInstructions}</p>
