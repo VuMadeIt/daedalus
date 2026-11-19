@@ -1,6 +1,10 @@
 type Pools = { yesPool: number; noPool: number };
 
-export function marketStatus(m: { status: string; outcome: string | null }) {
+export function isTakingBets(m: { status: string; closesAt?: Date | string | null }) {
+  return m.status === "open" && (!m.closesAt || new Date(m.closesAt).getTime() > Date.now());
+}
+
+export function marketStatus(m: { status: string; outcome: string | null; closesAt?: Date | string | null }) {
   if (m.status === "resolved")
     return {
       label:
@@ -9,7 +13,7 @@ export function marketStatus(m: { status: string; outcome: string | null }) {
           : `Settled ${m.outcome?.toUpperCase()}`,
       tone: "bg-backgroundMuted text-textSecondary",
     };
-  if (m.status === "closed")
+  if (!isTakingBets(m))
     return { label: "Closed", tone: "bg-goldSoft text-goldInk" };
   return { label: "Live", tone: "bg-mint text-success" };
 }

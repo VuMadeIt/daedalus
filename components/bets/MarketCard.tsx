@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import type { BetSide } from "@/config/betting";
-import { marketStatus, yesShare } from "@/lib/betting/market";
+import { isTakingBets, marketStatus, yesShare } from "@/lib/betting/market";
 import { cn } from "@/lib/utils";
 
 import { PlaceBetDialog } from "./PlaceBetDialog";
@@ -18,6 +18,7 @@ export type MarketCardData = {
   yesPool: number;
   noPool: number;
   betCount: number;
+  closesAt?: Date | string | null;
 };
 
 export function MarketCard({
@@ -28,7 +29,7 @@ export function MarketCard({
   points: number;
 }) {
   const [side, setSide] = useState<BetSide | null>(null);
-  const open = market.status === "open";
+  const open = isTakingBets(market);
   const yes = yesShare(market);
   const leader =
     yes === 50 ? "Even split" : yes > 50 ? "YES leads" : "NO leads";

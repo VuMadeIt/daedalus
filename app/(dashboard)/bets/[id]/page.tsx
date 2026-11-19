@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
-import { marketStatus, yesShare } from "@/lib/betting/market";
+import { isTakingBets, marketStatus, yesShare } from "@/lib/betting/market";
 import { loadBettor } from "@/lib/betting/page-guard";
 import { getMarket, getUserBets } from "@/lib/db/queries/betting";
 import { cn } from "@/lib/utils";
@@ -133,7 +133,7 @@ export default async function MarketPage({
           </div>
 
           <div className="space-y-4">
-            {market.status === "open" && allowed ? (
+            {isTakingBets(market) ? (
               <div className="border-border bg-surface shadow-card rounded-2xl border p-5">
                 <h2 className="text-textPrimary mb-4 text-base font-bold">
                   How would you like to bet?
