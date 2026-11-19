@@ -151,12 +151,12 @@ export function PointsManager() {
           </div>
 
           {showDropdown && results.length > 0 && (
-            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-[#0f0f1a] shadow-xl">
+            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-white shadow-xl">
               {results.map((user) => (
                 <button
                   key={user.id}
                   onClick={() => handleSelectUser(user)}
-                  className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-white first:rounded-t-lg last:rounded-b-lg"
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-backgroundMuted first:rounded-t-lg last:rounded-b-lg"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/20">
                     <User className="h-4 w-4 text-primary" />
