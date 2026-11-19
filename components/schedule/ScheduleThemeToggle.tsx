@@ -12,7 +12,7 @@ export function ScheduleThemeToggle({
   return (
     <button
       onClick={onToggle}
-      className="group relative shrink-0 cursor-pointer"
+      className="group relative size-14 shrink-0 cursor-pointer self-center"
       aria-label={`Switch to ${isLightMode ? "dark" : "light"} mode`}
     >
       {/* Outer glow ring */}
