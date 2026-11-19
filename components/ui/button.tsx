@@ -6,30 +6,25 @@ import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center justify-center rounded-md text-sm font-medium transition-all duration-300 ease-in-out focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors duration-200 ease-out focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default:
-          "bg-[#85B7F1] text-[#043251] hover:bg-[#a9cdf6] focus-visible:ring-[#85B7F1] focus-visible:ring-offset-[#0a0a0f]",
-        primary:
-          "px-8 py-2 bg-linear-to-b from-blue-500 to-blue-600 shadow-lg shadow-primary/25 text-white hover:shadow-[0_0_30px_rgba(30,144,255,0.5)] hover:from-blue-400 hover:to-blue-500 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-[#0a0a0f] duration-200",
-        destructive:
-          "bg-error text-white hover:bg-red-500 hover:shadow-[0_0_20px_rgba(244,67,54,0.4)] focus-visible:ring-error/70 focus-visible:ring-offset-[#0a0a0f]",
+        default: "bg-primary text-white shadow-card hover:bg-primaryDark",
+        primary: "bg-primary px-8 py-2 text-white shadow-card hover:bg-primaryDark",
+        destructive: "bg-error text-white hover:bg-error/90",
         outline:
-          "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white hover:border-white/30 focus-visible:ring-[#85B7F1] focus-visible:ring-offset-[#0a0a0f]",
-        secondary:
-          "bg-secondary/20 text-secondary border border-secondary/30 hover:bg-secondary/30 hover:shadow-[0_0_15px_rgba(255,167,38,0.3)] focus-visible:ring-secondary focus-visible:ring-offset-[#0a0a0f]",
-        ghost:
-          "text-white/60 hover:bg-white/[0.06] hover:text-white focus-visible:ring-[#85B7F1] focus-visible:ring-offset-[#0a0a0f]",
-        link: "text-[#85B7F1] underline-offset-4 hover:underline hover:text-[#a9cdf6] focus-visible:ring-[#85B7F1]",
-        auth: "rounded-full bg-[#85B7F1] text-[#043251] hover:bg-[#a9cdf6] focus-visible:ring-[#85B7F1] focus-visible:ring-offset-[#0a0a0f]",
+          "border border-border bg-white text-textPrimary hover:border-black/15 hover:bg-backgroundMuted",
+        secondary: "bg-ink text-white hover:bg-black",
+        ghost: "text-textSecondary hover:bg-black/[0.04] hover:text-textPrimary",
+        link: "text-primary underline-offset-4 hover:text-primaryDark hover:underline",
+        auth: "rounded-full bg-primary text-white hover:bg-primaryDark",
         unstyled: "",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-9 px-3",
+        lg: "h-11 px-8",
         icon: "h-10 w-10",
       },
       loading: {
