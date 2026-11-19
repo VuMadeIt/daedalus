@@ -148,11 +148,11 @@ export function TeamCreateForm({ open }: { open: boolean }) {
           <p className="font-display text-3xl break-words text-white">
             {name.trim() || "Your team"}
           </p>
-          <SpotsMeter memberCount={1} className="mt-2" />
+          <SpotsMeter memberCount={1} className="mt-2 text-white/70" />
           <p
             className={cn(
               "mt-4 text-sm break-words",
-              lookingFor.trim() ? "text-textSecondary" : "text-white/60 italic",
+              lookingFor.trim() ? "text-white/85" : "text-white/60 italic",
             )}
           >
             {lookingFor.trim() || "No note on who you need yet."}
@@ -160,7 +160,7 @@ export function TeamCreateForm({ open }: { open: boolean }) {
           <p className="mt-4 text-sm text-white/60">With you</p>
         </div>
         {!isPublic && (
-          <p className="mt-3 text-sm text-white/60">
+          <p className="mt-3 text-sm text-textMuted">
             Hidden from Browse teams.
           </p>
         )}

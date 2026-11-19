@@ -19,7 +19,7 @@ export function SpotsMeter({
             key={index}
             className={cn(
               "size-2.5 rounded-full",
-              index < memberCount ? "bg-sky-300" : "ring-1 ring-white/30",
+              index < memberCount ? "bg-coral" : "opacity-35 ring-1 ring-current",
             )}
           />
         ))}
