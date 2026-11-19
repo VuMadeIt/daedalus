@@ -18,11 +18,11 @@ import {
 } from "@/app/(dashboard)/challenges/page";
 
 const palettes: Record<string, { band: string; ring: string }> = {
-  social: { band: "bg-[#ffeebe]", ring: "border-[#f6dc93]" },
-  event: { band: "bg-[#c9c6ff]", ring: "border-[#b3aff5]" },
-  physical: { band: "bg-[#a6e3fb]", ring: "border-[#8dd4f2]" },
+  social: { band: "bg-goldSoft", ring: "border-gold/40" },
+  event: { band: "bg-brandSoft", ring: "border-primary/30" },
+  physical: { band: "bg-mint", ring: "border-success/30" },
 };
-const fallback = { band: "bg-brandSoft", ring: "border-[#ecd2d2]" };
+const fallback = { band: "bg-backgroundMuted", ring: "border-border" };
 
 export const categoryLabel = (c: string) =>
   `${c.charAt(0).toUpperCase()}${c.slice(1)} Challenge`;
@@ -100,7 +100,7 @@ export function ChallengeCard({
             <span
               className={cn(
                 "grid size-6 shrink-0 place-items-center rounded-full transition-transform group-hover:translate-x-0.5",
-                done ? "bg-mint text-[#2f7a3c]" : "bg-ink text-white",
+                done ? "bg-mint text-success" : "bg-ink text-white",
               )}
             >
               {done ? <Check className="size-3.5" strokeWidth={3} /> : <ChevronRight className="size-3.5" strokeWidth={3} />}
@@ -133,7 +133,7 @@ export function ChallengeCard({
                 />
               </div>
             ) : challenge.qrCode ? (
-              <div className="grid size-[192px] place-items-center rounded-lg bg-[#e8e8e4] text-textMuted">
+              <div className="grid size-[192px] place-items-center rounded-lg bg-backgroundMuted text-textMuted">
                 <Lock className="size-6" />
               </div>
             ) : null}

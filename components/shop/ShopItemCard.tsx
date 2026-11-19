@@ -26,7 +26,7 @@ const LOW_STOCK = 5;
 
 function ItemImage({ item, className }: { item: ShopItem; className?: string }) {
   return (
-    <div className={cn("relative grid place-items-center overflow-hidden bg-[#f7f7f5]", className)}>
+    <div className={cn("relative grid place-items-center overflow-hidden bg-backgroundMuted", className)}>
       {item.image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -58,14 +58,14 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
     <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow duration-200 hover:shadow-float">
       <div className="absolute top-3 right-3 left-3 z-10 flex justify-between gap-2">
         {purchaseCount > 0 ? (
-          <span className="rounded-full bg-mint px-2.5 py-0.5 text-[11px] font-medium text-[#2f7a3c]">
+          <span className="rounded-full bg-mint px-2.5 py-0.5 text-[11px] font-medium text-success">
             Redeemed {purchaseCount}x
           </span>
         ) : (
           <span />
         )}
         {lowStock && (
-          <span className="rounded-full bg-cream px-2.5 py-0.5 text-[11px] font-medium text-[#7a5a00]">
+          <span className="rounded-full bg-cream px-2.5 py-0.5 text-[11px] font-medium text-goldInk">
             low stock
           </span>
         )}
@@ -85,7 +85,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
         </div>
 
         {soldOut ? (
-          <Button disabled className="mt-auto w-full bg-[#e5e7eb] text-textSecondary opacity-100 shadow-none">
+          <Button disabled className="mt-auto w-full bg-backgroundMuted text-textSecondary opacity-100 shadow-none">
             Sold out
           </Button>
         ) : (
@@ -148,7 +148,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
                         <span>{after} pts</span>
                         <span>{points} pts</span>
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-[#eeeeea]">
+                      <div className="h-1.5 overflow-hidden rounded-full bg-backgroundMuted">
                         <div
                           className="h-full rounded-full bg-ink"
                           style={{ width: `${points ? (after / points) * 100 : 0}%` }}

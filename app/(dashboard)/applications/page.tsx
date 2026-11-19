@@ -79,7 +79,7 @@ const ApplicationPage = async () => {
 const ApplicationsOpenHeader = () => {
   return (
     <header className="mb-8 space-y-2">
-      <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
+      <div className="text-textPrimary  w-fit">
         <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">
           Your Journey Starts Here!
         </h1>
@@ -129,7 +129,7 @@ const ApplicationsClosedHeader = ({ phase }: { phase: string }) => {
 
   return (
     <header className="mb-8 space-y-2">
-      <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
+      <div className="text-textPrimary  w-fit">
         <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">{title}</h1>
       </div>
       <p className="text-textMuted max-md:text-sm">{message}</p>

@@ -141,7 +141,7 @@ export function TeamCreateForm({ open }: { open: boolean }) {
         <p className="text-sm text-textMuted">How it shows on Browse teams</p>
         <div
           className={cn(
-            "mt-3 rounded-3xl bg-linear-to-b from-[#3a3b37] via-[#292a27] to-[#1b1c1a] p-6 transition-opacity duration-300",
+            "mt-3 rounded-3xl bg-linear-to-b from-[#173a52] via-[#102b3d] to-[#0a1d2a] p-6 transition-opacity duration-300",
             !isPublic && "opacity-40",
           )}
         >

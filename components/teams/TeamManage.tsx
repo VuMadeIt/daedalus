@@ -140,7 +140,7 @@ export function TeamManage({
       <aside className="space-y-8" aria-label="Team tools">
         <section
           aria-labelledby="invite-title"
-          className="relative overflow-hidden rounded-3xl bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] p-6 text-white"
+          className="relative overflow-hidden rounded-3xl bg-linear-to-b from-[#2b8be6] via-[#1c74c9] to-[#155a9e] p-6 text-white"
         >
           <h2 id="invite-title" className="font-display text-3xl leading-none">
             {openSpots > 0 ? "Invite people" : "Team is full"}

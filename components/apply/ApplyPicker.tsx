@@ -29,12 +29,12 @@ const THEMES: Record<
   },
   normal: {
     panel:
-      "bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] text-white",
+      "bg-linear-to-b from-[#2b8be6] via-[#1c74c9] to-[#155a9e] text-white",
     muted: "text-white/80",
   },
   team: {
     panel:
-      "bg-linear-to-b from-[#3a3b37] via-[#292a27] to-[#1b1c1a] text-white",
+      "bg-linear-to-b from-[#173a52] via-[#102b3d] to-[#0a1d2a] text-white",
     muted: "text-white/75",
   },
 };

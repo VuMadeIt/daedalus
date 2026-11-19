@@ -48,7 +48,7 @@ export function TeamChoices() {
     <div className="grid gap-4 md:grid-cols-2">
       <Link
         href="/apply/teams/new"
-        className={`${panel} bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252]`}
+        className={`${panel} bg-linear-to-b from-[#2b8be6] via-[#1c74c9] to-[#155a9e]`}
       >
         <PanelCopy
           title="Start a team"
@@ -59,7 +59,7 @@ export function TeamChoices() {
 
       <Link
         href="/apply/teams/browse"
-        className={`${panel} bg-linear-to-b from-[#3a3b37] via-[#292a27] to-[#1b1c1a]`}
+        className={`${panel} bg-linear-to-b from-[#173a52] via-[#102b3d] to-[#0a1d2a]`}
       >
         <span aria-hidden className="pointer-events-none absolute inset-0">
           {STARS.map(([left, top, size, delay]) => (

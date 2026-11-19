@@ -17,7 +17,7 @@ const statusGradients = {
 const ApplicationStatusHeader = ({ heading, status, description }: Props) => {
   return (
     <div
-      className={`mb-6 mt-4 w-fit bg-linear-to-r font-rubik ${statusGradients[status]} bg-clip-text text-transparent`}
+      className="mt-4 mb-6 w-fit text-textPrimary"
     >
       <h1 className="pb-2 text-2xl font-semibold md:text-3xl">{heading}</h1>
       <p className="text-textMuted max-md:text-sm">{description}</p>

@@ -153,7 +153,7 @@ export function AuthScene() {
             height={115}
             className="h-40 w-auto"
           />
-          <span className="mt-2 h-2.5 w-3/4 rounded-full bg-[#043251]/15 blur-sm" />
+          <span className="mt-2 h-2.5 w-3/4 rounded-full bg-ink/15 blur-sm" />
         </div>
       </motion.div>
     </aside>

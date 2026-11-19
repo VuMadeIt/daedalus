@@ -4,9 +4,9 @@ import LockedState from "./LockedState";
 
 const tones = {
   coral: "bg-brandSoft text-brand",
-  cream: "bg-cream text-[#9a6b00]",
-  mint: "bg-mint text-[#2f7a3c]",
-  sky: "bg-sky text-[#3c6fb3]",
+  cream: "bg-cream text-goldInk",
+  mint: "bg-mint text-success",
+  sky: "bg-sky text-primary",
   ink: "bg-ink text-white",
 };
 

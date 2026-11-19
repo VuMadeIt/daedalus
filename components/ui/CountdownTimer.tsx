@@ -34,7 +34,7 @@ export const CountdownTimer = ({ targetDate }: { targetDate: Date }) => {
   }, [calculateTimeLeft]);
 
   return (
-    <div className="from-primary to-primary w-full bg-linear-to-r via-sky-400 bg-clip-text text-transparent max-sm:text-center sm:w-fit">
+    <div className="text-textPrimary  w-full max-sm:text-center sm:w-fit">
       <h1 className="text-[28px] leading-tight font-medium md:text-[32px] sm:text-4xl xl:text-5xl">
         {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m
       </h1>

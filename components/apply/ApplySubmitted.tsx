@@ -156,7 +156,7 @@ export function ApplySubmitted({
                 {team ? (
                   <Link
                     href="/apply/teams"
-                    className="group flex items-center justify-between gap-4 rounded-3xl bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:p-10"
+                    className="group flex items-center justify-between gap-4 rounded-3xl bg-linear-to-b from-[#2b8be6] via-[#1c74c9] to-[#155a9e] p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:p-10"
                   >
                     <span>
                       <span className="font-display block text-4xl leading-none md:text-5xl">

@@ -62,7 +62,7 @@ export function ChallengeGrid({
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-        <div className="flex rounded-lg border border-border bg-[#ececea] p-0.5">
+        <div className="flex rounded-lg border border-border bg-backgroundMuted p-0.5">
           {(["available", "completed"] as Tab[]).map((t) => (
             <button
               key={t}

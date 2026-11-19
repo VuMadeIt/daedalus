@@ -33,7 +33,7 @@ export default async function QRCodePage() {
       <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
         {/* Page Header */}
         <div className="space-y-2">
-          <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
+          <div className="text-textPrimary  w-fit">
             <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Your QR Code</h1>
           </div>
           <p className="text-textMuted max-md:text-sm">

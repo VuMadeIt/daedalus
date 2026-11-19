@@ -29,7 +29,7 @@ export const EmptyPage = ({ title, message }: EmptyPageProps) => {
         className="group mt-8 inline-flex items-center gap-3 rounded-full bg-primary py-2 pr-2 pl-6 font-medium text-white transition-colors hover:bg-primaryDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
       >
         Back home
-        <span className="grid size-9 place-items-center rounded-full bg-[#043251] text-textPrimary">
+        <span className="grid size-9 place-items-center rounded-full bg-ink text-textPrimary">
           <ArrowRight
             className="size-4 -rotate-45 transition-transform duration-300 group-hover:rotate-0"
             aria-hidden
