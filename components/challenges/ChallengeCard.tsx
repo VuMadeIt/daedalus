@@ -85,7 +85,7 @@ export function ChallengeCard({
           <div className="flex items-center justify-between px-4 py-2">
             <span className="text-sm text-textSecondary">{categoryLabel(challenge.category)}</span>
             <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-textPrimary">
-              {done ? `Earned ${challenge.points} pts` : `${challenge.points} pts`}
+              {done ? "Completed" : `${challenge.points} pts`}
             </span>
           </div>
           <div className="flex min-h-[72px] items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4">
