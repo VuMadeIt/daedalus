@@ -61,7 +61,7 @@ export function RequestPane({
             >
               Requests
             </h2>
-            <p className="text-sm text-white/55">
+            <p className="text-sm text-textMuted">
               {requests.length === 0
                 ? "No one is waiting."
                 : `${requests.length} waiting. You only see what they agreed to share.`}

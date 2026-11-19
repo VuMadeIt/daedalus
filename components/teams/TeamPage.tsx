@@ -22,7 +22,7 @@ export function TeamPage({
       {backHref && (
         <Link
           href={backHref}
-          className="group inline-flex w-fit items-center gap-1.5 rounded-full py-1 pr-3 text-sm text-white/55 transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+          className="group inline-flex w-fit items-center gap-1.5 rounded-full py-1 pr-3 text-sm text-textMuted transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
         >
           <ArrowLeft
             className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
@@ -35,7 +35,7 @@ export function TeamPage({
         <h1 className="font-display text-4xl break-words text-textPrimary md:text-5xl">
           {title}
         </h1>
-        {lede && <p className="mt-3 max-w-2xl text-white/65">{lede}</p>}
+        {lede && <p className="mt-3 max-w-2xl text-textMuted">{lede}</p>}
         {meta && <div className="mt-4">{meta}</div>}
       </header>
       {children && (

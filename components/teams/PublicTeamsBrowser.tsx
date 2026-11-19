@@ -89,7 +89,7 @@ export function PublicTeamsBrowser({
           Open spots only
         </label>
         <p
-          className="text-sm text-white/45 sm:ml-auto"
+          className="text-sm text-textMuted sm:ml-auto"
           role="status"
           aria-live="polite"
         >
@@ -120,12 +120,12 @@ export function PublicTeamsBrowser({
                 <p
                   className={cn(
                     "mt-2 line-clamp-3 max-w-2xl",
-                    team.lookingFor ? "text-white/75" : "text-textMuted italic",
+                    team.lookingFor ? "text-textSecondary" : "text-textMuted italic",
                   )}
                 >
                   {team.lookingFor || "No note on who they need yet."}
                 </p>
-                <p className="mt-2 truncate text-sm text-white/45">
+                <p className="mt-2 truncate text-sm text-textMuted">
                   With {team.memberFirstNames.join(", ")}
                 </p>
                 <Link

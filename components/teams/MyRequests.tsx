@@ -39,7 +39,7 @@ export function MyRequests({
                 <p className="truncate font-medium text-textPrimary">
                   {request.teamName}
                 </p>
-                <p className="text-sm text-white/55">
+                <p className="text-sm text-textMuted">
                   {request.status === "pending"
                     ? "Waiting on the owner"
                     : "Declined. You can ask again in 24 hours."}

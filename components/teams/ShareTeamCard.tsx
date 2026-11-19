@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog";
 
 const pill =
-  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-white/75 transition-colors hover:border-black/20 peer-checked:border-sky-300 peer-checked:bg-sky-300/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-white";
+  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-textSecondary transition-colors hover:border-black/20 peer-checked:border-sky-300 peer-checked:bg-sky-300/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-white";
 
 export function ShareTeamCard({
   teamName,
@@ -228,7 +228,7 @@ export function ShareTeamCard({
 
             <div className="space-y-5">
               <fieldset className="space-y-2">
-                <legend className="mb-2 text-sm text-white/55">Message</legend>
+                <legend className="mb-2 text-sm text-textMuted">Message</legend>
                 <div className="flex flex-wrap gap-2">
                   {CARD_CTAS.map((option) => (
                     <label key={option.id}>
@@ -249,7 +249,7 @@ export function ShareTeamCard({
               </fieldset>
 
               <fieldset>
-                <legend className="mb-2 text-sm text-white/55">Format</legend>
+                <legend className="mb-2 text-sm text-textMuted">Format</legend>
                 <div className="flex gap-2">
                   {(Object.keys(CARD_SIZES) as CardSize[]).map((key) => (
                     <label key={key}>
@@ -280,7 +280,7 @@ export function ShareTeamCard({
                 <label htmlFor="card-looking" className="text-sm text-textPrimary">
                   Show what you are looking for
                   {!lookingFor && (
-                    <span id="card-looking-why" className="block text-white/45">
+                    <span id="card-looking-why" className="block text-textMuted">
                       {isOwner
                         ? "Write it in Settings first."
                         : "The owner has not written it yet."}
@@ -359,7 +359,7 @@ export function ShareTeamCard({
                     LinkedIn
                   </Button>
                 </div>
-                <p className="text-xs text-white/45">
+                <p className="text-xs text-textMuted">
                   {canCopyImage
                     ? "X and LinkedIn open with your text filled in and the image copied. Paste it into the post."
                     : "X and LinkedIn open with your text filled in. Save the image to attach it."}{" "}

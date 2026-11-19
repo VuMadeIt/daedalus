@@ -127,7 +127,7 @@ export function ApplySubmitted({
             >
               Thank you{firstName ? `, ${firstName}` : ""}!
             </motion.h1>
-            <p className="mt-3 text-base text-white/65 md:text-lg">
+            <p className="mt-3 text-base text-textMuted md:text-lg">
               You applied with {title}.
             </p>
           </motion.main>

@@ -45,7 +45,7 @@ export function TeamStep({
               <TeamHowItWorks />
             </div>
             <SpotsMeter memberCount={team.members.length} />
-            <p className="text-sm text-white/65">
+            <p className="text-sm text-textMuted">
               {ready
                 ? "Submit team application below sends your application. The team stays open until applications close, so people can still join and answers can still change."
                 : "Teams stay open until applications close. Share your team link, then come back here to submit."}

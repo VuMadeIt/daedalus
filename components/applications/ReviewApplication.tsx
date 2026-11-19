@@ -16,7 +16,7 @@ const focus =
 const link = `rounded text-primary underline-offset-4 hover:underline ${focus}`;
 const promptNumber =
   "font-display mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-primary text-base text-white";
-const empty = <span className="text-white/35">Not provided</span>;
+const empty = <span className="text-textMuted/80">Not provided</span>;
 
 function external(href: string | null) {
   if (!href) return null;

@@ -55,7 +55,7 @@ export function JoinRequestButton({
   if (requestStatus === "pending" && requestId) {
     return (
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="flex items-center gap-2 text-sm text-white/75">
+        <p className="flex items-center gap-2 text-sm text-textSecondary">
           <span className="size-2 rounded-full bg-sky-300" aria-hidden />
           Request sent
         </p>

@@ -71,9 +71,9 @@ export function TeamCreateForm({ open }: { open: boolean }) {
           <div className="flex items-baseline justify-between gap-4">
             <label htmlFor="looking-for" className="text-sm text-textMuted">
               Who are you looking for?{" "}
-              <span className="text-white/35">Optional</span>
+              <span className="text-textMuted/80">Optional</span>
             </label>
-            <span className="text-xs text-white/35 tabular-nums">
+            <span className="text-xs text-textMuted/80 tabular-nums">
               {lookingFor.length}/{LOOKING_FOR_LIMIT}
             </span>
           </div>
@@ -115,11 +115,11 @@ export function TeamCreateForm({ open }: { open: boolean }) {
               </button>
             ))}
           </div>
-          <p className="mt-2 text-sm text-white/45">
+          <p className="mt-2 text-sm text-textMuted">
             {VISIBILITY.find((option) => option.value === isPublic)?.hint}
           </p>
           {isPublic && (
-            <p className="mt-3 rounded-xl bg-black/[0.03] px-4 py-3 text-sm text-white/75">
+            <p className="mt-3 rounded-xl bg-black/[0.03] px-4 py-3 text-sm text-textSecondary">
               A public team shows each member&apos;s first name, LinkedIn,
               GitHub, and portfolio to anyone who opens it. People can message
               you from those links before they ask to join.
@@ -138,29 +138,29 @@ export function TeamCreateForm({ open }: { open: boolean }) {
       </div>
 
       <aside aria-label="Preview" className="md:sticky md:top-24 md:self-start">
-        <p className="text-sm text-white/45">How it shows on Browse teams</p>
+        <p className="text-sm text-textMuted">How it shows on Browse teams</p>
         <div
           className={cn(
             "mt-3 rounded-3xl bg-linear-to-b from-[#3a3b37] via-[#292a27] to-[#1b1c1a] p-6 transition-opacity duration-300",
             !isPublic && "opacity-40",
           )}
         >
-          <p className="font-display text-3xl break-words text-textPrimary">
+          <p className="font-display text-3xl break-words text-white">
             {name.trim() || "Your team"}
           </p>
           <SpotsMeter memberCount={1} className="mt-2" />
           <p
             className={cn(
               "mt-4 text-sm break-words",
-              lookingFor.trim() ? "text-textSecondary" : "text-textMuted italic",
+              lookingFor.trim() ? "text-textSecondary" : "text-white/60 italic",
             )}
           >
             {lookingFor.trim() || "No note on who you need yet."}
           </p>
-          <p className="mt-4 text-sm text-white/45">With you</p>
+          <p className="mt-4 text-sm text-white/60">With you</p>
         </div>
         {!isPublic && (
-          <p className="mt-3 text-sm text-white/45">
+          <p className="mt-3 text-sm text-white/60">
             Hidden from Browse teams.
           </p>
         )}

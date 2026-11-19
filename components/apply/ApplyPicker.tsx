@@ -30,7 +30,7 @@ const THEMES: Record<
   normal: {
     panel:
       "bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] text-white",
-    muted: "text-textSecondary",
+    muted: "text-white/80",
   },
   team: {
     panel:

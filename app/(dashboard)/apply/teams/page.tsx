@@ -34,7 +34,7 @@ export default async function TeamsPage() {
                 ? "Ready to apply as a team"
                 : `Needs ${MIN_TEAM_APPLY - team.members.length} more to apply as a team`}
             </span>
-            <span aria-hidden className="text-white/25">
+            <span aria-hidden className="text-textMuted/70">
               ·
             </span>
             <span className="inline-flex items-center gap-1.5">

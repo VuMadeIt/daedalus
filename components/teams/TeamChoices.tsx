@@ -30,7 +30,7 @@ function PanelCopy({
       <span className="font-display block text-4xl leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 md:text-5xl">
         {title}
       </span>
-      <span className="mt-3 block max-w-sm text-textSecondary">{body}</span>
+      <span className="mt-3 block max-w-sm text-white/80">{body}</span>
       <span
         className={`mt-8 flex size-12 items-center justify-center rounded-full shadow-lg transition-transform duration-500 ease-out group-hover:scale-110 ${button}`}
       >

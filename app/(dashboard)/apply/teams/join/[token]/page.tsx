@@ -57,10 +57,10 @@ export async function generateMetadata({
 function LookingFor({ text }: { text: string }) {
   return (
     <div className="rounded-2xl border border-border bg-black/[0.03] p-5">
-      <p className="text-xs font-medium tracking-[0.14em] text-white/45 uppercase">
+      <p className="text-xs font-medium tracking-[0.14em] text-textMuted uppercase">
         What they are looking for
       </p>
-      <p className="mt-2 whitespace-pre-line text-white/85">{text}</p>
+      <p className="mt-2 whitespace-pre-line text-textSecondary">{text}</p>
     </div>
   );
 }
@@ -88,7 +88,7 @@ export default async function JoinTeamPage({ params, searchParams }: Props) {
       >
         <div className="max-w-xl space-y-6">
           {looking && card.lookingFor && <LookingFor text={card.lookingFor} />}
-          <p className="text-white/65">
+          <p className="text-textMuted">
             Sign in to ask to join. The owner sees the details you agree to
             share, then accepts or declines.
           </p>
@@ -144,7 +144,7 @@ export default async function JoinTeamPage({ params, searchParams }: Props) {
           <MemberContacts members={team.contacts} />
         ) : (
           <div>
-            <p className="text-sm text-white/45">On the team</p>
+            <p className="text-sm text-textMuted">On the team</p>
             <ul className="mt-2 flex flex-wrap gap-2" aria-label="Members">
               {team.memberFirstNames.map((name, index) => (
                 <li

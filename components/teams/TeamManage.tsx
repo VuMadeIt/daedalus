@@ -156,7 +156,7 @@ export function TeamManage({
             aria-label={copied ? "Link copied" : "Copy team link"}
             className="mt-5 flex w-full items-center gap-2 rounded-xl bg-[#043251]/40 py-2.5 pr-3 pl-4 text-left ring-1 ring-white/15 transition-colors hover:bg-[#043251]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
           >
-            <span className="min-w-0 flex-1 truncate font-mono text-sm text-white/85">
+            <span className="min-w-0 flex-1 truncate font-mono text-sm text-textSecondary">
               {team.invitePath}
             </span>
             <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium">
@@ -180,7 +180,7 @@ export function TeamManage({
           {team.isOwner && (
             <button
               type="button"
-              className="mt-4 text-sm text-white/65 underline-offset-4 transition-colors hover:text-textPrimary hover:underline disabled:opacity-50"
+              className="mt-4 text-sm text-textMuted underline-offset-4 transition-colors hover:text-textPrimary hover:underline disabled:opacity-50"
               disabled={!open || pending}
               onClick={() => {
                 if (
@@ -203,11 +203,11 @@ export function TeamManage({
             className="font-display flex items-baseline justify-between text-2xl text-textPrimary"
           >
             Members
-            <span className="font-sans text-sm text-white/45">
+            <span className="font-sans text-sm text-textMuted">
               {team.members.length} of {MAX_TEAM_SIZE}
             </span>
           </h2>
-          <p className="-mt-1 text-xs text-white/45">
+          <p className="-mt-1 text-xs text-textMuted">
             We review teams as a whole, so your whole team gets in together.
           </p>
           <ul className="space-y-2">
@@ -226,11 +226,11 @@ export function TeamManage({
                   <span className="block truncate text-textPrimary">
                     {member.firstName}
                     {member.isMe && (
-                      <span className="text-white/45"> (you)</span>
+                      <span className="text-textMuted"> (you)</span>
                     )}
                   </span>
                   {member.isOwner && (
-                    <span className="block text-sm text-white/45">Owner</span>
+                    <span className="block text-sm text-textMuted">Owner</span>
                   )}
                 </span>
                 {team.isOwner && member.userId && !member.isMe && (
@@ -300,7 +300,7 @@ export function TeamManage({
             <button
               type="button"
               onClick={openRequests}
-              className={`group flex cursor-pointer items-center gap-2 text-sm transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${team.pendingCount > 0 ? "text-primary" : "text-white/55"}`}
+              className={`group flex cursor-pointer items-center gap-2 text-sm transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${team.pendingCount > 0 ? "text-primary" : "text-textMuted"}`}
             >
               <span className="relative">
                 <Inbox className="size-4" aria-hidden />
@@ -336,7 +336,7 @@ export function TeamManage({
                   Team settings
                 </span>
                 <ChevronDown
-                  className="size-4 text-white/45 transition-transform duration-200 group-open/settings:rotate-180"
+                  className="size-4 text-textMuted transition-transform duration-200 group-open/settings:rotate-180"
                   aria-hidden
                 />
               </summary>
@@ -398,7 +398,7 @@ export function TeamManage({
                 >
                   <span className="text-sm text-textPrimary">
                     List on Browse teams
-                    <span className="block text-white/45">
+                    <span className="block text-textMuted">
                       {isPublic
                         ? "On. Anyone browsing can open this team."
                         : "Off means only people with the link can find you."}
@@ -412,7 +412,7 @@ export function TeamManage({
                   />
                 </label>
                 {isPublic && (
-                  <p className="rounded-xl bg-black/[0.03] px-3 py-2 text-sm text-white/75">
+                  <p className="rounded-xl bg-black/[0.03] px-3 py-2 text-sm text-textSecondary">
                     Anyone who opens this team will see each member&apos;s first
                     name, LinkedIn, GitHub, and portfolio, including yours, and
                     can message you from those links.

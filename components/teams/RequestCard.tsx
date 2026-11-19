@@ -39,7 +39,7 @@ export function RequestCard({
       <dl className="grid gap-2 text-sm sm:grid-cols-2">
         {SHARE_FIELDS.map((field) => (
           <div key={field.key}>
-            <dt className="text-white/45">{field.label}</dt>
+            <dt className="text-textMuted">{field.label}</dt>
             <dd className="text-textPrimary">
               <ShareValue value={request.profile[field.key]} />
             </dd>

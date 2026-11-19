@@ -108,7 +108,7 @@ export function TeamAnswers({
           </label>
         ) : (
           locked && (
-            <p role="status" className="text-sm text-white/55">
+            <p role="status" className="text-sm text-textMuted">
               The owner locked these answers.
             </p>
           )
