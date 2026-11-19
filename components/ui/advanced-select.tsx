@@ -59,7 +59,7 @@ export function AdvancedSelect({
           height: "40px",
           borderRadius: "6px",
           borderColor: state.isFocused ? "rgba(210, 102, 102, 0.6)" : "#e5e7eb",
-          background: "#292a27",
+          background: "#ffffff",
           boxShadow: state.isFocused ? "0 0 0 2px rgba(210, 102, 102, 0.2)" : "none",
           cursor: "pointer",
           "&:hover": {
@@ -68,7 +68,7 @@ export function AdvancedSelect({
         }),
         menu: (base) => ({
           ...base,
-          backgroundColor: "#292a27",
+          backgroundColor: "#ffffff",
           border: "1px solid #e5e7eb",
           borderRadius: "8px",
           boxShadow: "0 10px 40px rgba(0, 0, 0, 0.08)",
