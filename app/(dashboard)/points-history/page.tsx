@@ -98,7 +98,9 @@ export default async function PointsHistoryPage() {
     return points > 0 ? "Points Earned" : "Points Spent";
   };
 
-  const earned = transactions.filter((t) => t.points > 0).reduce((n, t) => n + t.points, 0);
+  const earned = transactions
+    .filter((t) => t.points > 0 && (t.metadata as TransactionMetadata | null)?.type !== "bet_refund")
+    .reduce((n, t) => n + t.points, 0);
   const SPENDING = new Set(["shop_redemption", "bet_placed", "minigame_lost"]);
   const spent = transactions
     .filter((t) => t.points < 0 && SPENDING.has((t.metadata as TransactionMetadata | null)?.type ?? ""))
