@@ -9,6 +9,7 @@ import { getMarket, getUserBets } from "@/lib/db/queries/betting";
 import { cn } from "@/lib/utils";
 import { Panel } from "@/components/bets/Leaderboard";
 import { BetSlip } from "@/components/bets/PlaceBetDialog";
+import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
 
 export const metadata: Metadata = { title: "Market" };
@@ -47,6 +48,7 @@ export default async function MarketPage({
 }) {
   const { id } = await params;
   const { userId, points, allowed } = await loadBettor();
+  if (!allowed) return <EmptyPage title="Bet Points" message="Betting is only open to event participants." />;
   const data = await getMarket(id);
   if (!data) notFound();
   const { market, yesHolders, noHolders } = data;

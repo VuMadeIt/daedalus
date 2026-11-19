@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getBetLeaderboard } from "@/lib/db/queries/betting";
 import { loadBettor } from "@/lib/betting/page-guard";
 import { cn } from "@/lib/utils";
+import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
 import { BetsHeader } from "@/components/bets/BetsTabs";
 import { LeaderList, Panel } from "@/components/bets/Leaderboard";
@@ -10,7 +11,8 @@ import { LeaderList, Panel } from "@/components/bets/Leaderboard";
 export const metadata: Metadata = { title: "Betting leaderboard" };
 
 export default async function BetLeaderboardPage() {
-  const { userId } = await loadBettor();
+  const { userId, allowed } = await loadBettor();
+  if (!allowed) return <EmptyPage title="Bet Points" message="Betting is only open to event participants." />;
   const rows = await getBetLeaderboard(0);
   const podium = rows.slice(0, 3);
   const mine = rows.find((r) => r.userId === userId);
