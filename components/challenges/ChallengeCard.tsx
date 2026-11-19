@@ -1,64 +1,62 @@
-// components/challenge-card.tsx
-
+import { Check, ChevronRight, Lock } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
 import { QR_LOGO_SRC } from "@/config/qr-code";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   ChallengeStatus,
   ChallengeWithStatus,
 } from "@/app/(dashboard)/challenges/page";
 
-function StatusBadge({ status }: { status?: ChallengeStatus }) {
-  if (status === "completed") {
-    return (
-      <Badge className="border-emerald-500/30 bg-emerald-500/15 text-emerald-400">
-        Completed
-      </Badge>
-    );
-  }
-  if (status === "in_progress") {
-    return (
-      <Badge className="border-amber-500/30 bg-amber-500/15 text-amber-400">
-        In Progress
-      </Badge>
-    );
-  }
+const palettes: Record<string, { band: string; ring: string }> = {
+  social: { band: "bg-[#ffeebe]", ring: "border-[#f6dc93]" },
+  event: { band: "bg-[#c9c6ff]", ring: "border-[#b3aff5]" },
+  physical: { band: "bg-[#a6e3fb]", ring: "border-[#8dd4f2]" },
+};
+const fallback = { band: "bg-coralSoft", ring: "border-[#ecd2d2]" };
 
-  if (status === "deadline_passed") {
-    return (
-      <Badge className="border-red-500/30 bg-red-500/15 text-red-400">
-        Deadline Passed
-      </Badge>
-    );
-  }
+export const categoryLabel = (c: string) =>
+  `${c.charAt(0).toUpperCase()}${c.slice(1)} Challenge`;
 
-  if (status === "not_yet_available") {
-    return (
-      <Badge className="border-orange-500/30 bg-orange-500/15 text-orange-400">
-        Not Yet Available
-      </Badge>
-    );
-  }
+const steps = ["Start", "Submitted", "Pending approval", "Redeemed"];
+const stepFor: Record<ChallengeStatus, number> = {
+  not_started: -1,
+  in_progress: 0,
+  completed: 3,
+  deadline_passed: -1,
+  not_yet_available: -1,
+};
 
+function Steps({ status }: { status: ChallengeStatus }) {
+  const at = stepFor[status];
   return (
-    <Badge className="border-white/10 bg-white/8 text-textSecondary">
-      Not Started
-    </Badge>
+    <ol className="flex items-center gap-2">
+      {steps.map((label, i) => (
+        <li key={label} className="flex flex-1 items-center gap-2 last:flex-none">
+          <span
+            className={cn(
+              "grid size-4 shrink-0 place-items-center rounded-full border",
+              i <= at ? "border-ink bg-ink text-white" : "border-border bg-white",
+            )}
+          >
+            {i <= at && <Check className="size-2.5" strokeWidth={3} />}
+          </span>
+          <span className={cn("text-[11px] whitespace-nowrap", i <= at ? "text-textPrimary" : "text-textMuted")}>
+            {label}
+          </span>
+          {i < steps.length - 1 && <span className={cn("h-px flex-1", i < at ? "bg-ink" : "bg-border")} />}
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -71,95 +69,101 @@ export function ChallengeCard({
   user: User;
   onStartChallenge: (challenge: ChallengeWithStatus) => void;
 }) {
+  const p = palettes[challenge.category.toLowerCase()] ?? fallback;
+  const done = challenge.status === "completed";
+
   return (
-    <Card className="flex h-full flex-col border-primary/15 bg-backgroundMuted transition-colors hover:border-primary/30">
-      <CardHeader className="space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <CardTitle className="text-base text-textPrimary">
-            {challenge.name}
-          </CardTitle>
-          <StatusBadge status={challenge.status} />
-        </div>
-        <CardDescription className="text-textMuted">
-          {challenge.category} • {challenge.points} pts • {challenge.difficulty}
-        </CardDescription>
-      </CardHeader>
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          className={cn(
+            "group flex w-full flex-col overflow-hidden rounded-2xl border text-left shadow-card transition-shadow hover:shadow-float focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none",
+            p.ring,
+            p.band,
+          )}
+        >
+          <div className="flex items-center justify-between px-4 py-2">
+            <span className="text-sm text-textSecondary">{categoryLabel(challenge.category)}</span>
+            <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-textPrimary">
+              {done ? `Earned ${challenge.points} pts` : `${challenge.points} pts`}
+            </span>
+          </div>
+          <div className="flex min-h-[72px] items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4">
+            <span className="text-lg font-medium text-textPrimary">{challenge.name}</span>
+            <span
+              className={cn(
+                "grid size-6 shrink-0 place-items-center rounded-full transition-transform group-hover:translate-x-0.5",
+                done ? "bg-mint text-[#2f7a3c]" : "bg-ink text-white",
+              )}
+            >
+              {done ? <Check className="size-3.5" strokeWidth={3} /> : <ChevronRight className="size-3.5" strokeWidth={3} />}
+            </span>
+          </div>
+        </button>
+      </DialogTrigger>
 
-      <CardContent className="space-y-3">
-        <p className="text-sm text-textSecondary">{challenge.shortDescription}</p>
+      <DialogContent className="max-h-[90dvh] gap-5 overflow-y-auto sm:max-w-[680px]">
+        <DialogHeader className="text-left">
+          <span className={cn("w-fit rounded-full px-2.5 py-0.5 text-xs text-textSecondary", p.band)}>
+            {categoryLabel(challenge.category)} · {challenge.points} pts · {challenge.difficulty}
+          </span>
+          <DialogTitle className="pt-1 text-2xl font-medium">{challenge.name}</DialogTitle>
+          <DialogDescription>{challenge.instructions || challenge.shortDescription}</DialogDescription>
+        </DialogHeader>
 
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="instructions" className="border-primary/10">
-            <AccordionTrigger className="text-sm text-textPrimary hover:text-primary">
-              Full instructions
-            </AccordionTrigger>
-            <AccordionContent className="text-sm text-textSecondary">
-              {challenge.instructions}
-            </AccordionContent>
-          </AccordionItem>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-backgroundMuted p-4">
+            <span className="self-start text-xs font-medium text-textPrimary">
+              {challenge.qrCode ? "Show this QR code" : "How to submit"}
+            </span>
+            {challenge.qrCode && challenge.status !== "not_started" ? (
+              <div className="rounded-lg bg-white p-3 shadow-card">
+                <QRCodeSVG
+                  value={JSON.stringify({ userId: user.id, challengeId: challenge.id })}
+                  size={168}
+                  level="H"
+                  imageSettings={{ src: QR_LOGO_SRC, height: 40, width: 40, excavate: true }}
+                />
+              </div>
+            ) : challenge.qrCode ? (
+              <div className="grid size-[192px] place-items-center rounded-lg bg-[#e8e8e4] text-textMuted">
+                <Lock className="size-6" />
+              </div>
+            ) : null}
+            <p className="text-center text-xs text-textMuted">
+              {challenge.qrCode
+                ? challenge.status === "not_started"
+                  ? "Start the challenge to unlock your code."
+                  : "A volunteer scans this to give you points."
+                : challenge.submissionInstructions}
+            </p>
+          </div>
 
-          <AccordionItem value="hints" className="border-primary/10">
-            <AccordionTrigger className="text-sm text-textPrimary hover:text-primary">
-              Hints
-            </AccordionTrigger>
-            <AccordionContent className="space-y-1 text-sm text-textSecondary">
-              <ul className="list-inside list-disc space-y-1">
+          <div className="flex flex-col gap-3 rounded-xl border border-border p-4">
+            <span className="text-xs font-medium text-textPrimary">Hints</span>
+            {challenge.hints.length ? (
+              <ul className="list-inside list-disc space-y-1 text-sm text-textSecondary">
                 {challenge.hints.map((hint) => (
                   <li key={hint}>{hint}</li>
                 ))}
               </ul>
-            </AccordionContent>
-          </AccordionItem>
+            ) : (
+              <p className="text-sm text-textMuted">No hints for this one. You've got it.</p>
+            )}
+            {challenge.qrCode && (
+              <p className="mt-auto text-xs text-textMuted">{challenge.submissionInstructions}</p>
+            )}
+          </div>
+        </div>
 
-          {challenge.qrCode && (
-            <AccordionItem value="qr" className="border-primary/10">
-              <AccordionTrigger className="text-sm text-textPrimary hover:text-primary">
-                QR code
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col items-center gap-2 py-2">
-                <div className="rounded-lg bg-white p-3">
-                  <QRCodeSVG
-                    value={JSON.stringify({
-                      userId: user.id,
-                      challengeId: challenge.id,
-                    })}
-                    size={200}
-                    level="H"
-                    imageSettings={{
-                      src: QR_LOGO_SRC,
-                      height: 50,
-                      width: 50,
-                      excavate: true,
-                    }}
-                  />
-                </div>
-                <p className="text-xs text-textMuted">
-                  Scan this code on-site to confirm your visit.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-
-          <AccordionItem value="submission" className="border-primary/10">
-            <AccordionTrigger className="text-sm text-textPrimary hover:text-primary">
-              Submission instructions
-            </AccordionTrigger>
-            <AccordionContent className="text-sm text-textSecondary">
-              {challenge.submissionInstructions}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <Steps status={challenge.status} />
 
         {challenge.status === "not_started" && (
-          <Button
-            className="mt-2 w-full border-primary/30 text-primary hover:bg-primary/10"
-            variant="outline"
-            onClick={() => onStartChallenge(challenge)}
-          >
-            Start
+          <Button className="w-full" onClick={() => onStartChallenge(challenge)}>
+            Start challenge
           </Button>
         )}
-      </CardContent>
-    </Card>
+      </DialogContent>
+    </Dialog>
   );
 }
