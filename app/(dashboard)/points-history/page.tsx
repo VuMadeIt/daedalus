@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   Clock,
   Coins,
+  Dices,
   ShoppingBag,
   Trophy,
   Users,
@@ -21,7 +22,9 @@ import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
 
 interface TransactionMetadata {
-  type?: "challenge_completion" | "shop_redemption" | "profile_visit_reward";
+  question?: string;
+  game?: string;
+  type?: string;
   challengeName?: string;
   itemName?: string;
   visitCount?: number;
@@ -67,6 +70,10 @@ export default async function PointsHistoryPage() {
     if (metadata?.type === "profile_visit_reward") {
       return <Users className="h-4 w-4 text-primary" />;
     }
+    const kind = metadata?.type ?? "";
+    if (kind.startsWith("bet_") || kind.startsWith("minigame_")) {
+      return <Dices className="h-4 w-4 text-goldInk" />;
+    }
     return <Coins className="h-4 w-4 text-primary" />;
   };
 
@@ -83,6 +90,11 @@ export default async function PointsHistoryPage() {
     if (metadata?.type === "profile_visit_reward") {
       return `Networking Reward (${metadata.visitCount || 0} profiles visited)`;
     }
+    if (metadata?.type === "bet_placed") return `Bet: ${metadata.question || "Market"}`;
+    if (metadata?.type === "bet_won") return `Bet won: ${metadata.question || "Market"}`;
+    if (metadata?.type === "bet_refund") return `Bet refunded: ${metadata.question || "Market"}`;
+    if (metadata?.type === "minigame_won") return "Cup shuffle: found the ball";
+    if (metadata?.type === "minigame_lost") return "Cup shuffle: wrong cup";
     return points > 0 ? "Points Earned" : "Points Spent";
   };
 
