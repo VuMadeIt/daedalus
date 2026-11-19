@@ -4,7 +4,6 @@ import { getCurrentUser } from "@/auth";
 import { QRCodeSVG } from "qrcode.react";
 
 import { QR_LOGO_SRC } from "@/config/qr-code";
-import { cn } from "@/lib/utils";
 import { BackButton } from "@/components/ui/back-button";
 import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
@@ -28,101 +27,79 @@ export default async function QRCodePage() {
 
   const profileUrl = `https://app.hackcanada.org/profile/${currentUser.id}`;
 
+  const role = currentUser.role ? currentUser.role[0].toUpperCase() + currentUser.role.slice(1) : "Hacker";
+
   return (
     <PageWrapper>
-      <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
-        {/* Page Header */}
-        <div className="space-y-2">
-          <div className="text-textPrimary  w-fit">
-            <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Your QR Code</h1>
-          </div>
-          <p className="text-textMuted max-md:text-sm">
-            Use this QR code for event check-ins and sharing your public
-            profile!
+      <div className="flex flex-col gap-6 md:gap-8">
+        <div className="space-y-1.5">
+          <h1 className="text-[28px] leading-tight font-bold tracking-tight text-textPrimary md:text-[32px]">
+            Your pass
+          </h1>
+          <p className="text-[15px] text-textSecondary">
+            Show this at check-in, meals and workshops. It also opens your public profile.
           </p>
         </div>
 
-        {/* Main Content */}
-        <div className="flex justify-center">
-          {/* QR Code Section */}
-          <div className="w-full max-w-2xl">
-            <div
-              className="group border-primary/20 hover:border-primary/40 relative flex h-full flex-col gap-6 overflow-hidden rounded-lg border bg-white/50 p-6 transition-all duration-500 hover:shadow-lg md:p-8"
-              role="region"
-              aria-label="QR Code Display"
-            >
-              <div className="pointer-events-none absolute inset-0 -z-10">
-                {/* Radial gradient overlay */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
-
-                {/* Animated gradient background */}
-                <div className="from-info/30 via-primaryLight/30 to-primary/30 absolute inset-0 bg-linear-to-br opacity-50 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" />
-
-                {/* Mesh gradient pattern */}
-                <div className="absolute inset-0 opacity-0 mix-blend-normal transition-all duration-700 group-hover:opacity-80">
-                  <div className="absolute inset-0 bg-[radial-gradient(at_70%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(at_30%_80%,rgba(59,130,246,0.3),transparent_50%)]" />
-                  <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_80%_50%,rgba(59,130,246,0.25),transparent_25%)]" />
-                </div>
-
-                {/* Noise texture */}
-                <div className="absolute inset-0 opacity-5 mix-blend-soft-light transition group-hover:opacity-20">
-                  <Image
-                    src="/grainy-texture.jpg"
-                    alt="Grainy texture"
-                    fill
-                    sizes="50px"
-                    className="object-cover"
-                  />
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
+          <div className="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-3xl bg-ink text-white shadow-float">
+            <div className="absolute -top-20 -right-16 size-56 rounded-full bg-primary/50 blur-3xl" aria-hidden />
+            <div className="absolute -bottom-24 -left-16 size-56 rounded-full bg-gold/25 blur-3xl" aria-hidden />
+            <div className="relative flex items-center justify-between px-6 pt-6">
+              <div className="flex items-center gap-2.5">
+                <Image src="/logo-circle.png" alt="" width={32} height={32} className="size-8 rounded-full" />
+                <div className="leading-tight">
+                  <p className="text-sm font-bold">Hack Canada</p>
+                  <p className="text-xs text-white/60">2027</p>
                 </div>
               </div>
+              <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold text-ink">{role}</span>
+            </div>
+            <div className="relative px-6 pt-8 pb-6">
+              <p className="text-xs tracking-[0.18em] text-white/50 uppercase">Name</p>
+              <p className="mt-1 truncate text-2xl font-bold tracking-tight">{currentUser.name || "Hacker"}</p>
+            </div>
+            <div className="relative border-t border-dashed border-white/20 px-6 py-7">
+              <div className="mx-auto w-fit rounded-2xl bg-white p-4">
+                <QRCodeSVG
+                  data-qr-code="true"
+                  value={profileUrl}
+                  size={220}
+                  level="H"
+                  imageSettings={{ src: QR_LOGO_SRC, height: 56, width: 56, excavate: true }}
+                />
+              </div>
+              <p className="mt-4 text-center text-xs text-white/60">Scan to check in or view profile</p>
+            </div>
+          </div>
 
-              {/* QR Code Content */}
-              <div className="flex flex-col items-center gap-6">
-                <div className="flex flex-col items-center gap-4">
-                  <div
-                    className={cn(
-                      "relative z-10 overflow-hidden rounded-xl border bg-white p-4 shadow-lg md:p-6",
-                      "hover:shadow-primary/25 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl",
-                      "group-hover:border-primary/40",
-                    )}
-                  >
-                    {/* Subtle animated background */}
-                    <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                      <div className="absolute inset-0 animate-[pulse_3s_ease-in-out_infinite] bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_60%)]" />
-                    </div>
-
-                    <QRCodeSVG
-                      data-qr-code="true"
-                      value={profileUrl}
-                      size={225}
-                      level="H"
-                      imageSettings={{
-                        src: QR_LOGO_SRC,
-                        height: 60,
-                        width: 60,
-                        excavate: true,
-                      }}
-                    />
-                  </div>
-
-                  <div className="max-w-md text-center">
-                    <p className="text-sm text-slate-600 transition-colors duration-300 group-hover:text-slate-700 md:text-base">
-                      Save this QR code to your device for quick and easy access
-                      during the event. You&apos;ll need it for check-ins and
-                      other activities!
-                    </p>
-                  </div>
-
-                  <QRCodeActions
-                    userId={currentUser.id}
-                    userName={currentUser.name || "Hacker"}
-                    userEmail={currentUser.email || ""}
-                    profileUrl={profileUrl}
-                  />
-                </div>
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-border bg-surface p-6 shadow-card">
+              <h2 className="text-base font-bold text-textPrimary">Keep it handy</h2>
+              <p className="mt-1 text-sm text-textSecondary">
+                Save it to your phone or send it to your email so it works even without Wi-Fi.
+              </p>
+              <div className="mt-4">
+                <QRCodeActions
+                  userId={currentUser.id}
+                  userName={currentUser.name || "Hacker"}
+                  userEmail={currentUser.email || ""}
+                  profileUrl={profileUrl}
+                />
               </div>
             </div>
+            <ul className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {[
+                ["Check-in", "Scan at the front desk"],
+                ["Meals", "Scan at every food line"],
+                ["Points", "Volunteers scan for challenges"],
+              ].map(([t, b]) => (
+                <li key={t} className="bg-surface p-4">
+                  <p className="text-sm font-bold text-textPrimary">{t}</p>
+                  <p className="mt-0.5 text-sm text-textMuted">{b}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

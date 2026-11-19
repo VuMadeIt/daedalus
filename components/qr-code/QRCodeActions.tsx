@@ -133,13 +133,13 @@ export function QRCodeActions({
   };
 
   return (
-    <div className="flex flex-wrap justify-center gap-3">
+    <div className="flex flex-wrap gap-2">
       <Button
         variant="outline"
         size="sm"
         onClick={handleDownload}
         disabled={isDownloading}
-        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-surface hover:text-slate-900"
+        className="gap-2 border-border bg-surface text-textPrimary hover:bg-backgroundMuted"
       >
         <Download className="h-4 w-4" />
         {isDownloading ? "Downloading..." : "Download"}
@@ -150,7 +150,7 @@ export function QRCodeActions({
         size="sm"
         onClick={handleSendEmail}
         disabled={isEmailSending}
-        className="gap-2 border-slate-300 bg-white/80 text-slate-700 hover:bg-surface hover:text-slate-900"
+        className="gap-2 border-border bg-surface text-textPrimary hover:bg-backgroundMuted"
       >
         <Mail className="h-4 w-4" />
         {isEmailSending ? "Sending..." : "Send to Email"}
