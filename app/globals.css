@@ -310,7 +310,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background font-sans text-textSecondary antialiased selection:bg-coralSoft selection:text-textPrimary;
+    @apply bg-background font-sans text-textSecondary antialiased selection:bg-brandSoft selection:text-textPrimary;
   }
 }
 
