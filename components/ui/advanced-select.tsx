@@ -41,6 +41,7 @@ export function AdvancedSelect({
     <AsyncSelect
       name={name}
       inputId={id}
+      instanceId={id}
       aria-invalid={ariaInvalid}
       aria-describedby={ariaDescribedBy}
       value={value}
