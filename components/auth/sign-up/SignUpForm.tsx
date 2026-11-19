@@ -101,7 +101,7 @@ const SignUpForm = ({}: Props) => {
           name="name"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="font-medium text-white/90">
+              <FormLabel className="font-medium text-textSecondary">
                 Full Name
               </FormLabel>
               <FormControl>
@@ -124,7 +124,7 @@ const SignUpForm = ({}: Props) => {
           name="email"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="font-medium text-white/90">
+              <FormLabel className="font-medium text-textSecondary">
                 Email Address
               </FormLabel>
               <FormControl>
@@ -145,7 +145,7 @@ const SignUpForm = ({}: Props) => {
           name="password"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="font-medium text-white/90">
+              <FormLabel className="font-medium text-textSecondary">
                 Password
               </FormLabel>
               <FormControl>
@@ -172,9 +172,9 @@ const SignUpForm = ({}: Props) => {
       </form>
 
       <div className="relative flex items-center gap-3 py-1">
-        <div className="h-px flex-1 bg-white/20" />
-        <span className="shrink-0 text-sm text-white/50">or</span>
-        <div className="h-px flex-1 bg-white/20" />
+        <div className="h-px flex-1 bg-black/10" />
+        <span className="shrink-0 text-sm text-textMuted">or</span>
+        <div className="h-px flex-1 bg-black/10" />
       </div>
 
       <OAuthButtons mode="sign-up" callbackUrl="/apply" />

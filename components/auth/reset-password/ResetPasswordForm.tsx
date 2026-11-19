@@ -82,7 +82,7 @@ const ResetPasswordForm = ({ token }: ResetPasswordParamsProps) => {
           name="password"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-white/90 font-medium">New Password</FormLabel>
+              <FormLabel className="text-textSecondary font-medium">New Password</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -101,7 +101,7 @@ const ResetPasswordForm = ({ token }: ResetPasswordParamsProps) => {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-white/90 font-medium">Confirm Password</FormLabel>
+              <FormLabel className="text-textSecondary font-medium">Confirm Password</FormLabel>
               <FormControl>
                 <Input
                   {...field}

@@ -17,7 +17,7 @@ const AuthCardWrapper = ({
   return (
     <div
       className={cn(
-        "auth-card relative flex w-full flex-col gap-6 text-white",
+        "auth-card relative flex w-full flex-col gap-6 text-textPrimary",
         showTabs && reserveHeight && "min-h-[724px]",
         className,
       )}

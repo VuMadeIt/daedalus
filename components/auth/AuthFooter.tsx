@@ -22,22 +22,22 @@ const AuthFooter = ({
       {(showSignIn || showSignUp) && (
         <div className="flex flex-col gap-2">
           {showSignIn && (
-            <p className="text-center text-sm text-white/60">
+            <p className="text-center text-sm text-textMuted">
               {customSignInLabel || "Already have an account?"}{" "}
               <Link
                 href="/sign-in"
-                className="cursor-pointer font-medium text-[#85B7F1] transition-all hover:text-white hover:underline"
+                className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
               >
                 Sign In
               </Link>
             </p>
           )}
           {showSignUp && (
-            <p className="text-center text-sm text-white/60">
+            <p className="text-center text-sm text-textMuted">
               New to Hack Canada?{" "}
               <Link
                 href="/sign-up"
-                className="cursor-pointer font-medium text-[#85B7F1] transition-all hover:text-white hover:underline"
+                className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
               >
                 Sign Up
               </Link>
@@ -50,7 +50,7 @@ const AuthFooter = ({
           {showResetPassword && (
             <Link
               href="/forgot-password"
-              className="cursor-pointer font-medium text-[#85B7F1] transition-all hover:text-white hover:underline"
+              className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
             >
               Forgot password?
             </Link>
@@ -59,7 +59,7 @@ const AuthFooter = ({
             <Link
               href="mailto:hi@hackcanada.org"
               target="_blank"
-              className="cursor-pointer font-medium text-[#85B7F1] transition-all hover:text-white hover:underline"
+              className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
             >
               Need help?
             </Link>

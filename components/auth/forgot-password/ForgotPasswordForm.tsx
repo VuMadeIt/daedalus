@@ -72,7 +72,7 @@ const ForgotPasswordForm = ({}: Props) => {
           name="email"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-white/90 font-medium">Email Address</FormLabel>
+              <FormLabel className="text-textSecondary font-medium">Email Address</FormLabel>
               <FormControl>
                 <Input
                   {...field}
