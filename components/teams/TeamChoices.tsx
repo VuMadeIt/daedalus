@@ -14,7 +14,7 @@ const STARS = [
 ] as const;
 
 const panel =
-  "group relative flex min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl p-8 text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:min-h-[19rem] md:p-10";
+  "group relative flex min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:min-h-[19rem] md:p-10";
 
 function PanelCopy({
   title,
