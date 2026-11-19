@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,12 @@ type MobileMenuProps = {
 };
 
 const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname, setIsOpen]);
+
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", isOpen);
     return () => document.body.classList.remove("overflow-hidden");
