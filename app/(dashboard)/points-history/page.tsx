@@ -99,7 +99,10 @@ export default async function PointsHistoryPage() {
   };
 
   const earned = transactions.filter((t) => t.points > 0).reduce((n, t) => n + t.points, 0);
-  const spent = transactions.filter((t) => t.points < 0).reduce((n, t) => n - t.points, 0);
+  const SPENDING = new Set(["shop_redemption", "bet_placed", "minigame_lost"]);
+  const spent = transactions
+    .filter((t) => t.points < 0 && SPENDING.has((t.metadata as TransactionMetadata | null)?.type ?? ""))
+    .reduce((n, t) => n - t.points, 0);
 
   return (
     <PageWrapper>
