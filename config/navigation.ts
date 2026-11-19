@@ -1,4 +1,5 @@
 import {
+  Dices,
   CalendarDays,
   Coins,
   Home,
@@ -40,6 +41,7 @@ export const navSections: NavSection[] = [
     label: "Beaver Games",
     items: [
       { name: "Challenges", href: "/challenges", icon: Star },
+      { name: "Bet Points", href: "/bets", icon: Dices },
       { name: "Points", href: "/points-history", icon: Coins },
       { name: "Store", href: "/shops", icon: ShoppingBag },
     ],
