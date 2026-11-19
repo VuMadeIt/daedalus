@@ -28,7 +28,7 @@ export default async function TeamsPage() {
         title={team.name}
         backHref={backHref}
         meta={
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-white/60">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-textMuted">
             <span>
               {ready
                 ? "Ready to apply as a team"

@@ -56,7 +56,7 @@ export async function generateMetadata({
 
 function LookingFor({ text }: { text: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+    <div className="rounded-2xl border border-border bg-black/[0.03] p-5">
       <p className="text-xs font-medium tracking-[0.14em] text-white/45 uppercase">
         What they are looking for
       </p>
@@ -149,7 +149,7 @@ export default async function JoinTeamPage({ params, searchParams }: Props) {
               {team.memberFirstNames.map((name, index) => (
                 <li
                   key={`${name}-${index}`}
-                  className="rounded-full bg-white/10 px-3 py-1 text-sm text-white"
+                  className="rounded-full bg-black/[0.05] px-3 py-1 text-sm text-textPrimary"
                 >
                   {name}
                 </li>

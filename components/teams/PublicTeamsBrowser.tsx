@@ -44,10 +44,10 @@ export function PublicTeamsBrowser({
           height={345}
           className="motion-safe:animate-bob h-14 w-auto"
         />
-        <p className="font-display mt-4 text-2xl text-white">
+        <p className="font-display mt-4 text-2xl text-textPrimary">
           No public teams yet
         </p>
-        <p className="mt-1 max-w-sm text-white/60">
+        <p className="mt-1 max-w-sm text-textMuted">
           Be the first. Start a team and others will find it here.
         </p>
         <Button asChild className="mt-6 min-h-11">
@@ -65,7 +65,7 @@ export function PublicTeamsBrowser({
             Search teams
           </label>
           <Search
-            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-white/40"
+            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-textMuted"
             aria-hidden
           />
           <Input
@@ -79,7 +79,7 @@ export function PublicTeamsBrowser({
         </div>
         <label
           htmlFor="open-spots"
-          className="flex min-h-11 items-center gap-3 text-sm text-white"
+          className="flex min-h-11 items-center gap-3 text-sm text-textPrimary"
         >
           <Switch
             id="open-spots"
@@ -98,12 +98,12 @@ export function PublicTeamsBrowser({
       </div>
 
       {shown.length === 0 ? (
-        <p className="border-y border-white/10 py-10 text-center text-white/60">
+        <p className="border-y border-border py-10 text-center text-textMuted">
           No teams match. Try another word
           {openOnly ? " or include full teams" : ""}.
         </p>
       ) : (
-        <ul className="divide-y divide-white/10 border-y border-white/10">
+        <ul className="divide-y divide-white/10 border-y border-border">
           {shown.map((team, index) => (
             <li
               key={team.id}
@@ -112,7 +112,7 @@ export function PublicTeamsBrowser({
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
-                  <h2 className="font-display text-2xl break-words text-white">
+                  <h2 className="font-display text-2xl break-words text-textPrimary">
                     {team.name}
                   </h2>
                   <SpotsMeter memberCount={team.memberCount} />
@@ -120,7 +120,7 @@ export function PublicTeamsBrowser({
                 <p
                   className={cn(
                     "mt-2 line-clamp-3 max-w-2xl",
-                    team.lookingFor ? "text-white/75" : "text-white/40 italic",
+                    team.lookingFor ? "text-white/75" : "text-textMuted italic",
                   )}
                 >
                   {team.lookingFor || "No note on who they need yet."}
@@ -130,7 +130,7 @@ export function PublicTeamsBrowser({
                 </p>
                 <Link
                   href={`/apply/teams/browse/${team.id}`}
-                  className="mt-2 inline-flex min-h-11 items-center text-sm text-[#85B7F1] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                  className="mt-2 inline-flex min-h-11 items-center text-sm text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                 >
                   View members and contact links
                 </Link>

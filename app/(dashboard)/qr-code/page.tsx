@@ -34,7 +34,7 @@ export default async function QRCodePage() {
         {/* Page Header */}
         <div className="space-y-2">
           <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-            <h1 className="font-rubik text-3xl font-bold">Your QR Code</h1>
+            <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Your QR Code</h1>
           </div>
           <p className="text-textMuted max-md:text-sm">
             Use this QR code for event check-ins and sharing your public

@@ -14,7 +14,7 @@ const STARS = [
 ] as const;
 
 const panel =
-  "group relative flex min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:min-h-[19rem] md:p-10";
+  "group relative flex min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl p-8 text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:min-h-[19rem] md:p-10";
 
 function PanelCopy({
   title,
@@ -30,7 +30,7 @@ function PanelCopy({
       <span className="font-display block text-4xl leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 md:text-5xl">
         {title}
       </span>
-      <span className="mt-3 block max-w-sm text-white/80">{body}</span>
+      <span className="mt-3 block max-w-sm text-textSecondary">{body}</span>
       <span
         className={`mt-8 flex size-12 items-center justify-center rounded-full shadow-lg transition-transform duration-500 ease-out group-hover:scale-110 ${button}`}
       >
@@ -48,18 +48,18 @@ export function TeamChoices() {
     <div className="grid gap-4 md:grid-cols-2">
       <Link
         href="/apply/teams/new"
-        className={`${panel} bg-linear-to-b from-[#5f9be2] via-[#3c7bcc] to-[#1c58a1]`}
+        className={`${panel} bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252]`}
       >
         <PanelCopy
           title="Start a team"
           body="Name it, say who you need, and share the link."
-          button="bg-white text-[#043251]"
+          button="bg-white text-textPrimary"
         />
       </Link>
 
       <Link
         href="/apply/teams/browse"
-        className={`${panel} bg-linear-to-b from-[#0d426d] via-[#062f52] to-[#031b31]`}
+        className={`${panel} bg-linear-to-b from-[#3a3b37] via-[#292a27] to-[#1b1c1a]`}
       >
         <span aria-hidden className="pointer-events-none absolute inset-0">
           {STARS.map(([left, top, size, delay]) => (
@@ -79,7 +79,7 @@ export function TeamChoices() {
         <PanelCopy
           title="Browse teams"
           body="Find a team with open spots and ask to join."
-          button="bg-[#85B7F1] text-[#043251]"
+          button="bg-primary text-white"
         />
       </Link>
     </div>

@@ -35,7 +35,7 @@ const DashboardLayout = async ({ children }: Props) => {
     if (path && !path.startsWith("/apply")) redirect("/apply");
 
     return (
-      <div className="relative min-h-dvh bg-[#0a0a0f]">
+      <div className="relative min-h-dvh bg-background">
         <PageTransition>{children}</PageTransition>
       </div>
     );

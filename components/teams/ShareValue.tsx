@@ -11,7 +11,7 @@ export const SHARE_FIELDS: { key: keyof SharedProfile; label: string }[] = [
 ];
 
 export function ShareValue({ value }: { value: string }) {
-  if (!value) return <span className="text-white/40">Not provided</span>;
+  if (!value) return <span className="text-textMuted">Not provided</span>;
   if (/^https?:\/\//i.test(value)) {
     return (
       <a

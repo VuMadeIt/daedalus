@@ -11,7 +11,7 @@ export function SpotsMeter({
   const spotsLeft = Math.max(0, MAX_TEAM_SIZE - memberCount);
   return (
     <p
-      className={cn("flex items-center gap-3 text-sm text-white/70", className)}
+      className={cn("flex items-center gap-3 text-sm text-textSecondary", className)}
     >
       <span className="flex gap-1.5" aria-hidden>
         {Array.from({ length: MAX_TEAM_SIZE }, (_, index) => (

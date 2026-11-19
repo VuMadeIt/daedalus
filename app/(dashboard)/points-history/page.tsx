@@ -90,8 +90,8 @@ export default async function PointsHistoryPage() {
         {/* Page Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-2">
-            <div className="w-fit bg-linear-to-r from-primary via-sky-400 to-primary bg-clip-text text-transparent">
-              <h1 className="font-rubik text-3xl font-bold">Points History</h1>
+            <div className="w-fit text-textPrimary">
+              <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Points History</h1>
             </div>
             <p className="text-textMuted max-md:text-sm">
               View your complete points transaction history

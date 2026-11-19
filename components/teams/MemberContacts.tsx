@@ -26,16 +26,16 @@ export function MemberContacts({ members }: { members: PublicContact[] }) {
           return (
             <li
               key={`${member.firstName}-${index}`}
-              className="rounded-2xl bg-white/[0.04] px-4 py-3"
+              className="rounded-2xl bg-black/[0.03] px-4 py-3"
             >
-              <p className="text-white">
+              <p className="text-textPrimary">
                 {member.firstName}
                 {member.isOwner && (
                   <span className="text-white/45"> · Team lead</span>
                 )}
               </p>
               {links.length === 0 ? (
-                <p className="mt-1 text-sm text-white/40">
+                <p className="mt-1 text-sm text-textMuted">
                   No contact links yet.
                 </p>
               ) : (

@@ -20,7 +20,7 @@ export function WordCount({
       id={id}
       className={cn(
         "block text-sm",
-        over ? "text-error" : "text-white/50",
+        over ? "text-error" : "text-textMuted",
         className,
       )}
     >

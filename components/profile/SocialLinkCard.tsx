@@ -42,7 +42,7 @@ const platformGradients: Record<Platform, string> = {
 };
 
 const platformBorders: Record<Platform, string> = {
-  github: "border-white/10 hover:border-white/20",
+  github: "border-border hover:border-border",
   linkedin: "border-blue-500/20 hover:border-blue-400/40",
   instagram: "border-fuchsia-500/20 hover:border-fuchsia-400/40",
   youtube: "border-red-500/20 hover:border-red-400/40",

@@ -58,7 +58,7 @@ function subscribeSeen(onChange: () => void) {
 
 // Pastels from the main site, read on the dark background
 const AVATAR_COLORS = [
-  "bg-[#85B7F1]",
+  "bg-primary",
   "bg-[#F4B9A8]",
   "bg-[#B9E3C6]",
   "bg-[#F6DC8C]",
@@ -130,7 +130,7 @@ export function TeamManage({
     <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <div className="space-y-6">
         {!open && (
-          <p className="rounded-xl bg-white/[0.04] px-4 py-3 text-white/70">
+          <p className="rounded-xl bg-black/[0.03] px-4 py-3 text-textSecondary">
             Applications are closed, so the team can no longer change.
           </p>
         )}
@@ -140,12 +140,12 @@ export function TeamManage({
       <aside className="space-y-8" aria-label="Team tools">
         <section
           aria-labelledby="invite-title"
-          className="relative overflow-hidden rounded-3xl bg-linear-to-b from-[#5f9be2] via-[#3c7bcc] to-[#1c58a1] p-6 text-white"
+          className="relative overflow-hidden rounded-3xl bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] p-6 text-white"
         >
           <h2 id="invite-title" className="font-display text-3xl leading-none">
             {openSpots > 0 ? "Invite people" : "Team is full"}
           </h2>
-          <p className="mt-2 text-white/80">
+          <p className="mt-2 text-textSecondary">
             {openSpots > 0
               ? `${openSpots} ${openSpots === 1 ? "spot" : "spots"} open. Anyone with the link can ask to join, and ${team.isOwner ? "you" : "the owner"} decide${team.isOwner ? "" : "s"} who gets in.`
               : `You have all ${MAX_TEAM_SIZE} people.`}
@@ -180,7 +180,7 @@ export function TeamManage({
           {team.isOwner && (
             <button
               type="button"
-              className="mt-4 text-sm text-white/65 underline-offset-4 transition-colors hover:text-white hover:underline disabled:opacity-50"
+              className="mt-4 text-sm text-white/65 underline-offset-4 transition-colors hover:text-textPrimary hover:underline disabled:opacity-50"
               disabled={!open || pending}
               onClick={() => {
                 if (
@@ -200,7 +200,7 @@ export function TeamManage({
         <section aria-labelledby="members-title" className="space-y-3">
           <h2
             id="members-title"
-            className="font-display flex items-baseline justify-between text-2xl text-white"
+            className="font-display flex items-baseline justify-between text-2xl text-textPrimary"
           >
             Members
             <span className="font-sans text-sm text-white/45">
@@ -214,16 +214,16 @@ export function TeamManage({
             {team.members.map((member, index) => (
               <li
                 key={member.userId ?? `${member.firstName}-${index}`}
-                className="flex flex-wrap items-center gap-3 rounded-2xl bg-white/[0.04] px-3 py-2.5"
+                className="flex flex-wrap items-center gap-3 rounded-2xl bg-black/[0.03] px-3 py-2.5"
               >
                 <span
-                  className={`font-display grid size-10 shrink-0 place-items-center rounded-full text-lg text-[#043251] ${AVATAR_COLORS[index % AVATAR_COLORS.length]}`}
+                  className={`font-display grid size-10 shrink-0 place-items-center rounded-full text-lg text-textPrimary ${AVATAR_COLORS[index % AVATAR_COLORS.length]}`}
                   aria-hidden
                 >
                   {member.firstName.charAt(0).toUpperCase()}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-white">
+                  <span className="block truncate text-textPrimary">
                     {member.firstName}
                     {member.isMe && (
                       <span className="text-white/45"> (you)</span>
@@ -284,10 +284,10 @@ export function TeamManage({
             {Array.from({ length: openSpots }, (_, index) => (
               <li
                 key={`open-${index}`}
-                className="flex items-center gap-3 rounded-2xl border border-dashed border-white/15 px-3 py-2.5 text-white/40"
+                className="flex items-center gap-3 rounded-2xl border border-dashed border-border px-3 py-2.5 text-textMuted"
               >
                 <span
-                  className="grid size-10 shrink-0 place-items-center rounded-full border border-dashed border-white/20"
+                  className="grid size-10 shrink-0 place-items-center rounded-full border border-dashed border-border"
                   aria-hidden
                 >
                   <Plus className="size-4" />
@@ -300,7 +300,7 @@ export function TeamManage({
             <button
               type="button"
               onClick={openRequests}
-              className={`group flex cursor-pointer items-center gap-2 text-sm transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${team.pendingCount > 0 ? "text-[#85B7F1]" : "text-white/55"}`}
+              className={`group flex cursor-pointer items-center gap-2 text-sm transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${team.pendingCount > 0 ? "text-primary" : "text-white/55"}`}
             >
               <span className="relative">
                 <Inbox className="size-4" aria-hidden />
@@ -327,10 +327,10 @@ export function TeamManage({
           )}
         </section>
 
-        <div className="space-y-1 border-t border-white/10 pt-4">
+        <div className="space-y-1 border-t border-border pt-4">
           {team.isOwner && (
             <details className="group/settings">
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white [&::-webkit-details-marker]:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-textSecondary transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white [&::-webkit-details-marker]:hidden">
                 <span className="inline-flex items-center gap-2">
                   <Settings2 className="size-4" aria-hidden />
                   Team settings
@@ -356,7 +356,7 @@ export function TeamManage({
                 <div className="space-y-2">
                   <label
                     htmlFor="settings-name"
-                    className="block text-sm text-white"
+                    className="block text-sm text-textPrimary"
                   >
                     Team name
                   </label>
@@ -371,7 +371,7 @@ export function TeamManage({
                 <div className="space-y-2">
                   <label
                     htmlFor="settings-looking"
-                    className="block text-sm text-white"
+                    className="block text-sm text-textPrimary"
                   >
                     What you are looking for
                   </label>
@@ -386,7 +386,7 @@ export function TeamManage({
                   />
                   <p
                     id="settings-looking-count"
-                    className="text-xs text-white/40"
+                    className="text-xs text-textMuted"
                   >
                     {lookingFor.length}/{LOOKING_FOR_LIMIT}. Shown on Browse
                     teams and, if you choose, on your share card.
@@ -396,7 +396,7 @@ export function TeamManage({
                   htmlFor="settings-public"
                   className="flex min-h-11 items-center justify-between gap-4"
                 >
-                  <span className="text-sm text-white">
+                  <span className="text-sm text-textPrimary">
                     List on Browse teams
                     <span className="block text-white/45">
                       {isPublic
@@ -412,7 +412,7 @@ export function TeamManage({
                   />
                 </label>
                 {isPublic && (
-                  <p className="rounded-xl bg-white/[0.04] px-3 py-2 text-sm text-white/75">
+                  <p className="rounded-xl bg-black/[0.03] px-3 py-2 text-sm text-white/75">
                     Anyone who opens this team will see each member&apos;s first
                     name, LinkedIn, GitHub, and portfolio, including yours, and
                     can message you from those links.

@@ -18,10 +18,10 @@ export function MyRequests({
 
   return (
     <section aria-labelledby="my-requests-title" className="space-y-3">
-      <h2 id="my-requests-title" className="font-display text-2xl text-white">
+      <h2 id="my-requests-title" className="font-display text-2xl text-textPrimary">
         Your requests
       </h2>
-      <ul className="divide-y divide-white/10 border-y border-white/10">
+      <ul className="divide-y divide-white/10 border-y border-border">
         {requests.map((request) => (
           <li
             key={request.id}
@@ -36,7 +36,7 @@ export function MyRequests({
                 aria-hidden
               />
               <div className="min-w-0">
-                <p className="truncate font-medium text-white">
+                <p className="truncate font-medium text-textPrimary">
                   {request.teamName}
                 </p>
                 <p className="text-sm text-white/55">

@@ -123,7 +123,7 @@ export function ApplySubmitted({
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display mt-6 text-4xl font-semibold text-balance text-white md:text-5xl"
+              className="font-display mt-6 text-4xl font-semibold text-balance text-textPrimary md:text-5xl"
             >
               Thank you{firstName ? `, ${firstName}` : ""}!
             </motion.h1>
@@ -146,7 +146,7 @@ export function ApplySubmitted({
                   : `Your ${title} application is in. Teams are optional and hold up to ${MAX_TEAM_SIZE} people. Start one, ask to join one, or skip it and you're done. Results come out about a week after applications close.`
               }
               meta={
-                <p className="inline-flex items-center gap-2 text-white/60">
+                <p className="inline-flex items-center gap-2 text-textMuted">
                   <Check className="size-4 text-emerald-300" aria-hidden />
                   Application submitted
                 </p>
@@ -156,19 +156,19 @@ export function ApplySubmitted({
                 {team ? (
                   <Link
                     href="/apply/teams"
-                    className="group flex items-center justify-between gap-4 rounded-3xl bg-linear-to-b from-[#5f9be2] via-[#3c7bcc] to-[#1c58a1] p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:p-10"
+                    className="group flex items-center justify-between gap-4 rounded-3xl bg-linear-to-b from-[#e07d7d] via-[#d26666] to-[#b95252] p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:p-10"
                   >
                     <span>
                       <span className="font-display block text-4xl leading-none md:text-5xl">
                         {team.name}
                       </span>
-                      <span className="mt-3 block text-white/80">
+                      <span className="mt-3 block text-textSecondary">
                         {team.isOwner && team.pendingCount > 0
                           ? `${team.pendingCount} ${team.pendingCount === 1 ? "person wants" : "people want"} to join`
                           : "Open your team"}
                       </span>
                     </span>
-                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-[#043251] shadow-lg transition-transform duration-500 ease-out group-hover:scale-110">
+                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-textPrimary shadow-lg transition-transform duration-500 ease-out group-hover:scale-110">
                       <ArrowRight
                         className="size-5 -rotate-45 transition-transform duration-500 ease-out group-hover:rotate-0"
                         aria-hidden
@@ -183,7 +183,7 @@ export function ApplySubmitted({
                 )}
                 <Link
                   href="/apply/review"
-                  className="inline-block text-white/60 underline underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                  className="inline-block text-textMuted underline underline-offset-4 transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                 >
                   Review your answers
                 </Link>

@@ -31,7 +31,7 @@ export function SocialsMlhTravel({
   return (
     <div className="space-y-10">
       <fieldset className="space-y-4">
-        <legend className="font-display mb-6 text-3xl font-semibold text-white md:text-4xl">
+        <legend className="font-display mb-6 text-3xl font-semibold text-textPrimary md:text-4xl">
           Socials
         </legend>
 
@@ -95,14 +95,14 @@ export function SocialsMlhTravel({
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="font-display mb-6 text-3xl font-semibold text-white md:text-4xl">
+        <legend className="font-display mb-6 text-3xl font-semibold text-textPrimary md:text-4xl">
           MLH agreements
         </legend>
         <MLHStep control={control} />
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="font-display mb-6 text-3xl font-semibold text-white md:text-4xl">
+        <legend className="font-display mb-6 text-3xl font-semibold text-textPrimary md:text-4xl">
           Travel
         </legend>
         <FormField
@@ -111,11 +111,11 @@ export function SocialsMlhTravel({
           render={({ field }) => (
             <FormItem className="space-y-2">
               <fieldset className="space-y-2">
-                <legend className="text-sm font-medium text-white">
+                <legend className="text-sm font-medium text-textPrimary">
                   Need travel reimbursement?{requiredMark}
                 </legend>
                 <div className="flex gap-6">
-                  <label className="flex min-h-11 items-center gap-2 text-sm text-white">
+                  <label className="flex min-h-11 items-center gap-2 text-sm text-textPrimary">
                     <input
                       type="radio"
                       name="needsTravelReimbursement"
@@ -129,7 +129,7 @@ export function SocialsMlhTravel({
                     />
                     No
                   </label>
-                  <label className="flex min-h-11 items-center gap-2 text-sm text-white">
+                  <label className="flex min-h-11 items-center gap-2 text-sm text-textPrimary">
                     <input
                       type="radio"
                       name="needsTravelReimbursement"

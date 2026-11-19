@@ -46,11 +46,11 @@ export const ApplicationCardStatus = ({
         </span>
       </div>
       {status === "closed" ? (
-        <span className="text-xs text-white/50 sm:text-right md:text-sm">
+        <span className="text-xs text-textMuted sm:text-right md:text-sm">
           {getClosedMessage()}
         </span>
       ) : deadline ? (
-        <span className="text-xs text-white/50 sm:text-right md:text-sm">
+        <span className="text-xs text-textMuted sm:text-right md:text-sm">
           Deadline: {deadline}
         </span>
       ) : null}

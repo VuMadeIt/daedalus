@@ -80,11 +80,11 @@ const ApplicationsOpenHeader = () => {
   return (
     <header className="mb-8 space-y-2">
       <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-        <h1 className="font-rubik text-3xl font-bold">
+        <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">
           Your Journey Starts Here!
         </h1>
       </div>
-      <p className="text-white/60 max-md:text-sm">
+      <p className="text-textMuted max-md:text-sm">
         Hack Canada {hackathonYear} applications are live!
         <br /> Don&apos;t miss your chance to join 500+ hackers for an epic
         weekend of innovation and fun.
@@ -130,9 +130,9 @@ const ApplicationsClosedHeader = ({ phase }: { phase: string }) => {
   return (
     <header className="mb-8 space-y-2">
       <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-        <h1 className="font-rubik text-3xl font-bold">{title}</h1>
+        <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">{title}</h1>
       </div>
-      <p className="text-white/60 max-md:text-sm">{message}</p>
+      <p className="text-textMuted max-md:text-sm">{message}</p>
     </header>
   );
 };

@@ -12,10 +12,10 @@ type Row = [label: string, value: React.ReactNode];
 type Answer = [prompt: string, answer: string | null | undefined];
 
 const focus =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85B7F1]";
-const link = `rounded text-[#85B7F1] underline-offset-4 hover:underline ${focus}`;
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+const link = `rounded text-primary underline-offset-4 hover:underline ${focus}`;
 const promptNumber =
-  "font-display mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#85B7F1] text-base text-[#043251]";
+  "font-display mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-primary text-base text-white";
 const empty = <span className="text-white/35">Not provided</span>;
 
 function external(href: string | null) {
@@ -41,7 +41,7 @@ function Section({
   return (
     <section className="space-y-4">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <h2 className="font-display text-3xl text-white md:text-4xl">
+        <h2 className="font-display text-3xl text-textPrimary md:text-4xl">
           {title}
         </h2>
         {action}
@@ -53,11 +53,11 @@ function Section({
 
 function Details({ rows }: { rows: Row[] }) {
   return (
-    <dl className="grid gap-x-10 gap-y-6 rounded-3xl bg-white/[0.04] p-6 sm:grid-cols-2 md:p-8">
+    <dl className="grid gap-x-10 gap-y-6 rounded-3xl bg-black/[0.03] p-6 sm:grid-cols-2 md:p-8">
       {rows.map(([label, value]) => (
         <div key={label} className="min-w-0">
-          <dt className="text-sm text-white/50">{label}</dt>
-          <dd className="mt-1 break-words text-white">
+          <dt className="text-sm text-textMuted">{label}</dt>
+          <dd className="mt-1 break-words text-textPrimary">
             {value || value === 0 ? value : empty}
           </dd>
         </div>
@@ -71,11 +71,11 @@ function Answers({ items }: { items: Answer[] }) {
     <ol className="space-y-8">
       {items.map(([prompt, answer], index) => (
         <li key={prompt} className="space-y-3">
-          <p className="flex gap-3 text-lg leading-relaxed text-white">
+          <p className="flex gap-3 text-lg leading-relaxed text-textPrimary">
             <span className={promptNumber}>{index + 1}</span>
             {prompt}
           </p>
-          <p className="rounded-xl bg-white/[0.04] px-5 py-4 text-lg leading-relaxed whitespace-pre-line text-white/85 sm:ml-11">
+          <p className="rounded-xl bg-black/[0.03] px-5 py-4 text-lg leading-relaxed whitespace-pre-line text-white/85 sm:ml-11">
             {answer?.trim() || empty}
           </p>
         </li>
@@ -106,9 +106,9 @@ export function ReviewApplication({
       lede="Here's what you sent us. Answers are locked after you submit, but you can still manage your team."
       backHref="/apply"
       meta={
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-white/60">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-textMuted">
           {track && (
-            <span className="rounded-full bg-[#85B7F1]/15 px-3 py-1 text-sm text-[#85B7F1]">
+            <span className="rounded-full bg-primary/15 px-3 py-1 text-sm text-primary">
               {track.title}
             </span>
           )}

@@ -29,7 +29,7 @@ export function BasicQuestions({
 
   return (
     <fieldset className="space-y-4">
-      <legend className="font-display mb-6 text-3xl font-semibold text-white md:text-4xl">
+      <legend className="font-display mb-6 text-3xl font-semibold text-textPrimary md:text-4xl">
         Basic questions
       </legend>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -109,7 +109,7 @@ export function BasicQuestions({
                   className="cursor-not-allowed opacity-70"
                 />
               </FormControl>
-              <p className="text-sm text-white/50">
+              <p className="text-sm text-textMuted">
                 This is the email on your account.
               </p>
               <FormMessage />

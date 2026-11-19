@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog";
 
 const pill =
-  "cursor-pointer rounded-full border border-white/15 px-3 py-2 text-sm text-white/75 transition-colors hover:border-white/35 peer-checked:border-sky-300 peer-checked:bg-sky-300/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-white";
+  "cursor-pointer rounded-full border border-border px-3 py-2 text-sm text-white/75 transition-colors hover:border-black/20 peer-checked:border-sky-300 peer-checked:bg-sky-300/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-white";
 
 export function ShareTeamCard({
   teamName,
@@ -170,7 +170,7 @@ export function ShareTeamCard({
     <>
       <Button
         type="button"
-        className="min-h-12 w-full gap-2 rounded-xl bg-white text-base text-[#043251] hover:bg-white/90"
+        className="min-h-12 w-full gap-2 rounded-xl bg-white text-base text-textPrimary hover:bg-white/90"
         onClick={() => setShown(true)}
       >
         <Sparkles className="size-4" aria-hidden />
@@ -277,7 +277,7 @@ export function ShareTeamCard({
                   onCheckedChange={(value) => setLooking(value === true)}
                   aria-describedby={lookingFor ? undefined : "card-looking-why"}
                 />
-                <label htmlFor="card-looking" className="text-sm text-white">
+                <label htmlFor="card-looking" className="text-sm text-textPrimary">
                   Show what you are looking for
                   {!lookingFor && (
                     <span id="card-looking-why" className="block text-white/45">
@@ -289,7 +289,7 @@ export function ShareTeamCard({
                 </label>
               </div>
 
-              <div className="space-y-3 border-t border-white/10 pt-5">
+              <div className="space-y-3 border-t border-border pt-5">
                 <div className="grid grid-cols-2 gap-2">
                   {canNativeShare && (
                     <Button

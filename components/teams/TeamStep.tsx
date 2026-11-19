@@ -32,12 +32,12 @@ export function TeamStep({
               : "flex flex-wrap items-start gap-4 rounded-2xl border border-amber-300/25 bg-amber-300/[0.05] p-5"
           }
         >
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 text-white">
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-black/[0.05] text-textPrimary">
             <Users className="size-5" aria-hidden />
           </span>
           <div className="min-w-0 flex-1 space-y-2">
             <div className="flex items-center gap-1">
-              <p className="font-medium text-white" role="status">
+              <p className="font-medium text-textPrimary" role="status">
                 {ready
                   ? `You are applying as ${team.name}.`
                   : `${team.name} needs ${MIN_TEAM_APPLY - team.members.length === 1 ? "1 more person" : `${MIN_TEAM_APPLY - team.members.length} more people`} to apply as a team.`}
@@ -53,7 +53,7 @@ export function TeamStep({
           </div>
           <Link
             href="/apply/teams"
-            className="group inline-flex min-h-11 items-center gap-1.5 text-sm text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="group inline-flex min-h-11 items-center gap-1.5 text-sm text-textSecondary transition-colors hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
           >
             {ready ? "Manage team" : "Invite people"}
             <ArrowRight
@@ -69,7 +69,7 @@ export function TeamStep({
 
   return (
     <div className="space-y-8">
-      <p className="max-w-xl text-white/70">
+      <p className="max-w-xl text-textSecondary">
         A team application needs a team of {MIN_TEAM_APPLY} to {MAX_TEAM_SIZE},
         including you. Start one or ask to join one. The owner accepts you
         before you are on it.

@@ -42,7 +42,7 @@ export default function ScheduleView({ schedule }: ScheduleViewProps) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-2">
             <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-              <h1 className="font-rubik text-3xl font-bold">Event Schedule</h1>
+              <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Event Schedule</h1>
             </div>
             <p className="text-textSecondary">
               All times are in Eastern Time (ET). Events and times are subject to

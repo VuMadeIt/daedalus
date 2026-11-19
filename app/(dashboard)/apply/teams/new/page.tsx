@@ -21,7 +21,7 @@ export default async function NewTeamPage() {
       backHref="/apply/teams"
     >
       {!open && (
-        <p className="mb-4 text-sm text-white/60">
+        <p className="mb-4 text-sm text-textMuted">
           Applications are closed, so new teams cannot be created.
         </p>
       )}

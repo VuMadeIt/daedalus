@@ -139,7 +139,7 @@ export function Scanner({ selectedEvent }: ScannerProps) {
                     const nextIndex = (currentIndex + 1) % availableCameras.length;
                     switchCamera(availableCameras[nextIndex].deviceId);
                   }}
-                  className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                  className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-textPrimary backdrop-blur-sm transition hover:bg-black/30"
                   title="Switch Camera"
                 >
                   <SwitchCamera className="h-5 w-5" />
