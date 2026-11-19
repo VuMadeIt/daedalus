@@ -5,6 +5,7 @@ import { LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { LogoutButton } from "../auth/LoginButton";
+import { ThemeToggle } from "../ThemeToggle";
 
 type SidebarUserProps = {
   dark?: boolean;
@@ -45,6 +46,7 @@ const SidebarUser = ({}: SidebarUserProps) => {
             {roleLabel[data.user.role] ?? "Guest"}
           </div>
         </div>
+        <ThemeToggle />
         <LogoutButton
           title="Log out"
           label=""

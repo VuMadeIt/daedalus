@@ -1,3 +1,4 @@
+import { ThemeProvider } from "next-themes";
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -111,7 +112,7 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -131,6 +132,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={cn(satoshi.variable, satoshi.className, rubik.variable, londrina.variable)}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <PhaseProvider value={phase}>
           <SiteBanner banners={banners} />
           <Toaster richColors position="bottom-center" />
@@ -139,6 +141,7 @@ export default async function RootLayout({
           </SessionProvider>
           {process.env.NODE_ENV === "development" ? <PhaseSwitcher /> : null}
         </PhaseProvider>
+        </ThemeProvider>
       </body>
       <Script id="clarity-script" strategy="afterInteractive">
         {`
