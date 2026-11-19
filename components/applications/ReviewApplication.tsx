@@ -75,7 +75,7 @@ function Answers({ items }: { items: Answer[] }) {
             <span className={promptNumber}>{index + 1}</span>
             {prompt}
           </p>
-          <p className="rounded-xl bg-black/[0.03] px-5 py-4 text-lg leading-relaxed whitespace-pre-line text-white/85 sm:ml-11">
+          <p className="rounded-xl bg-black/[0.03] px-5 py-4 text-lg leading-relaxed whitespace-pre-line text-textSecondary sm:ml-11">
             {answer?.trim() || empty}
           </p>
         </li>
