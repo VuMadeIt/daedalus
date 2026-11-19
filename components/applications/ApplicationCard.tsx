@@ -35,13 +35,11 @@ export const ApplicationCard = ({
   return (
     <div
       className={cn(
-        "group hover:border-primary/40 relative block overflow-hidden rounded-xl border border-border bg-surface p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(30,144,255,0.15)]",
+        "group hover:border-primary/40 relative block overflow-hidden rounded-xl border border-border bg-surface p-6 backdrop-blur-sm transition-all duration-500 shadow-card hover:-translate-y-0.5 hover:shadow-float",
         disabled && "opacity-60",
         alreadyApplied && "border-primary/50 cursor-default",
       )}
     >
-      {/* Gradient overlay */}
-      <div className="from-primary/5 pointer-events-none absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-75" />
 
       {!alreadyApplied && (
         <Link
@@ -87,7 +85,7 @@ export const ApplicationCard = ({
         <div className="max-xs:w-full relative z-30 mt-4">
           <Link
             href="/apply"
-            className="border-primary/30 bg-primary/10 text-primary hover:border-primary/50 hover:bg-primary/20 max-xs:w-full max-xs:justify-center pointer-events-auto inline-flex cursor-pointer items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-all"
+            className="border-transparent bg-primary text-white hover:bg-primaryDark max-xs:w-full max-xs:justify-center pointer-events-auto inline-flex cursor-pointer items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

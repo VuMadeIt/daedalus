@@ -1,6 +1,17 @@
 "use client";
 
-import { AlertCircle, Gift } from "lucide-react";
+import {
+  AlertCircle,
+  Candy,
+  Cpu,
+  Gamepad2,
+  Gift,
+  Lightbulb,
+  Plug,
+  Shirt,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
 import type { ShopItem } from "@/lib/db/schema";
@@ -24,9 +35,25 @@ interface ShopItemCardProps {
 
 const LOW_STOCK = 5;
 
+const ART: [RegExp, LucideIcon, string][] = [
+  [/charg|cable|power|battery/i, Plug, "bg-brandSoft text-primary"],
+  [/led|light|lamp/i, Lightbulb, "bg-goldSoft text-goldInk"],
+  [/screw|tool|wrench/i, Wrench, "bg-backgroundMuted text-textSecondary"],
+  [/candy|sour|snack|chocolate|kids/i, Candy, "bg-mint text-success"],
+  [/micro|arduino|pi\b|board|chip/i, Cpu, "bg-brandSoft text-primary"],
+  [/tamagotchi|game|toy/i, Gamepad2, "bg-goldSoft text-goldInk"],
+  [/shirt|hoodie|sock|hat/i, Shirt, "bg-mint text-success"],
+];
+
+function artFor(name: string) {
+  const hit = ART.find(([re]) => re.test(name));
+  return hit ? { Icon: hit[1], tone: hit[2] } : { Icon: Gift, tone: "bg-backgroundMuted text-textMuted" };
+}
+
 function ItemImage({ item, className }: { item: ShopItem; className?: string }) {
+  const { Icon, tone } = artFor(item.itemName);
   return (
-    <div className={cn("relative grid place-items-center overflow-hidden bg-backgroundMuted", className)}>
+    <div className={cn("relative grid place-items-center overflow-hidden", item.image ? "bg-backgroundMuted" : tone, className)}>
       {item.image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -35,7 +62,9 @@ function ItemImage({ item, className }: { item: ShopItem; className?: string }) 
           className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.04]"
         />
       ) : (
-        <Gift className="size-10 text-textMuted/40" strokeWidth={1.5} />
+        <span className="grid size-16 place-items-center rounded-2xl bg-surface/70 shadow-card transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
+          <Icon className="size-8" strokeWidth={1.75} aria-hidden />
+        </span>
       )}
     </div>
   );
