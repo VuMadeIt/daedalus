@@ -13,6 +13,7 @@ import { DashboardHeader } from "./DashboardHeader";
 import DashboardQRCode from "./DashboardQRCode";
 import DevpostCard from "./DevpostCard";
 import { HackathonConclusion } from "./HackathonConclusion";
+import { HomeHero } from "./HomeHero";
 import HackathonsCanadaDiscord from "./HackathonsCanadaDiscord";
 import HackerPackageCard from "./HackerPackageCard";
 import ProfileCard from "./ProfileCard";
@@ -31,6 +32,7 @@ export const DashboardContent = ({ user }: DashboardContentProps) => {
   return (
     <PageWrapper>
       <DashboardHeader userName={user.name || "Hacker"} />
+      {!isLocked && <HomeHero />}
       <div
         className={cn("flex flex-col gap-5", {
           "flex-col-reverse": user.role === "hacker",

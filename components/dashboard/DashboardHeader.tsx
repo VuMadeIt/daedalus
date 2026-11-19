@@ -16,10 +16,10 @@ export const DashboardHeader = ({ userName }: DashboardHeaderProps) => {
 
   return (
     <div className="space-y-1">
-      <h1 className="text-[28px] leading-tight font-medium text-textPrimary md:text-[32px]">
+      <h1 className="text-[28px] leading-tight font-bold tracking-tight text-textPrimary md:text-[32px]">
         {heading}, {firstName}
       </h1>
-      <p className="text-sm text-textMuted md:text-[15px]">{subtitle}</p>
+      <p className="text-sm text-textSecondary md:text-[15px]">{subtitle}</p>
     </div>
   );
 };
