@@ -36,9 +36,20 @@ export async function POST(req: NextRequest) {
       const winPool = all.filter((b) => b.side === outcome).reduce((n, b) => n + b.amount, 0);
       const refund = outcome === "refund" || winPool === 0;
 
+      const shares = all.map((b) =>
+        refund ? b.amount : b.side === outcome ? Math.floor((b.amount * total) / winPool) : 0,
+      );
+      // Rounding down leaves a few points over; hand them to the biggest winners first
+      let leftover = refund ? 0 : total - shares.reduce((n, x) => n + x, 0);
+      const order = all
+        .map((_, i) => i)
+        .filter((i) => shares[i] > 0)
+        .sort((a, b) => all[b].amount - all[a].amount);
+      for (let k = 0; leftover > 0 && order.length > 0; k = (k + 1) % order.length, leftover--) shares[order[k]]++;
+
       let paidOut = 0;
-      for (const b of all) {
-        const payout = refund ? b.amount : b.side === outcome ? Math.floor((b.amount * total) / winPool) : 0;
+      for (const [i, b] of all.entries()) {
+        const payout = shares[i];
         await tx.update(bets).set({ payout }).where(eq(bets.id, b.id));
         if (payout > 0) {
           await lockBalance(tx, b.userId).catch(() => 0);
