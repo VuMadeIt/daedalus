@@ -34,6 +34,7 @@ const SidebarUser = ({}: SidebarUserProps) => {
           alt=""
           width={36}
           height={36}
+          unoptimized
           className="size-9 shrink-0 rounded-full object-cover ring-2 ring-[#f3c25a]"
         />
         <div className="min-w-0 flex-1 leading-tight">
