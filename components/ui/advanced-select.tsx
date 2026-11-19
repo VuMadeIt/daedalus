@@ -58,20 +58,20 @@ export function AdvancedSelect({
           ...base,
           height: "40px",
           borderRadius: "6px",
-          borderColor: state.isFocused ? "rgba(30, 144, 255, 0.5)" : "rgba(255, 255, 255, 0.1)",
-          background: "rgba(255, 255, 255, 0.05)",
-          boxShadow: state.isFocused ? "0 0 0 2px rgba(30, 144, 255, 0.3)" : "none",
+          borderColor: state.isFocused ? "rgba(210, 102, 102, 0.6)" : "#e5e7eb",
+          background: "#292a27",
+          boxShadow: state.isFocused ? "0 0 0 2px rgba(210, 102, 102, 0.2)" : "none",
           cursor: "pointer",
           "&:hover": {
-            borderColor: "rgba(30, 144, 255, 0.3)",
+            borderColor: "rgba(0, 0, 0, 0.15)",
           },
         }),
         menu: (base) => ({
           ...base,
-          backgroundColor: "#12121a",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
+          backgroundColor: "#292a27",
+          border: "1px solid #e5e7eb",
           borderRadius: "8px",
-          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.3)",
+          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.08)",
         }),
         menuList: (base) => ({
           ...base,
@@ -79,37 +79,37 @@ export function AdvancedSelect({
         }),
         placeholder: (base) => ({
           ...base,
-          color: "rgba(255, 255, 255, 0.4)",
+          color: "#77777c",
         }),
         input: (base) => ({
           ...base,
-          color: "#ffffff",
+          color: "#292a27",
         }),
         option: (base, state) => ({
           ...base,
           backgroundColor: state.isSelected 
-            ? "rgba(30, 144, 255, 0.3)" 
+            ? "#f5ecec" 
             : state.isFocused 
-              ? "rgba(255, 255, 255, 0.1)" 
+              ? "#e5e7eb" 
               : "transparent",
-          color: state.isSelected ? "#ffffff" : "rgba(255, 255, 255, 0.8)",
+          color: state.isSelected ? "#292a27" : "#414146",
           cursor: "pointer",
           borderRadius: "4px",
           "&:active": {
-            backgroundColor: "rgba(30, 144, 255, 0.4)",
+            backgroundColor: "#f5ecec",
           },
         }),
         singleValue: (base) => ({
           ...base,
-          color: "#ffffff",
+          color: "#292a27",
         }),
         noOptionsMessage: (base) => ({
           ...base,
-          color: "rgba(255, 255, 255, 0.5)",
+          color: "#77777c",
         }),
         loadingMessage: (base) => ({
           ...base,
-          color: "rgba(255, 255, 255, 0.5)",
+          color: "#77777c",
         }),
       }}
       className={cn(
