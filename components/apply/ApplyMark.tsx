@@ -30,7 +30,7 @@ export function ApplyMark() {
   }
 
   return (
-    <div className="group fixed top-4 left-4 z-20">
+    <div className="group fixed top-4 left-4 z-20 max-lg:absolute">
       <Image
         src="/hack-canada-logo.png"
         alt="Hack Canada"
