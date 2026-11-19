@@ -92,7 +92,7 @@ export default async function QRCodePage() {
               {[
                 ["Check-in", "Scan at the front desk"],
                 ["Meals", "Scan at every food line"],
-                ["Points", "Volunteers scan for challenges"],
+                ["Profile", "Other hackers scan it to see your links"],
               ].map(([t, b]) => (
                 <li key={t} className="bg-surface p-4">
                   <p className="text-sm font-bold text-textPrimary">{t}</p>
