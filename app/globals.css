@@ -18,35 +18,45 @@
 
 /* next/font sets these on <body>, so the utilities must inline the var() */
 @theme inline {
-  --font-display: var(--font-londrina), sans-serif;
-  --font-rubik: var(--font-rubik-family), sans-serif;
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-satoshi), sans-serif;
+  --font-rubik: var(--font-satoshi), sans-serif;
 }
 
 @theme {
   --breakpoint-xs: 500px;
   --breakpoint-3xl: 1850px;
 
-  --color-primary: #1e90ff;
-  --color-primaryLight: #87ceeb;
-  --color-primaryDark: #1565c0;
-  --color-secondary: #ffa726;
-  --color-secondaryLight: #ffd580;
-  --color-secondaryDark: #ff8c00;
+  --color-primary: #d26666;
+  --color-primaryLight: #f5ecec;
+  --color-primaryDark: #bb5555;
+  --color-secondary: #292a27;
+  --color-secondaryLight: #ffeebe;
+  --color-secondaryDark: #000000;
   /* Dark mode colors */
-  --color-background: #0a0a0f;
-  --color-backgroundMuted: #12121a;
-  --color-textPrimary: #f0f0f5;
-  --color-textSecondary: #a0a0b0;
-  --color-textMuted: #6b6b7b;
-  --color-border: #2a2a3a;
-  --color-shadow: #0000004d;
-  --color-success: #4caf50;
-  --color-warning: #ffb74d;
-  --color-error: #f44336;
-  --color-info: #29b6f6;
+  --color-background: #fcfcf9;
+  --color-backgroundMuted: #f4f4ef;
+  --color-textPrimary: #292a27;
+  --color-textSecondary: #414146;
+  --color-textMuted: #77777c;
+  --color-border: #e5e7eb;
+  --color-ink: #292a27;
+  --color-coral: #d26666;
+  --color-coralSoft: #f5ecec;
+  --color-cream: #ffeebe;
+  --color-mint: #cbf6c0;
+  --color-sky: #f0f7ff;
+  --color-surface: #ffffff;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --color-shadow: #0000000f;
+  --color-success: #3d9a5b;
+  --color-warning: #d9982b;
+  --color-error: #d14343;
+  --color-info: #4a86d6;
   /* Glow colors */
-  --color-glow: rgba(30, 144, 255, 0.15);
-  --color-glowStrong: rgba(30, 144, 255, 0.3);
+  --color-glow: rgba(210, 102, 102, 0.15);
+  --color-glowStrong: rgba(210, 102, 102, 0.3);
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   --color-foreground: hsl(var(--foreground));
@@ -163,19 +173,19 @@
   @keyframes glow-pulse {
     0%,
     100% {
-      box-shadow: 0 0 20px rgba(30, 144, 255, 0.1);
+      box-shadow: 0 0 20px rgba(210, 102, 102, 0.1);
     }
     50% {
-      box-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
+      box-shadow: 0 0 30px rgba(210, 102, 102, 0.2);
     }
   }
   @keyframes border-glow {
     0%,
     100% {
-      border-color: rgba(30, 144, 255, 0.2);
+      border-color: rgba(210, 102, 102, 0.2);
     }
     50% {
-      border-color: rgba(30, 144, 255, 0.4);
+      border-color: rgba(210, 102, 102, 0.4);
     }
   }
 }
@@ -204,32 +214,31 @@
 
 @layer base {
   :root {
-    /* Dark mode as default */
-    --background: 240 15% 4%;
-    --foreground: 0 0% 95%;
-    --card: 240 15% 6%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 15% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 210 100% 56%;
+    --background: 60 23% 98%;
+    --foreground: 80 4% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 80 4% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 80 4% 16%;
+    --primary: 0 54% 61%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 55%;
-    --accent: 240 10% 15%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 10% 18%;
-    --input: 240 10% 15%;
-    --ring: 210 100% 56%;
-    --radius: 0.5rem;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --secondary: 0 33% 94%;
+    --secondary-foreground: 80 4% 16%;
+    --muted: 60 12% 95%;
+    --muted-foreground: 240 2% 47%;
+    --accent: 0 33% 94%;
+    --accent-foreground: 80 4% 16%;
+    --destructive: 0 61% 54%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 0 54% 61%;
+    --radius: 0.75rem;
+    --chart-1: 0 54% 61%;
+    --chart-2: 140 40% 45%;
+    --chart-3: 40 85% 60%;
+    --chart-4: 215 60% 55%;
+    --chart-5: 270 45% 60%;
   }
 }
 
@@ -238,7 +247,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primaryLight selection:text-textPrimary;
+    @apply bg-background font-sans text-textSecondary antialiased selection:bg-coralSoft selection:text-textPrimary;
   }
 }
 

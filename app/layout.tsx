@@ -8,7 +8,7 @@ import { SessionProvider } from "next-auth/react";
 
 import { eventVenue, hackathonYear, siteConfig } from "@/config/site";
 import { getActiveBanners } from "@/lib/db/queries/banner";
-import { fredoka, londrina, rubik } from "@/lib/fonts";
+import { londrina, rubik, satoshi } from "@/lib/fonts";
 import { getPhaseState } from "@/lib/phase";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
@@ -130,7 +130,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={cn("", fredoka.className, rubik.variable, londrina.variable)}>
+      <body className={cn(satoshi.variable, satoshi.className, rubik.variable, londrina.variable)}>
         <PhaseProvider value={phase}>
           <SiteBanner banners={banners} />
           <Toaster richColors position="bottom-center" />
