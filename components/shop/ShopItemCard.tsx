@@ -64,7 +64,7 @@ function ItemImage({ item, className }: { item: ShopItem; className?: string }) 
           src={src}
           alt={item.itemName}
           onError={() => setFailed(true)}
-          className="h-full w-full object-contain p-4 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.04]"
+          className="absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.04]"
         />
       ) : (
         <Icon className="size-12 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" strokeWidth={1.5} aria-hidden />
@@ -88,7 +88,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
 
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow duration-200 hover:shadow-float">
-      <div className="absolute top-3 right-3 left-3 z-10 flex justify-between gap-2">
+      <div className="pointer-events-none absolute top-3 right-3 left-3 z-10 flex justify-between gap-2">
         {purchaseCount > 0 ? (
           <span className="rounded-full bg-mint px-2.5 py-0.5 text-[11px] font-medium text-success">
             Redeemed {purchaseCount}x
@@ -103,7 +103,17 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
         )}
       </div>
 
-      <ItemImage item={item} className="h-44" />
+      <Dialog>
+        <DialogTrigger asChild>
+          <button type="button" aria-label={`See the full photo of ${item.itemName}`} className="block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+            <ItemImage item={item} className="h-44" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="overflow-hidden p-0 sm:max-w-[520px]">
+          <DialogTitle className="sr-only">{item.itemName}</DialogTitle>
+          <ItemImage item={item} className="aspect-square w-full" />
+        </DialogContent>
+      </Dialog>
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
