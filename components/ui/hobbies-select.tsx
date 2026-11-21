@@ -86,47 +86,52 @@ export function HobbiesSelect({
         control: () => "min-h-[40px]!",
       }}
       styles={{
-        control: (base) => ({
+        control: (base, state) => ({
           ...base,
-          borderRadius: "6px",
-          borderColor: "rgba(0, 0, 0, 0.05)",
-          background: "linear-gradient(to bottom, #f9fafb, #ffffff)",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          "&:hover": {
-            borderColor: "rgba(0, 0, 0, 0.05)",
-          },
+          borderRadius: "8px",
+          borderColor: state.isFocused ? "var(--hc-primary)" : "var(--hc-border)",
+          backgroundColor: "var(--hc-surface)",
+          boxShadow: "none",
+          "&:hover": { borderColor: "var(--hc-primary)" },
         }),
-        placeholder: (base) => ({
+        menu: (base) => ({
           ...base,
-          color: "#6b7280",
+          backgroundColor: "var(--hc-surface)",
+          border: "1px solid var(--hc-border)",
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
+          zIndex: 50,
         }),
+        input: (base) => ({ ...base, color: "var(--hc-text)" }),
+        singleValue: (base) => ({ ...base, color: "var(--hc-text)" }),
+        placeholder: (base) => ({ ...base, color: "var(--hc-text-3)" }),
         option: (base, state) => ({
           ...base,
-          backgroundColor: state.isSelected ? "#3b82f6" : "transparent",
-          color: state.isSelected ? "#ffffff" : "#374151",
-          "&:hover": {
-            backgroundColor: state.isSelected ? "#3b82f6" : "#3b82f640",
-            color: state.isSelected ? "#ffffff" : "#000",
-          },
+          backgroundColor: state.isSelected
+            ? "var(--hc-primary)"
+            : state.isFocused
+              ? "var(--hc-brand-soft)"
+              : "transparent",
+          color: state.isSelected ? "#ffffff" : "var(--hc-text)",
+          "&:active": { backgroundColor: "var(--hc-brand-soft)" },
         }),
         multiValue: (base) => ({
           ...base,
-          backgroundColor: "#e5e7eb",
-          borderRadius: "4px",
+          backgroundColor: "var(--hc-brand-soft)",
+          borderRadius: "6px",
         }),
         multiValueLabel: (base) => ({
           ...base,
-          color: "#374151",
+          color: "var(--hc-text)",
           padding: "2px 6px",
         }),
         multiValueRemove: (base) => ({
           ...base,
-          color: "#374151",
-          "&:hover": {
-            backgroundColor: "#ef4444",
-            color: "white",
-          },
+          color: "var(--hc-text-2)",
+          "&:hover": { backgroundColor: "#dc2626", color: "white" },
         }),
+        indicatorSeparator: (base) => ({ ...base, backgroundColor: "var(--hc-border)" }),
+        dropdownIndicator: (base) => ({ ...base, color: "var(--hc-text-3)" }),
+        clearIndicator: (base) => ({ ...base, color: "var(--hc-text-3)" }),
       }}
       className={cn(
         "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
