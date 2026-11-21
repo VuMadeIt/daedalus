@@ -338,8 +338,3 @@
   }
 }
 
-@keyframes cup-shuffle {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-14px) rotate(-3deg); }
-  75% { transform: translateX(14px) rotate(3deg); }
-}

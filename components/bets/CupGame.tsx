@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
@@ -18,57 +18,72 @@ type Result = {
   playsLeft: number;
 };
 
-const SHUFFLE_MS = 1800;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const slotX = (slot: number) => `translateX(${slot * 100}%)`;
+
+function randomSwaps() {
+  const count = 9 + Math.floor(Math.random() * 6);
+  return Array.from({ length: count }, (_, k) => {
+    const a = Math.floor(Math.random() * CUPS_COUNT);
+    const b =
+      (a + 1 + Math.floor(Math.random() * (CUPS_COUNT - 1))) % CUPS_COUNT;
+    return { a, b, ms: Math.max(190, 460 - k * 26) };
+  });
+}
 
 function Cup({
+  slot,
   lifted,
   ball,
   selected,
   onClick,
   disabled,
-  shuffling,
-  index,
+  wrapRef,
 }: {
+  slot: number;
   lifted: boolean;
   ball: boolean;
   selected: boolean;
   onClick?: () => void;
   disabled: boolean;
-  shuffling: boolean;
-  index: number;
+  wrapRef: (el: HTMLDivElement | null) => void;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={`Cup ${index + 1}`}
-      className={cn(
-        "relative flex h-40 w-24 items-end justify-center rounded-2xl transition-colors sm:h-48 sm:w-32",
-        selected && "bg-brandSoft ring-primary ring-2",
-        !disabled && "hover:bg-backgroundMuted",
-      )}
+    <div
+      ref={wrapRef}
+      style={{ transform: slotX(slot) }}
+      className="absolute inset-y-0 left-0 flex w-1/3 items-end justify-center"
     >
-      <span
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={`Cup ${slot + 1}`}
         className={cn(
-          "bg-gold absolute bottom-4 size-7 rounded-full shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
-          lifted && ball ? "opacity-100" : "opacity-0",
+          "relative flex h-full w-full max-w-32 items-end justify-center rounded-2xl transition-colors",
+          selected && "bg-brandSoft ring-primary ring-2",
+          !disabled && "hover:bg-backgroundMuted",
         )}
-      />
-      <Image
-        src="/games/cup.svg"
-        alt=""
-        width={140}
-        height={180}
-        draggable={false}
-        style={shuffling ? { animationDelay: `${index * 90}ms` } : undefined}
-        className={cn(
-          "relative mb-1 h-32 w-auto select-none transition-transform duration-500 sm:h-40",
-          lifted && "-translate-y-14",
-          shuffling && "animate-[cup-shuffle_0.45s_ease-in-out_infinite]",
-        )}
-      />
-    </button>
+      >
+        <span
+          className={cn(
+            "bg-gold absolute bottom-4 size-7 rounded-full shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
+            lifted && ball ? "opacity-100" : "opacity-0",
+          )}
+        />
+        <Image
+          src="/games/cup.svg"
+          alt=""
+          width={140}
+          height={180}
+          draggable={false}
+          className={cn(
+            "relative mb-1 h-28 w-auto transition-transform duration-500 select-none sm:h-40",
+            lifted && "-translate-y-14",
+          )}
+        />
+      </button>
+    </div>
   );
 }
 
@@ -88,15 +103,64 @@ export function CupGame({
   const [result, setResult] = useState<Result | null>(null);
   const [playsLeft, setPlaysLeft] = useState(initialPlays);
   const [busy, setBusy] = useState(false);
+  const [slots, setSlots] = useState(() =>
+    Array.from({ length: CUPS_COUNT }, (_, i) => i),
+  );
+  const slotsRef = useRef(slots);
+  const cupEls = useRef<(HTMLDivElement | null)[]>([]);
   const max = Math.min(CUPS_MAX_STAKE, points);
   const canPlay = playsLeft > 0 && max >= CUPS_MIN_STAKE;
-  const bet = Math.min(Math.max(stake, CUPS_MIN_STAKE), Math.max(max, CUPS_MIN_STAKE));
+  const bet = Math.min(
+    Math.max(stake, CUPS_MIN_STAKE),
+    Math.max(max, CUPS_MIN_STAKE),
+  );
 
-  function start() {
+  async function start() {
     setResult(null);
     setPick(null);
     setPhase("shuffling");
-    setTimeout(() => setPhase("pick"), SHUFFLE_MS);
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const order = [...slotsRef.current];
+    await sleep(350);
+    for (const { a, b, ms } of randomSwaps()) {
+      const ca = order.indexOf(a);
+      const cb = order.indexOf(b);
+      const ea = cupEls.current[ca];
+      const eb = cupEls.current[cb];
+      if (ea && eb && !reduce) {
+        ea.style.zIndex = "2";
+        eb.style.zIndex = "1";
+        const mid = (a + b) / 2;
+        const opts = { duration: ms, easing: "cubic-bezier(.45,0,.55,1)" };
+        await Promise.all([
+          ea.animate(
+            [
+              { transform: slotX(a) },
+              { transform: `${slotX(mid)} translateY(14px) scale(1.06)` },
+              { transform: slotX(b) },
+            ],
+            opts,
+          ).finished,
+          eb.animate(
+            [
+              { transform: slotX(b) },
+              { transform: `${slotX(mid)} translateY(-16px) scale(0.92)` },
+              { transform: slotX(a) },
+            ],
+            opts,
+          ).finished,
+        ]);
+        ea.style.transform = slotX(b);
+        eb.style.transform = slotX(a);
+      }
+      order[ca] = b;
+      order[cb] = a;
+    }
+    slotsRef.current = order;
+    setSlots(order);
+    setPhase("pick");
   }
 
   async function choose(i: number) {
@@ -146,17 +210,21 @@ export function CupGame({
         </p>
       </div>
 
-      <div className="flex items-end justify-center gap-2 sm:gap-6">
-        {Array.from({ length: CUPS_COUNT }, (_, i) => (
+      <div className="relative h-44 w-full max-w-md sm:h-56">
+        {slots.map((slot, cup) => (
           <Cup
-            key={i}
-            index={i}
-            lifted={phase === "reveal" && (result?.ball === i || pick === i)}
-            ball={result?.ball === i}
-            selected={pick === i}
-            shuffling={phase === "shuffling"}
+            key={cup}
+            slot={slot}
+            wrapRef={(el) => {
+              cupEls.current[cup] = el;
+            }}
+            lifted={
+              phase === "reveal" && (result?.ball === slot || pick === slot)
+            }
+            ball={result?.ball === slot}
+            selected={pick === slot}
             disabled={phase !== "pick" || busy}
-            onClick={() => choose(i)}
+            onClick={() => choose(slot)}
           />
         ))}
       </div>
