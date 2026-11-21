@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const tabs = [
   { href: "/bets", label: "Bets" },
-  { href: "/bets/cups", label: "Mini games" },
+  { href: "/bets/games", label: "Mini games" },
   { href: "/bets/leaderboard", label: "Leaderboard" },
 ];
 
@@ -15,6 +15,7 @@ export function BetsTabs() {
   const pathname = usePathname();
   const current =
     tabs.find((t) => t.href !== "/bets" && pathname.startsWith(t.href))?.href ??
+    (/^\/bets\/(cups|timber)/.test(pathname) ? "/bets/games" : undefined) ??
     "/bets";
   return (
     <nav
