@@ -44,6 +44,7 @@ export function SkillsSelect({
   return (
     <Select
       isMulti
+      instanceId="skills"
       name="skills"
       value={selected}
       onChange={handleChange}

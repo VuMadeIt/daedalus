@@ -75,6 +75,7 @@ export function HobbiesSelect({
   return (
     <CreatableSelect
       isMulti
+      instanceId="hobbies"
       name="hobbies"
       value={selected}
       onChange={handleChange}
