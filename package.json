@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
-    "db:migrate": "bun ./scripts/db-migrate.ts"
+    "db:migrate": "bun ./scripts/db-migrate.ts",
+    "db:seed-economy": "bun ./scripts/seed-economy.ts"
   },
   "dependencies": {
     "@auth/core": "^0.37.4",
