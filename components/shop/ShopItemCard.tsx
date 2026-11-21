@@ -74,6 +74,7 @@ function ItemImage({ item, className }: { item: ShopItem; className?: string }) 
 }
 
 export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopItemCardProps) {
+  const hasPhoto = Boolean(item.image || artFor(item.itemName).photo);
   const soldOut = item.stock !== null && item.stock <= 0;
   const lowStock = !soldOut && item.stock !== null && item.stock <= LOW_STOCK;
   const after = points - item.purchasePrice;
@@ -103,6 +104,9 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
         )}
       </div>
 
+      {!hasPhoto ? (
+        <ItemImage item={item} className="h-44" />
+      ) : (
       <Dialog>
         <DialogTrigger asChild>
           <button type="button" aria-label={`See the full photo of ${item.itemName}`} className="block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
@@ -111,9 +115,10 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
         </DialogTrigger>
         <DialogContent className="overflow-hidden p-0 sm:max-w-[520px]">
           <DialogTitle className="sr-only">{item.itemName}</DialogTitle>
-          <ItemImage item={item} className="aspect-square w-full" />
+          <ItemImage item={item} className="mx-auto aspect-square max-h-[80vh] w-full" />
         </DialogContent>
       </Dialog>
+      )}
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
