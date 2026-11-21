@@ -1,5 +1,6 @@
 import {
   Dices,
+  Globe,
   CalendarDays,
   Coins,
   Home,
@@ -52,6 +53,9 @@ export const navSections: NavSection[] = [
       { name: "Scanner", href: "/scanner", icon: ScanQrCode, requiresVolunteer: true },
       { name: "Points Manager", href: "/points-manager", icon: ListChecks, requiresOrganizer: true },
     ],
+  },
+  {
+    items: [{ name: "Landing Page", href: "https://hackcanada.org", icon: Globe, external: true }],
   },
 ];
 
