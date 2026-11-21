@@ -75,7 +75,7 @@ export function TeamChoices() {
         <ol className="mt-5 grid grid-cols-3">
           {steps.map(([label, body], i) => (
             <li key={label} className="relative flex flex-col items-center gap-2 px-2 text-center">
-              {i > 0 && <span className="absolute top-3 right-1/2 h-px w-full -translate-y-1/2 bg-border" aria-hidden />}
+              {i > 0 && <span className="absolute top-3 right-[calc(50%+18px)] h-px w-[calc(100%-36px)] -translate-y-1/2 bg-border" aria-hidden />}
               <span className="relative grid size-6 place-items-center rounded-full border border-ink bg-ink text-[11px] font-bold text-white dark:border-primary dark:bg-primary">
                 {i + 1}
               </span>

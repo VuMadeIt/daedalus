@@ -45,7 +45,7 @@ function Steps({ status }: { status: ChallengeStatus }) {
           {i > 0 && (
             <span
               className={cn(
-                "absolute top-2 right-1/2 h-px w-full -translate-y-1/2",
+                "absolute top-2 right-[calc(50%+12px)] h-px w-[calc(100%-24px)] -translate-y-1/2",
                 i <= at ? "bg-ink" : "bg-border",
               )}
             />
