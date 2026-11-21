@@ -99,7 +99,7 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
         )}
         {lowStock && (
           <span className="rounded-full bg-cream px-2.5 py-0.5 text-[11px] font-medium text-goldInk">
-            low stock
+            Only {item.stock} left
           </span>
         )}
       </div>
@@ -126,9 +126,12 @@ export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopIt
             <h3 className="truncate text-[17px] font-medium text-textPrimary">{item.itemName}</h3>
             <p className="line-clamp-1 text-[13px] text-textMuted">{item.itemDescription}</p>
           </div>
-          <span className="shrink-0 pt-0.5 text-[15px] font-bold text-textPrimary tabular-nums">
-            {item.purchasePrice} pts
-          </span>
+          <div className="shrink-0 pt-0.5 text-right">
+            <span className="block text-[15px] font-bold text-textPrimary tabular-nums">{item.purchasePrice} pts</span>
+            {item.stock !== null && !soldOut && (
+              <span className="block text-[12px] text-textMuted tabular-nums">{item.stock} left</span>
+            )}
+          </div>
         </div>
 
         {soldOut ? (
