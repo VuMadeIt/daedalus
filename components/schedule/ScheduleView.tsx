@@ -1,5 +1,7 @@
 "use client";
 
+import { useTheme } from "next-themes";
+
 import type { Schedule } from "@/lib/db/schema";
 
 import { ScheduleThemeProvider } from "./schedule-theme";
@@ -11,9 +13,11 @@ interface ScheduleViewProps {
 }
 
 export default function ScheduleView({ schedule }: ScheduleViewProps) {
+  const { resolvedTheme } = useTheme();
+
   return (
-    <ScheduleThemeProvider value>
-      <div className="schedule-light flex flex-col gap-6">
+    <ScheduleThemeProvider value={resolvedTheme !== "dark"}>
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <h1 className="text-[28px] leading-tight font-bold tracking-tight text-textPrimary md:text-[32px]">
             Event Schedule
