@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 import { hackathonsCanadaDiscordUrl } from "@/config/site";
 
@@ -31,7 +31,7 @@ const HackathonsCanadaDiscord = () => (
         className={buttonVariants({ variant: "outline" })}
       >
         Join server
-        <ExternalLink className="size-4" />
+        <ArrowTopRightOnSquareIcon className="size-4" />
       </a>
     }
   />

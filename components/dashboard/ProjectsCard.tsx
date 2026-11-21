@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Trophy } from "lucide-react";
+import { ArrowTopRightOnSquareIcon, TrophyIcon } from "@heroicons/react/24/outline";
 
 import { hackathonYear, viewProjectsUrl } from "@/config/site";
 import { useHackathonPhase } from "@/hooks/useHackathonPhase";
@@ -18,7 +18,7 @@ const ProjectsCard = () => {
   return (
     <DashCard
       title="Project gallery"
-      icon={<Trophy />}
+      icon={<TrophyIcon className="size-5" />}
       tone="cream"
       description={`Everything built at Hack Canada ${hackathonYear}, all in one place. Go see what people made in 36 hours.`}
       action={
@@ -29,7 +29,7 @@ const ProjectsCard = () => {
           className={buttonVariants()}
         >
           See projects
-          <ExternalLink className="size-4" />
+          <ArrowTopRightOnSquareIcon className="size-4" />
         </a>
       }
     />

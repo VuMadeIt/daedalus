@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, User } from "lucide-react";
+import { ArrowRightIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 
 import { buttonVariants } from "../ui/button";
 import { DashCard } from "./DashCard";
@@ -12,7 +12,7 @@ interface ProfileCardProps {
 const ProfileCard = ({ isLocked, userId }: ProfileCardProps) => (
   <DashCard
     title="Your profile"
-    icon={<User />}
+    icon={<UserCircleIcon className="size-5" />}
     tone="mint"
     locked={isLocked && "Participants only"}
     description="Add your skills, links and what you're into so other hackers know who they're talking to."
@@ -23,7 +23,7 @@ const ProfileCard = ({ isLocked, userId }: ProfileCardProps) => (
         className={buttonVariants({ variant: "outline" })}
       >
         View profile
-        <ArrowRight className="size-4" />
+        <ArrowRightIcon className="size-4" />
       </Link>
     }
   />

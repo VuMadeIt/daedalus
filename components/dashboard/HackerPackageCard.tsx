@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink } from "lucide-react";
+import { ArrowTopRightOnSquareIcon, BookOpenIcon } from "@heroicons/react/24/outline";
 
 import { hackathonYear, hackerPackageUrl } from "@/config/site";
 
@@ -15,7 +15,7 @@ const HackerPackageCard = ({ isLocked }: HackerPackageCardProps) => {
   return (
     <DashCard
       title="Welcome booklet"
-      icon={<BookOpen />}
+      icon={<BookOpenIcon className="size-5" />}
       tone="cream"
       locked={isDisabled && (isLocked ? "Participants only" : "Coming soon")}
       description={`Maps, the Wi-Fi password, food times and everything else you need for Hack Canada ${hackathonYear}.`}
@@ -28,7 +28,7 @@ const HackerPackageCard = ({ isLocked }: HackerPackageCardProps) => {
           className={buttonVariants({ variant: isDisabled ? "outline" : "default" })}
         >
           Open booklet
-          <ExternalLink className="size-4" />
+          <ArrowTopRightOnSquareIcon className="size-4" />
         </a>
       }
     />

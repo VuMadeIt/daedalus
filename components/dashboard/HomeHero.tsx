@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, ShoppingBag, Star } from "lucide-react";
+import { ArrowRightIcon, CalendarDaysIcon, ShoppingBagIcon, StarIcon } from "@heroicons/react/24/outline";
 
 import { useHackathonPhase } from "@/hooks/useHackathonPhase";
 
 const links = [
-  { href: "/schedule", label: "Schedule", icon: CalendarDays },
-  { href: "/challenges", label: "Challenges", icon: Star },
-  { href: "/shops", label: "Store", icon: ShoppingBag },
+  { href: "/schedule", label: "Schedule", icon: CalendarDaysIcon },
+  { href: "/challenges", label: "Challenges", icon: StarIcon },
+  { href: "/shops", label: "Store", icon: ShoppingBagIcon },
 ];
 
 export function HomeHero() {
@@ -55,7 +55,7 @@ export function HomeHero() {
             >
               <Icon className="size-4" aria-hidden />
               {label}
-              {i === 0 && <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />}
+              {i === 0 && <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />}
             </Link>
           ))}
         </div>

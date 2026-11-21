@@ -1,4 +1,4 @@
-import { ExternalLink, Rocket } from "lucide-react";
+import { ArrowTopRightOnSquareIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 
 import { devpostUrl } from "@/config/site";
 
@@ -8,7 +8,7 @@ import { DashCard } from "./DashCard";
 const DevpostCard = () => (
   <DashCard
     title="Submit on Devpost"
-    icon={<Rocket />}
+    icon={<RocketLaunchIcon className="size-5" />}
     tone="sky"
     description="Projects are submitted on Devpost. Make sure everyone on your team has joined before the deadline."
     action={
@@ -19,7 +19,7 @@ const DevpostCard = () => (
         className={buttonVariants()}
       >
         Open Devpost
-        <ExternalLink className="size-4" />
+        <ArrowTopRightOnSquareIcon className="size-4" />
       </a>
     }
   />

@@ -1,4 +1,4 @@
-import { QrCode } from "lucide-react";
+import { QrCodeIcon } from "@heroicons/react/24/outline";
 import { QRCodeSVG } from "qrcode.react";
 
 import { QR_LOGO_SRC } from "@/config/qr-code";
@@ -24,7 +24,7 @@ const DashboardQRCode = ({ isLocked, userId }: DashboardQRCodeProps) => {
   return (
     <DashCard
       title="Your hacker pass"
-      icon={<QrCode />}
+      icon={<QrCodeIcon className="size-5" />}
       tone="coral"
       locked={isLocked && "Participants only"}
       description="Show this at check-in, at meals and at workshops. Anyone who scans it lands on your profile."
@@ -33,7 +33,7 @@ const DashboardQRCode = ({ isLocked, userId }: DashboardQRCodeProps) => {
           <DialogTrigger asChild>
             <Button disabled={isLocked}>
               Show my pass
-              <QrCode className="size-4" />
+              <QrCodeIcon className="size-4" />
             </Button>
           </DialogTrigger>
           <DialogContent className="flex max-w-sm flex-col items-center">
