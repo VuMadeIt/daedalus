@@ -1,3 +1,5 @@
+"use client";
+
 import type { Schedule } from "@/lib/db/schema";
 
 import { ScheduleThemeProvider } from "./schedule-theme";

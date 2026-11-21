@@ -71,7 +71,7 @@ export function getApplications(
       deadline: "March 2nd (11:59:59 PM), 2027",
       description:
         // for mentors and judges,
-        "Share your wisdom and help hackers bring their ideas to life! 💡",
+        "Share your wisdom and help hackers bring their ideas to life!",
       icon: Lightbulb,
       disabled: true,
     },
@@ -80,7 +80,7 @@ export function getApplications(
     //   href: "https://docs.google.com/forms/d/e/1FAIpQLScCS76RX3C1AvGGFOQ5J69XpoYb6rvdYQ-B0aYxS_GLaf4jmQ/viewform?usp=sf_link",
     //   status: "coming soon",
     //   description:
-    //     "Help crown the champions and discover the next big thing! ⚖️",
+    //     "Help crown the champions and discover the next big thing!",
     //   deadline: "February 28th (11:59:59 PM), 2027",
     //   icon: Gavel,
     //   disabled: true,
