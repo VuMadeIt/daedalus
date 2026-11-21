@@ -53,7 +53,7 @@ export const ApplicationCard = ({
         />
       )}
       {alreadyApplied && (
-        <div className="border-primary/30 bg-primary/20 text-primary pointer-events-none absolute -top-2 -right-2 z-20 rounded-full border px-2 py-1 text-xs font-medium">
+        <div className="border-primary/30 bg-primary/20 text-primary pointer-events-none absolute top-4 right-4 z-20 rounded-full border px-2.5 py-1 text-xs font-semibold">
           Applied
         </div>
       )}
