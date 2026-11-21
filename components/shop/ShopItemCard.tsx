@@ -1,17 +1,17 @@
 "use client";
 
+import { useState } from "react";
+import { AlertCircle } from "lucide-react";
 import {
-  AlertCircle,
-  Candy,
-  Cpu,
-  Gamepad2,
-  Gift,
-  Lightbulb,
-  Plug,
-  Shirt,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
+  BoltIcon,
+  CakeIcon,
+  CpuChipIcon,
+  GiftIcon,
+  LightBulbIcon,
+  PuzzlePieceIcon,
+  SparklesIcon,
+  WrenchScrewdriverIcon,
+} from "@heroicons/react/24/outline";
 import { QRCodeSVG } from "qrcode.react";
 
 import type { ShopItem } from "@/lib/db/schema";
@@ -35,36 +35,39 @@ interface ShopItemCardProps {
 
 const LOW_STOCK = 5;
 
-const ART: [RegExp, LucideIcon, string][] = [
-  [/charg|cable|power|battery/i, Plug, "bg-brandSoft text-primary"],
-  [/led|light|lamp/i, Lightbulb, "bg-goldSoft text-goldInk"],
-  [/screw|tool|wrench/i, Wrench, "bg-backgroundMuted text-textSecondary"],
-  [/candy|sour|snack|chocolate|kids/i, Candy, "bg-mint text-success"],
-  [/micro|arduino|pi\b|board|chip/i, Cpu, "bg-brandSoft text-primary"],
-  [/tamagotchi|game|toy/i, Gamepad2, "bg-goldSoft text-goldInk"],
-  [/shirt|hoodie|sock|hat/i, Shirt, "bg-mint text-success"],
+type Art = { re: RegExp; Icon: typeof GiftIcon; tone: string; photo?: string };
+
+const ART: Art[] = [
+  { re: /charg|cable|power|battery/i, Icon: BoltIcon, tone: "bg-brandSoft text-primary", photo: "/shop/charger.jpg" },
+  { re: /led|light|lamp/i, Icon: LightBulbIcon, tone: "bg-goldSoft text-goldInk", photo: "/shop/led-strips.jpg" },
+  { re: /screw|tool|wrench/i, Icon: WrenchScrewdriverIcon, tone: "bg-backgroundMuted text-textSecondary", photo: "/shop/screwdrivers.jpg" },
+  { re: /candy|sour|snack|chocolate|kids/i, Icon: CakeIcon, tone: "bg-mint text-success", photo: "/shop/sour-patch-kids.jpg" },
+  { re: /micro|arduino|pi\b|pico|board|chip/i, Icon: CpuChipIcon, tone: "bg-brandSoft text-primary", photo: "/shop/microcontroller.jpg" },
+  { re: /tamagotchi|game|toy/i, Icon: PuzzlePieceIcon, tone: "bg-goldSoft text-goldInk", photo: "/shop/tamagotchi.jpg" },
+  { re: /shirt|hoodie|sock|hat|sticker/i, Icon: SparklesIcon, tone: "bg-mint text-success" },
 ];
 
 function artFor(name: string) {
-  const hit = ART.find(([re]) => re.test(name));
-  return hit ? { Icon: hit[1], tone: hit[2] } : { Icon: Gift, tone: "bg-backgroundMuted text-textMuted" };
+  return ART.find((a) => a.re.test(name)) ?? { Icon: GiftIcon, tone: "bg-backgroundMuted text-textMuted", photo: undefined };
 }
 
 function ItemImage({ item, className }: { item: ShopItem; className?: string }) {
-  const { Icon, tone } = artFor(item.itemName);
+  const { Icon, tone, photo } = artFor(item.itemName);
+  const src = item.image || photo;
+  const [failed, setFailed] = useState(false);
+  const showPhoto = src && !failed;
   return (
-    <div className={cn("relative grid place-items-center overflow-hidden", item.image ? "bg-backgroundMuted" : tone, className)}>
-      {item.image ? (
+    <div className={cn("relative grid place-items-center overflow-hidden", showPhoto ? "bg-white" : tone, className)}>
+      {showPhoto ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={item.image}
+          src={src}
           alt={item.itemName}
+          onError={() => setFailed(true)}
           className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.04]"
         />
       ) : (
-        <span className="grid size-16 place-items-center rounded-2xl bg-surface/70 shadow-card transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
-          <Icon className="size-8" strokeWidth={1.75} aria-hidden />
-        </span>
+        <Icon className="size-12 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" strokeWidth={1.5} aria-hidden />
       )}
     </div>
   );
