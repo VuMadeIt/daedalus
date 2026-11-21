@@ -67,7 +67,7 @@ function Cup({
       >
         <span
           className={cn(
-            "bg-gold absolute bottom-4 size-7 rounded-full shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
+            "bg-gold absolute bottom-3 size-7 rounded-full shadow-[inset_-3px_-3px_0_rgba(0,0,0,0.15)] transition-opacity",
             lifted && ball ? "opacity-100" : "opacity-0",
           )}
         />
@@ -79,7 +79,7 @@ function Cup({
           draggable={false}
           className={cn(
             "relative mb-1 h-28 w-auto transition-transform duration-500 select-none sm:h-40",
-            lifted && "-translate-y-14",
+            lifted && "-translate-y-16 sm:-translate-y-20",
           )}
         />
       </button>
