@@ -57,14 +57,14 @@ function ItemImage({ item, className }: { item: ShopItem; className?: string }) 
   const [failed, setFailed] = useState(false);
   const showPhoto = src && !failed;
   return (
-    <div className={cn("relative grid place-items-center overflow-hidden", showPhoto ? "bg-white" : tone, className)}>
+    <div className={cn("relative grid place-items-center overflow-hidden", showPhoto ? "bg-[#f1f4f8] dark:bg-[#c3cfdc]" : tone, className)}>
       {showPhoto ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
           alt={item.itemName}
           onError={() => setFailed(true)}
-          className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.04]"
+          className="h-full w-full object-contain p-4 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.04]"
         />
       ) : (
         <Icon className="size-12 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" strokeWidth={1.5} aria-hidden />
