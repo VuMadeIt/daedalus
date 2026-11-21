@@ -18,7 +18,6 @@ export default async function BetsPage() {
   const [markets, mine, leaders] = await Promise.all([listMarkets(), getUserBets(userId), getBetLeaderboard(5)]);
   const spent = mine.reduce((n, b) => n + b.amount, 0);
   const returned = mine.reduce((n, b) => n + (b.payout ?? 0), 0);
-  const pending = mine.filter((b) => b.payout == null).length;
   const live = markets.filter((m) => m.status !== "resolved");
   const settled = markets.filter((m) => m.status === "resolved");
 
@@ -33,7 +32,7 @@ export default async function BetsPage() {
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
             ["Your balance", `${points}`, "pts"],
-            ["Bets placed", `${mine.length}`, `${pending} waiting`],
+            ["Bets placed", `${mine.length}`, ""],
             ["Points staked", `${spent}`, "pts"],
             ["Points returned", `${returned}`, "pts"],
           ].map(([label, value, unit], i) => (
@@ -66,7 +65,8 @@ export default async function BetsPage() {
             )}
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
+            <h2 className="text-base font-bold text-textPrimary">Your activity</h2>
             <Panel title="Your bets">
               {mine.length === 0 ? (
                 <p className="px-5 py-6 text-sm text-textMuted">You haven&apos;t placed a bet yet.</p>

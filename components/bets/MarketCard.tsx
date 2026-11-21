@@ -31,8 +31,6 @@ export function MarketCard({
   const [side, setSide] = useState<BetSide | null>(null);
   const open = isTakingBets(market);
   const yes = yesShare(market);
-  const leader =
-    yes === 50 ? "Even split" : yes > 50 ? "YES leads" : "NO leads";
   const status = marketStatus(market);
 
   return (
@@ -69,9 +67,6 @@ export function MarketCard({
               style={{ width: `${yes}%` }}
             />
           </div>
-          <span className="text-textMuted w-20 text-right text-xs">
-            {leader}
-          </span>
         </div>
       </div>
       {open && (
@@ -86,7 +81,7 @@ export function MarketCard({
           <button
             type="button"
             onClick={() => setSide("no")}
-            className="bg-backgroundMuted text-textPrimary hover:bg-border flex-1 rounded-lg px-4 py-2 text-sm font-bold transition-colors"
+            className="border-border text-ink flex-1 rounded-lg border bg-white px-4 py-2 text-sm font-bold transition-colors hover:bg-slate-100"
           >
             NO
           </button>
