@@ -36,7 +36,7 @@ export const ApplicationCard = ({
     <div
       className={cn(
         "group hover:border-primary/40 relative block overflow-hidden rounded-xl border border-border bg-surface p-6 backdrop-blur-sm transition-all duration-500 shadow-card hover:-translate-y-0.5 hover:shadow-float",
-        disabled && "opacity-60",
+        disabled && "bg-backgroundMuted/60 shadow-none",
         alreadyApplied && "border-primary/50 cursor-default",
       )}
     >
