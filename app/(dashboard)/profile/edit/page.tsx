@@ -23,8 +23,8 @@ export default async function EditProfilePage() {
   return (
     <PageWrapper className="3xl:max-w-screen-lg max-w-screen-lg">
       <div className="mb-8">
-        <div className="from-primary to-primary w-fit bg-linear-to-r via-sky-400 bg-clip-text text-transparent">
-          <h1 className="font-rubik text-2xl font-bold text-transparent md:text-3xl">
+        <div className="text-textPrimary  w-fit">
+          <h1 className="text-[28px] leading-tight font-bold tracking-tight text-textPrimary md:text-[32px]">
             Edit Profile
           </h1>
         </div>

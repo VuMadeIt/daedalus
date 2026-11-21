@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/auth";
 import { eq, sql } from "drizzle-orm";
-import { Coins, Gift } from "lucide-react";
+import { Gift } from "lucide-react";
 
 import { db } from "@/lib/db";
 import { shopItems, shopPurchases, userBalance } from "@/lib/db/schema";
@@ -28,7 +27,7 @@ export default async function ShopsPage() {
   }
 
   const [items, balanceResult, purchaseCounts] = await Promise.all([
-    db.select().from(shopItems),
+    db.select().from(shopItems).where(eq(shopItems.enabled, true)).orderBy(shopItems.purchasePrice),
     db
       .select()
       .from(userBalance)
@@ -52,54 +51,36 @@ export default async function ShopsPage() {
   return (
     <PageWrapper>
       <div className="flex flex-col gap-6 md:gap-8">
-        {/* Page Header */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-2">
-            <div className="w-fit bg-linear-to-r from-primary via-sky-400 to-primary bg-clip-text text-transparent">
-              <h1 className="font-rubik text-3xl font-bold">Shop</h1>
-            </div>
-            <p className="text-textMuted max-md:text-sm">
-              Spend your challenge points on exclusive rewards and goodies!
-            </p>
-          </div>
-
-          {/* Points Badge - Links to history */}
-          <Link
-            href="/points-history"
-            className="flex items-center gap-2.5 rounded-xl border border-primary/30 bg-gradient-to-r from-primary/10 to-sky-400/10 px-5 py-3 shadow-sm backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-md"
-          >
-            <div className="rounded-full bg-primary/20 p-1.5">
-              <Coins className="h-4 w-4 text-primary" />
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-rubik text-xl font-bold text-primary">
-                {points}
-              </span>
-              <span className="text-sm font-medium text-textMuted">points</span>
-            </div>
-          </Link>
+        <div className="space-y-1">
+          <h1 className="text-[28px] leading-tight font-medium text-textPrimary md:text-[32px]">
+            General Shop
+          </h1>
+          <p className="text-sm text-textMuted md:text-[15px]">
+            Browse everything on the shelf and redeem prizes with your points.
+          </p>
         </div>
 
         {/* Items Grid */}
         {items.length === 0 ? (
-          <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-sky-400/5 p-16 text-center">
-            <div className="mb-4 rounded-full bg-primary/10 p-4">
-              <Gift className="h-10 w-10 text-primary/60" />
+          <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface p-16 text-center">
+            <div className="mb-4 rounded-full bg-brandSoft p-4">
+              <Gift className="h-8 w-8 text-brand" />
             </div>
             <p className="text-lg font-semibold text-textPrimary">
-              No items available yet
+              The shelf is empty for now
             </p>
             <p className="mt-1 text-sm text-textMuted">
-              Check back later for awesome rewards!
+              New prizes show up during the event, so check back soon.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {items.map((item) => (
               <ShopItemCard
                 key={item.id}
                 item={item}
                 userId={currentUser.id!}
+                points={points}
                 purchaseCount={purchaseCountMap.get(item.id) ?? 0}
               />
             ))}

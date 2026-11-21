@@ -138,7 +138,7 @@ export function HackathonConfirmDialog({
           <button
             onClick={onCancel}
             disabled={isLoading}
-            className="flex-1 rounded-lg border border-primary/25 px-4 py-2.5 font-medium text-textPrimary transition hover:bg-primary/5 disabled:opacity-50"
+            className="flex-1 rounded-lg border border-primary/25 px-4 py-2.5 font-medium text-white transition hover:bg-primary/5 disabled:opacity-50"
           >
             Cancel
           </button>

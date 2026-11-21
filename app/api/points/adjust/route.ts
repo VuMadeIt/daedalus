@@ -72,7 +72,8 @@ export async function POST(
         const [balance] = await tx
           .select()
           .from(userBalance)
-          .where(eq(userBalance.userId, userId));
+          .where(eq(userBalance.userId, userId))
+          .for("update");
 
         const currentPoints = balance?.points ?? 0;
 

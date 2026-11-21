@@ -1,6 +1,8 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { hackathonYear } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -8,25 +10,25 @@ type Props = {
   dark?: boolean;
 };
 
-const SidebarLogo = ({ className, mobile, dark = true }: Props) => {
+const SidebarLogo = ({ className }: Props) => {
   return (
     <Link
-      href={"/"}
-      className={`flex w-fit cursor-pointer items-center space-x-2 ${className}`}
+      href="/"
+      className={cn("flex w-fit items-center gap-2.5 rounded-lg", className)}
     >
       <Image
-        src={"/hack-canada-logo.png"}
-        alt="Hack Canada Logo"
-        width={48}
-        height={48}
-        className={mobile ? "translate-y-1" : ""}
+        src="/hack-canada-logo.png"
+        alt="Hack Canada"
+        width={40}
+        height={40}
+        className="size-10 rounded-full ring-2 ring-[#f3c25a]"
       />
-      <span className="flex max-lg:space-x-1 lg:flex-col lg:-space-y-1">
-        <span className={`text-xl font-bold lg:text-lg ${dark ? "text-white" : "text-[#071632]"}`}>
-          Hack
+      <span className="flex flex-col leading-tight">
+        <span className="text-[15px] font-medium text-textPrimary">
+          Hacker Dashboard
         </span>
-        <span className={`text-xl font-bold lg:text-lg ${dark ? "text-white" : "text-[#071632]"}`}>
-          Canada
+        <span className="text-[11px] font-medium text-brand">
+          HC{String(hackathonYear).slice(-2)}
         </span>
       </span>
     </Link>

@@ -1,87 +1,90 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon, CheckIcon } from "@heroicons/react/20/solid";
 
-// [left %, top %, size px, delay s]
-const STARS = [
-  [12, 14, 2, 0],
-  [30, 8, 3, 1.2],
-  [50, 20, 2, 0.6],
-  [68, 10, 2, 2.1],
-  [86, 22, 3, 0.3],
-  [22, 34, 2, 2.6],
-  [60, 36, 2, 1],
-  [92, 40, 2, 1.7],
-] as const;
+import { MAX_TEAM_SIZE } from "@/config/apply";
 
-const panel =
-  "group relative flex min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl p-8 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:min-h-[19rem] md:p-10";
+const choices = [
+  {
+    href: "/apply/teams/new",
+    title: "Start a team",
+    body: "Name your team, say who you're looking for, and share one link.",
+    points: ["You approve every request", "Apply together in one go"],
+    cta: "Create team",
+    image: { src: "/teams/start-team.png", width: 432, height: 360 },
+  },
+  {
+    href: "/apply/teams/browse",
+    title: "Join a team",
+    body: "Browse public teams with open spots and send a quick request.",
+    points: ["See skills each team needs", "Hear back from the owner"],
+    cta: "Browse teams",
+    image: { src: "/teams/join-team.png", width: 974, height: 559 },
+  },
+];
 
-function PanelCopy({
-  title,
-  body,
-  button,
-}: {
-  title: string;
-  body: string;
-  button: string;
-}) {
-  return (
-    <span className="relative block">
-      <span className="font-display block text-4xl leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 md:text-5xl">
-        {title}
-      </span>
-      <span className="mt-3 block max-w-sm text-white/80">{body}</span>
-      <span
-        className={`mt-8 flex size-12 items-center justify-center rounded-full shadow-lg transition-transform duration-500 ease-out group-hover:scale-110 ${button}`}
-      >
-        <ArrowRight
-          className="size-5 -rotate-45 transition-transform duration-500 ease-out group-hover:rotate-0"
-          aria-hidden
-        />
-      </span>
-    </span>
-  );
-}
+const steps = [
+  ["Form or find a team", `Up to ${MAX_TEAM_SIZE} people. Teams are optional.`],
+  ["Everyone applies", "Each person still submits their own answers."],
+  ["Reviewed together", "Your team gets its decisions side by side."],
+];
 
 export function TeamChoices() {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      <Link
-        href="/apply/teams/new"
-        className={`${panel} bg-linear-to-b from-[#5f9be2] via-[#3c7bcc] to-[#1c58a1]`}
-      >
-        <PanelCopy
-          title="Start a team"
-          body="Name it, say who you need, and share the link."
-          button="bg-white text-[#043251]"
-        />
-      </Link>
+    <div className="space-y-6">
+      <div className="grid gap-5 md:grid-cols-2">
+        {choices.map(({ href, title, body, points, cta, image }) => (
+          <Link
+            key={href}
+            href={href}
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-float focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <h2 className="text-2xl font-bold tracking-tight text-textPrimary">{title}</h2>
+                <p className="mt-1.5 max-w-xs text-[15px] leading-relaxed text-textSecondary">{body}</p>
+              </div>
+              <div className="flex h-20 w-28 shrink-0 items-start justify-end">
+                <Image
+                  src={image.src}
+                  alt=""
+                  width={image.width}
+                  height={image.height}
+                  className="h-20 w-auto max-w-28 object-contain transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105"
+                />
+              </div>
+            </div>
+            <ul className="mt-4 space-y-2">
+              {points.map((p) => (
+                <li key={p} className="flex items-center gap-2 text-sm text-textSecondary">
+                  <CheckIcon className="size-4 text-success" aria-hidden />
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white transition-colors group-hover:bg-primaryDark">
+              {cta}
+              <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </span>
+          </Link>
+        ))}
+      </div>
 
-      <Link
-        href="/apply/teams/browse"
-        className={`${panel} bg-linear-to-b from-[#0d426d] via-[#062f52] to-[#031b31]`}
-      >
-        <span aria-hidden className="pointer-events-none absolute inset-0">
-          {STARS.map(([left, top, size, delay]) => (
-            <span
-              key={`${left}-${top}`}
-              className="motion-safe:animate-twinkle absolute rounded-full bg-white"
-              style={{
-                left: `${left}%`,
-                top: `${top}%`,
-                width: size,
-                height: size,
-                animationDelay: `${delay}s`,
-              }}
-            />
+      <section className="rounded-2xl border border-border bg-surface px-5 py-6 shadow-card md:px-8">
+        <h2 className="text-sm font-bold text-textPrimary">How teams work</h2>
+        <ol className="mt-5 grid grid-cols-3">
+          {steps.map(([label, body], i) => (
+            <li key={label} className="relative flex flex-col items-center gap-2 px-2 text-center">
+              {i > 0 && <span className="absolute top-3 right-[calc(50%+18px)] h-px w-[calc(100%-36px)] -translate-y-1/2 bg-border" aria-hidden />}
+              <span className="relative grid size-6 place-items-center rounded-full border border-ink bg-ink text-[11px] font-bold text-white dark:border-primary dark:bg-primary">
+                {i + 1}
+              </span>
+              <span className="text-sm font-bold leading-tight text-textPrimary">{label}</span>
+              <span className="hidden max-w-[220px] text-xs leading-snug text-textMuted sm:block">{body}</span>
+            </li>
           ))}
-        </span>
-        <PanelCopy
-          title="Browse teams"
-          body="Find a team with open spots and ask to join."
-          button="bg-[#85B7F1] text-[#043251]"
-        />
-      </Link>
+        </ol>
+      </section>
     </div>
   );
 }

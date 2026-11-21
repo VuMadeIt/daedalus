@@ -1,6 +1,12 @@
-import { Fredoka, Londrina_Solid, Rubik } from "next/font/google";
+import { Londrina_Solid, Rubik } from "next/font/google";
+import localFont from "next/font/local";
 
-export const fredoka = Fredoka({ subsets: ["latin"] });
+export const satoshi = localFont({
+  src: "../app/fonts/Satoshi-Variable.woff2",
+  weight: "300 900",
+  variable: "--font-satoshi",
+  display: "swap",
+});
 
 export const rubik = Rubik({
   subsets: ["latin"],

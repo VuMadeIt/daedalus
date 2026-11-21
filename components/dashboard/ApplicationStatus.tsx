@@ -41,11 +41,11 @@ export const ApplicationStatus = ({ status, role }: ApplicationStatusProps) => {
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-sm",
+        "relative w-full overflow-hidden rounded-xl border border-border bg-surface shadow-lg backdrop-blur-sm",
         statusStyles[status],
       )}
     >
-      <Icon className="absolute right-1 top-1 text-white/30 md:right-2 md:top-2 md:size-8" />
+      <Icon className="absolute right-1 top-1 text-textMuted md:right-2 md:top-2 md:size-8" />
       <div className="relative flex flex-col p-6 md:p-8 xl:p-12">
         {renderContent()}
       </div>

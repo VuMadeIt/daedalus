@@ -22,14 +22,14 @@ export function TeamHowItWorks() {
   return (
     <Popover>
       <PopoverTrigger
-        className="grid size-7 place-items-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white data-[state=open]:bg-white/10 data-[state=open]:text-white"
+        className="grid size-7 place-items-center rounded-full text-textMuted transition-colors hover:bg-black/[0.05] hover:text-textPrimary focus-visible:outline focus-visible:outline-2 focus-visible:outline-white data-[state=open]:bg-black/[0.05] data-[state=open]:text-white"
         aria-label="How teams work"
       >
         <Info className="size-4" aria-hidden />
       </PopoverTrigger>
       <PopoverContent align="start" className="w-80 text-sm">
-        <p className="font-medium text-white">How teams work</p>
-        <ul className="mt-2 space-y-2 text-white/70">
+        <p className="font-medium text-textPrimary">How teams work</p>
+        <ul className="mt-2 space-y-2 text-textSecondary">
           {POINTS.map((point) => (
             <li key={point} className="flex gap-2">
               <span

@@ -28,7 +28,7 @@ export function NormalQuestions({
 }) {
   return (
     <fieldset className="space-y-10">
-      <legend className="font-display mb-6 text-3xl font-semibold text-white md:text-4xl">
+      <legend className="font-display mb-6 text-3xl font-semibold text-textPrimary md:text-4xl">
         Normal application questions
       </legend>
       <FormField
@@ -36,7 +36,7 @@ export function NormalQuestions({
         name="normalAnswer1"
         render={({ field }) => (
           <FormItem className="space-y-3">
-            <FormLabel className="block text-lg leading-relaxed font-medium text-white md:text-xl">
+            <FormLabel className="block text-lg leading-relaxed font-medium text-textPrimary md:text-xl">
               {NORMAL_PROMPTS.normalAnswer1}
               {requiredMark}
             </FormLabel>
@@ -59,7 +59,7 @@ export function NormalQuestions({
         name="normalAnswer2"
         render={({ field }) => (
           <FormItem className="space-y-3">
-            <FormLabel className="block text-lg leading-relaxed font-medium text-white md:text-xl">
+            <FormLabel className="block text-lg leading-relaxed font-medium text-textPrimary md:text-xl">
               {NORMAL_PROMPTS.normalAnswer2}
               {requiredMark}
             </FormLabel>

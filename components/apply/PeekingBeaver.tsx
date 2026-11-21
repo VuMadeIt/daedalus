@@ -82,7 +82,7 @@ export function PeekingBeaver({ line }: { line?: string }) {
       className="pointer-events-none fixed right-0 bottom-[14vh] z-10 hidden xl:block"
     >
       <div
-        className={`absolute right-36 bottom-[7.5rem] w-max max-w-44 rounded-2xl rounded-br-sm bg-white px-3.5 py-2 text-sm font-medium text-[#3a2418] shadow-lg transition-all duration-300 motion-reduce:transition-none ${
+        className={`absolute right-36 bottom-[7.5rem] w-max max-w-44 rounded-2xl rounded-br-sm bg-surface px-3.5 py-2 text-sm font-medium text-[#3a2418] shadow-lg transition-all duration-300 motion-reduce:transition-none ${
           said ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
         }`}
       >

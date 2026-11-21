@@ -1,56 +1,62 @@
 import {
-  Clock,
+  Dices,
+  Globe,
+  CalendarDays,
+  Coins,
   Home,
-  LayoutDashboard,
+  ListChecks,
   NotebookPen,
   QrCode,
   ScanQrCode,
-  // ShoppingCart,
-  Trophy,
+  ShoppingBag,
+  Star,
   User,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-export const navigation = [
+export type NavItem = {
+  name: string;
+  href: string;
+  icon: LucideIcon;
+  requiresVolunteer?: boolean;
+  requiresOrganizer?: boolean;
+  external?: boolean;
+};
+
+export type NavSection = {
+  label?: string;
+  items: NavItem[];
+};
+
+export const navSections: NavSection[] = [
   {
-    name: "Dashboard",
-    href: "/",
-    icon: LayoutDashboard,
+    items: [
+      { name: "Home", href: "/", icon: Home },
+      { name: "Profile", href: "/profile", icon: User },
+      { name: "Applications", href: "/applications", icon: NotebookPen },
+      { name: "Schedule", href: "/schedule", icon: CalendarDays },
+      { name: "QR Code", href: "/qr-code", icon: QrCode },
+    ],
   },
   {
-    name: "Profile",
-    href: "/profile",
-    icon: User,
+    label: "Beaver Games",
+    items: [
+      { name: "Challenges", href: "/challenges", icon: Star },
+      { name: "Bet Points", href: "/bets", icon: Dices },
+      { name: "Points", href: "/points-history", icon: Coins },
+      { name: "Store", href: "/shops", icon: ShoppingBag },
+    ],
   },
   {
-    name: "Applications",
-    href: "/applications",
-    icon: NotebookPen,
+    label: "Crew",
+    items: [
+      { name: "Scanner", href: "/scanner", icon: ScanQrCode, requiresVolunteer: true },
+      { name: "Points Manager", href: "/points-manager", icon: ListChecks, requiresOrganizer: true },
+    ],
   },
   {
-    name: "Schedule",
-    href: "/schedule",
-    icon: Clock,
+    items: [{ name: "Landing Page", href: "https://hackcanada.org", icon: Globe, external: true }],
   },
-  {
-    name: "Challenges",
-    href: "/challenges",
-    icon: Trophy,
-  },
-  {
-    name: "QR Code",
-    href: "/qr-code",
-    icon: QrCode,
-  },
-  {
-    name: "Scanner",
-    href: "/scanner",
-    icon: ScanQrCode,
-    requiresVolunteer: true, // Only show for volunteers/organizers/admins
-  },
-  // {
-  //   name: "Shop",
-  //   href: "/shops",
-  //   icon: ShoppingCart,
-  // },
-  { name: "Landing Page", href: "https://hackcanada.org", icon: Home },
 ];
+
+export const navigation: NavItem[] = navSections.flatMap((s) => s.items);

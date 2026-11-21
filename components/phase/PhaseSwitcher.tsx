@@ -18,7 +18,7 @@ export function PhaseSwitcher() {
   }
 
   return (
-    <label className="fixed bottom-3 left-3 z-50 flex items-center gap-2 rounded-md border border-white/20 bg-black/80 px-2 py-1 text-xs text-white shadow-lg">
+    <label className="fixed right-3 bottom-3 z-50 flex items-center gap-2 rounded-md border border-white/20 bg-black/80 px-2 py-1 text-xs text-white shadow-lg">
       Phase
       <select
         className="bg-transparent text-xs text-white outline-none"

@@ -57,7 +57,7 @@ export function EmergencyContacts({ contact }: EmergencyContactsProps) {
 
       {/* Contact info */}
       <div
-        className="relative overflow-hidden rounded-lg bg-white/60 p-4 shadow-xs backdrop-blur-xs transition-all duration-500 group-hover:bg-white/80 group-hover:shadow-md"
+        className="relative overflow-hidden rounded-lg bg-surface/60 p-4 shadow-xs backdrop-blur-xs transition-all duration-500 group-hover:bg-surface/80 group-hover:shadow-md"
         role="region"
         aria-label="Emergency contact details"
       >

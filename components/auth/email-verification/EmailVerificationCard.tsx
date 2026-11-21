@@ -155,12 +155,12 @@ export function EmailVerificationCard() {
     return (
       <AuthCardWrapper>
         <div className="flex flex-col items-center justify-center space-y-4 py-8">
-          <Loader2 className="text-[#85B7F1] size-12 animate-spin" />
+          <Loader2 className="text-primary size-12 animate-spin" />
           <div className="space-y-2 text-center">
-            <h1 className="font-display text-4xl text-white md:text-5xl">
+            <h1 className="font-display text-4xl text-textPrimary md:text-5xl">
               Verifying Email
             </h1>
-            <p className="text-white/60 text-sm md:text-base">
+            <p className="text-textMuted text-sm md:text-base">
               Please wait while we verify your email...
             </p>
           </div>
@@ -172,10 +172,10 @@ export function EmailVerificationCard() {
   return (
     <AuthCardWrapper>
       <div className="space-y-2 text-center">
-        <h1 className="font-display text-4xl text-white md:text-5xl">
+        <h1 className="font-display text-4xl text-textPrimary md:text-5xl">
           Verify Your Email
         </h1>
-        <p className="text-white/60 text-sm md:text-base">
+        <p className="text-textMuted text-sm md:text-base">
           Enter the 6-digit code sent to{" "}
           <span className="lowercase">{email}</span>
         </p>
@@ -194,7 +194,7 @@ export function EmailVerificationCard() {
               <InputOTPSlot
                 key={index}
                 index={index}
-                className="border-white/15 bg-white/[0.04] text-white"
+                className="border-border bg-black/[0.03] text-textPrimary"
               />
             ))}
           </InputOTPGroup>
@@ -231,12 +231,12 @@ export function EmailVerificationCard() {
           </Button>
         </div>
 
-        <p className="text-center text-xs text-white/40">
+        <p className="text-center text-xs text-textMuted">
           Verified on another device? This page will automatically redirect when
           verification is detected.
         </p>
       </div>
-      <hr className="border-white/20" />
+      <hr className="border-border" />
       <AuthFooter showSignUp={false} showResetPassword={false} />
     </AuthCardWrapper>
   );

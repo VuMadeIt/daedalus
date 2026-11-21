@@ -44,10 +44,10 @@ export function PublicTeamsBrowser({
           height={345}
           className="motion-safe:animate-bob h-14 w-auto"
         />
-        <p className="font-display mt-4 text-2xl text-white">
+        <p className="font-display mt-4 text-2xl text-textPrimary">
           No public teams yet
         </p>
-        <p className="mt-1 max-w-sm text-white/60">
+        <p className="mt-1 max-w-sm text-textMuted">
           Be the first. Start a team and others will find it here.
         </p>
         <Button asChild className="mt-6 min-h-11">
@@ -65,7 +65,7 @@ export function PublicTeamsBrowser({
             Search teams
           </label>
           <Search
-            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-white/40"
+            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-textMuted"
             aria-hidden
           />
           <Input
@@ -79,7 +79,7 @@ export function PublicTeamsBrowser({
         </div>
         <label
           htmlFor="open-spots"
-          className="flex min-h-11 items-center gap-3 text-sm text-white"
+          className="flex min-h-11 items-center gap-3 text-sm text-textPrimary"
         >
           <Switch
             id="open-spots"
@@ -89,7 +89,7 @@ export function PublicTeamsBrowser({
           Open spots only
         </label>
         <p
-          className="text-sm text-white/45 sm:ml-auto"
+          className="text-sm text-textMuted sm:ml-auto"
           role="status"
           aria-live="polite"
         >
@@ -98,21 +98,21 @@ export function PublicTeamsBrowser({
       </div>
 
       {shown.length === 0 ? (
-        <p className="border-y border-white/10 py-10 text-center text-white/60">
+        <p className="rounded-2xl border border-dashed border-border bg-surface py-12 text-center text-textMuted">
           No teams match. Try another word
           {openOnly ? " or include full teams" : ""}.
         </p>
       ) : (
-        <ul className="divide-y divide-white/10 border-y border-white/10">
+        <ul className="grid gap-4 lg:grid-cols-2">
           {shown.map((team, index) => (
             <li
               key={team.id}
               style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
-              className="animate-in fill-mode-both fade-in grid gap-4 py-6 duration-300 motion-reduce:animate-none md:grid-cols-[minmax(0,1fr)_16rem] md:gap-10"
+              className="animate-in fill-mode-both fade-in flex flex-col justify-between gap-5 rounded-2xl border border-border bg-surface p-6 shadow-card transition-shadow duration-300 hover:shadow-float motion-reduce:animate-none"
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
-                  <h2 className="font-display text-2xl break-words text-white">
+                  <h2 className="text-xl font-bold tracking-tight break-words text-textPrimary">
                     {team.name}
                   </h2>
                   <SpotsMeter memberCount={team.memberCount} />
@@ -120,22 +120,22 @@ export function PublicTeamsBrowser({
                 <p
                   className={cn(
                     "mt-2 line-clamp-3 max-w-2xl",
-                    team.lookingFor ? "text-white/75" : "text-white/40 italic",
+                    team.lookingFor ? "text-textSecondary" : "text-textMuted italic",
                   )}
                 >
                   {team.lookingFor || "No note on who they need yet."}
                 </p>
-                <p className="mt-2 truncate text-sm text-white/45">
+                <p className="mt-2 truncate text-sm text-textMuted">
                   With {team.memberFirstNames.join(", ")}
                 </p>
                 <Link
                   href={`/apply/teams/browse/${team.id}`}
-                  className="mt-2 inline-flex min-h-11 items-center text-sm text-[#85B7F1] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                  className="mt-2 inline-flex min-h-11 items-center text-sm text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
                 >
                   View members and contact links
                 </Link>
               </div>
-              <div className="md:pt-1">
+              <div className="border-t border-border pt-4">
                 <JoinRequestButton
                   teamName={team.name}
                   share={share}

@@ -1,11 +1,12 @@
 import { headers } from "next/headers";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/auth";
 
+import { getUserPoints } from "@/lib/db/queries/points";
 import { getPhaseState } from "@/lib/phase";
 import Navbar from "@/components/Navbar";
 import { PageTransition } from "@/components/PageTransition";
+import { PointsPill } from "@/components/PointsPill";
 import Sidebar from "@/components/sidebar/Sidebar";
 
 type Props = {
@@ -34,31 +35,22 @@ const DashboardLayout = async ({ children }: Props) => {
     if (path && !path.startsWith("/apply")) redirect("/apply");
 
     return (
-      <div className="relative min-h-dvh bg-[#0a0a0f]">
+      <div className="relative min-h-dvh bg-background">
         <PageTransition>{children}</PageTransition>
       </div>
     );
   }
 
+  const points = user?.id ? await getUserPoints(user.id) : null;
+
   return (
-    <div className="relative min-h-screen flex-1 bg-[#0a0a0f]">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-1/4 -right-1/4 h-[600px] w-[800px] rounded-full bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent blur-3xl" />
-        <div className="absolute -top-1/4 left-1/4 h-[500px] w-[600px] rounded-full bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-transparent blur-3xl" />
-        <div className="absolute -bottom-1/4 -left-1/4 h-[400px] w-[600px] rounded-full bg-gradient-to-tr from-blue-500/5 via-transparent to-transparent blur-3xl" />
-        <div className="absolute right-1/4 -bottom-1/4 h-[400px] w-[500px] rounded-full bg-gradient-to-tl from-purple-500/5 via-transparent to-transparent blur-3xl" />
-      </div>
-
-      <Image
-        src="/grainy-texture.jpg"
-        fill
-        alt=""
-        className="pointer-events-none fixed inset-0 object-cover opacity-[0.03]"
-      />
-
+    <div className="relative min-h-screen flex-1 bg-background">
       <Sidebar />
-      <main className="relative z-10 h-full max-lg:mt-16 lg:ml-72">
-        <Navbar />
+      <main className="relative z-10 h-full max-lg:pt-16 lg:ml-60">
+        <Navbar points={points} />
+        <div className="mx-auto hidden h-20 max-w-[1180px] items-center justify-end px-10 lg:flex">
+          {points != null && <PointsPill points={points} />}
+        </div>
         <PageTransition>{children}</PageTransition>
       </main>
     </div>

@@ -692,3 +692,64 @@ export const eventConfig = pgTable("eventConfig", {
 
 export type EventConfig = typeof eventConfig.$inferSelect;
 export type NewEventConfig = typeof eventConfig.$inferInsert;
+
+export const betMarkets = pgTable("betMarket", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  question: text("question").notNull(),
+  description: text("description"),
+  // open: taking bets, closed: no new bets, resolved: paid out
+  status: text("status").notNull().default("open"),
+  outcome: text("outcome"),
+  closesAt: timestamp("closesAt"),
+  createdAt: timestamp("createdAt")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  resolvedAt: timestamp("resolvedAt"),
+  createdBy: text("createdBy").references(() => users.id, {
+    onDelete: "set null",
+  }),
+});
+
+export type BetMarket = typeof betMarkets.$inferSelect;
+
+export const bets = pgTable("bet", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  marketId: text("marketId")
+    .notNull()
+    .references(() => betMarkets.id, { onDelete: "cascade" }),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  side: text("side").notNull(),
+  amount: integer("amount").notNull(),
+  // Points paid back when the market resolves, null until then
+  payout: integer("payout"),
+  createdAt: timestamp("createdAt")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+});
+
+export type Bet = typeof bets.$inferSelect;
+
+export const miniGamePlays = pgTable("miniGamePlay", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  game: text("game").notNull(),
+  stake: integer("stake").notNull(),
+  won: boolean("won").notNull(),
+  // Net change to the player's balance
+  delta: integer("delta").notNull(),
+  createdAt: timestamp("createdAt")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+});
+
+export type MiniGamePlay = typeof miniGamePlays.$inferSelect;

@@ -2,8 +2,8 @@
 
 import { useSession } from "next-auth/react";
 
-import { navigation } from "@/config/navigation";
-import { isVolunteer } from "@/lib/utils";
+import { navSections, type NavItem } from "@/config/navigation";
+import { isOrganizer, isVolunteer } from "@/lib/utils";
 
 import SidebarNavLink from "./SidebarNavLink";
 
@@ -12,38 +12,41 @@ type SidebarNavProps = {
   dark?: boolean;
 };
 
-const SidebarNav = ({ setIsOpen, dark = true }: SidebarNavProps) => {
+const SidebarNav = ({ setIsOpen }: SidebarNavProps) => {
   const { data } = useSession();
-  const userRole = data?.user?.role;
+  const role = data?.user?.role;
 
-  // Filter navigation items based on user role
-  const filteredNavigation = navigation.filter((item) => {
-    // If item requires volunteer role, check if user has it
-    if ("requiresVolunteer" in item && item.requiresVolunteer) {
-      return userRole && isVolunteer(userRole);
-    }
+  const allowed = (item: NavItem) => {
+    if (item.requiresOrganizer) return !!role && isOrganizer(role);
+    if (item.requiresVolunteer) return !!role && isVolunteer(role);
     return true;
-  });
+  };
 
   return (
-    <nav className="flex flex-col gap-4">
-      {filteredNavigation.map((item) => {
-        if (item.href === "/profile") {
-          const updatedHref = item.href + "/" + data?.user.id;
-
-          return (
-            <SidebarNavLink
-              key={item.href}
-              {...item}
-              href={updatedHref}
-              setIsOpen={setIsOpen}
-              dark={dark}
-            />
-          );
-        }
-
+    <nav className="flex flex-col gap-5">
+      {navSections.map((section, i) => {
+        const items = section.items.filter(allowed);
+        if (!items.length) return null;
         return (
-          <SidebarNavLink key={item.href} {...item} setIsOpen={setIsOpen} dark={dark} />
+          <div key={section.label ?? i} className="flex flex-col gap-0.5">
+            {section.label && (
+              <span className="mb-1 px-3 text-[11px] font-bold tracking-[0.06em] text-textPrimary uppercase">
+                {section.label}
+              </span>
+            )}
+            {items.map((item) => (
+              <SidebarNavLink
+                key={item.href}
+                {...item}
+                href={
+                  item.href === "/profile" && data?.user?.id
+                    ? `/profile/${data.user.id}`
+                    : item.href
+                }
+                setIsOpen={setIsOpen}
+              />
+            ))}
+          </div>
         );
       })}
     </nav>

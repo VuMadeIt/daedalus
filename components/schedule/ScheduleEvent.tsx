@@ -9,22 +9,17 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { useScheduleLightMode } from "./schedule-theme";
 
-const darkEventColors = {
-  general: "bg-sky-500/40 hover:bg-sky-500/50 border-l-2 border-sky-400",
-  meals: "bg-emerald-500/40 hover:bg-emerald-500/50 border-l-2 border-emerald-400",
-  ceremonies: "bg-amber-500/40 hover:bg-amber-500/50 border-l-2 border-amber-400",
-  workshops: "bg-violet-500/40 hover:bg-violet-500/50 border-l-2 border-violet-400",
-  fun: "bg-rose-500/40 hover:bg-rose-500/50 border-l-2 border-rose-400",
-};
-
-const lightEventColors = {
-  general: "bg-sky-100 hover:bg-sky-200 border-l-2 border-sky-400 shadow-sm",
-  meals: "bg-emerald-100 hover:bg-emerald-200 border-l-2 border-emerald-400 shadow-sm",
-  ceremonies: "bg-amber-100 hover:bg-amber-200 border-l-2 border-amber-400 shadow-sm",
-  workshops: "bg-violet-100 hover:bg-violet-200 border-l-2 border-violet-400 shadow-sm",
-  fun: "bg-rose-100 hover:bg-rose-200 border-l-2 border-rose-400 shadow-sm",
+const eventTypeColors = {
+  general:
+    "bg-sky-100 hover:bg-sky-200 border-l-2 border-sky-400 shadow-sm dark:bg-sky-500/40 dark:hover:bg-sky-500/50 dark:shadow-none",
+  meals:
+    "bg-emerald-100 hover:bg-emerald-200 border-l-2 border-emerald-400 shadow-sm dark:bg-emerald-500/40 dark:hover:bg-emerald-500/50 dark:shadow-none",
+  ceremonies:
+    "bg-amber-100 hover:bg-amber-200 border-l-2 border-amber-400 shadow-sm dark:bg-amber-500/40 dark:hover:bg-amber-500/50 dark:shadow-none",
+  workshops:
+    "bg-violet-100 hover:bg-violet-200 border-l-2 border-violet-400 shadow-sm dark:bg-violet-500/40 dark:hover:bg-violet-500/50 dark:shadow-none",
+  fun: "bg-rose-100 hover:bg-rose-200 border-l-2 border-rose-400 shadow-sm dark:bg-rose-500/40 dark:hover:bg-rose-500/50 dark:shadow-none",
 };
 
 interface ScheduleEventProps {
@@ -40,9 +35,6 @@ interface ScheduleEventProps {
 }
 
 export default function ScheduleEvent({ event, style }: ScheduleEventProps) {
-  const isLightMode = useScheduleLightMode();
-  const eventTypeColors = isLightMode ? lightEventColors : darkEventColors;
-
   const startTime = new Date(event.startTime);
   const endTime = new Date(event.endTime);
   const formatTime = (date: Date) => {

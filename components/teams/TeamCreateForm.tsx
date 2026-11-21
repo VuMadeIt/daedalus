@@ -51,7 +51,7 @@ export function TeamCreateForm({ open }: { open: boolean }) {
     >
       <div className="space-y-10">
         <div>
-          <label htmlFor="team-name" className="text-sm text-white/60">
+          <label htmlFor="team-name" className="text-sm text-textMuted">
             Team name
           </label>
           <Input
@@ -63,17 +63,17 @@ export function TeamCreateForm({ open }: { open: boolean }) {
             placeholder="Let us cook"
             disabled={disabled}
             onChange={(event) => setName(event.target.value)}
-            className="font-display mt-1 h-auto rounded-none border-0 border-b border-white/20 bg-transparent px-0 pb-2 text-4xl shadow-none placeholder:text-white/20 focus-visible:border-[#85B7F1] focus-visible:ring-0 focus-visible:ring-offset-0 md:text-5xl"
+            className="font-display mt-1 h-auto rounded-none border-0 border-b border-border bg-transparent px-0 pb-2 text-4xl shadow-none placeholder:text-textMuted focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 md:text-5xl"
           />
         </div>
 
         <div>
           <div className="flex items-baseline justify-between gap-4">
-            <label htmlFor="looking-for" className="text-sm text-white/60">
+            <label htmlFor="looking-for" className="text-sm text-textMuted">
               Who are you looking for?{" "}
-              <span className="text-white/35">Optional</span>
+              <span className="text-textMuted/80">Optional</span>
             </label>
-            <span className="text-xs text-white/35 tabular-nums">
+            <span className="text-xs text-textMuted/80 tabular-nums">
               {lookingFor.length}/{LOOKING_FOR_LIMIT}
             </span>
           </div>
@@ -85,16 +85,16 @@ export function TeamCreateForm({ open }: { open: boolean }) {
             placeholder="A designer who likes hardware, or anyone keen on ML."
             disabled={disabled}
             onChange={(event) => setLookingFor(event.target.value)}
-            className="mt-2 resize-none rounded-xl border-white/15 bg-white/[0.03] px-4 py-3 shadow-none focus-visible:border-[#85B7F1] focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="mt-2 resize-none rounded-xl border-border bg-black/[0.03] px-4 py-3 shadow-none focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
           />
         </div>
 
         <fieldset>
-          <legend className="text-sm text-white/60">Who can find it</legend>
+          <legend className="text-sm text-textMuted">Who can find it</legend>
           <div
             role="radiogroup"
             aria-label="Who can find it"
-            className="mt-2 inline-flex rounded-full bg-white/[0.06] p-1"
+            className="mt-2 inline-flex rounded-full bg-black/[0.03] p-1"
           >
             {VISIBILITY.map((option) => (
               <button
@@ -107,19 +107,19 @@ export function TeamCreateForm({ open }: { open: boolean }) {
                 className={cn(
                   "min-h-10 rounded-full px-5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
                   isPublic === option.value
-                    ? "bg-white text-[#043251]"
-                    : "text-white/70 hover:text-white",
+                    ? "bg-surface text-textPrimary"
+                    : "text-textSecondary hover:text-textPrimary",
                 )}
               >
                 {option.label}
               </button>
             ))}
           </div>
-          <p className="mt-2 text-sm text-white/45">
+          <p className="mt-2 text-sm text-textMuted">
             {VISIBILITY.find((option) => option.value === isPublic)?.hint}
           </p>
           {isPublic && (
-            <p className="mt-3 rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-white/75">
+            <p className="mt-3 rounded-xl bg-black/[0.03] px-4 py-3 text-sm text-textSecondary">
               A public team shows each member&apos;s first name, LinkedIn,
               GitHub, and portfolio to anyone who opens it. People can message
               you from those links before they ask to join.
@@ -131,36 +131,36 @@ export function TeamCreateForm({ open }: { open: boolean }) {
           type="submit"
           loading={pending}
           disabled={!open || !name.trim()}
-          className="h-12 rounded-full bg-[#85B7F1] px-8 font-semibold text-[#043251] hover:bg-[#a3c9f5]"
+          className="h-12 rounded-full bg-primary px-8 font-semibold text-white hover:bg-primaryDark"
         >
           Create team
         </Button>
       </div>
 
       <aside aria-label="Preview" className="md:sticky md:top-24 md:self-start">
-        <p className="text-sm text-white/45">How it shows on Browse teams</p>
+        <p className="text-sm text-textMuted">How it shows on Browse teams</p>
         <div
           className={cn(
-            "mt-3 rounded-3xl bg-linear-to-b from-[#0d426d] via-[#062f52] to-[#031b31] p-6 transition-opacity duration-300",
+            "mt-3 rounded-3xl bg-linear-to-b from-[#173a52] via-[#102b3d] to-[#0a1d2a] p-6 transition-opacity duration-300",
             !isPublic && "opacity-40",
           )}
         >
           <p className="font-display text-3xl break-words text-white">
             {name.trim() || "Your team"}
           </p>
-          <SpotsMeter memberCount={1} className="mt-2" />
+          <SpotsMeter memberCount={1} className="mt-2 text-white/70" />
           <p
             className={cn(
               "mt-4 text-sm break-words",
-              lookingFor.trim() ? "text-white/80" : "text-white/40 italic",
+              lookingFor.trim() ? "text-white/85" : "text-white/60 italic",
             )}
           >
             {lookingFor.trim() || "No note on who you need yet."}
           </p>
-          <p className="mt-4 text-sm text-white/45">With you</p>
+          <p className="mt-4 text-sm text-white/60">With you</p>
         </div>
         {!isPublic && (
-          <p className="mt-3 text-sm text-white/45">
+          <p className="mt-3 text-sm text-textMuted">
             Hidden from Browse teams.
           </p>
         )}

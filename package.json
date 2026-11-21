@@ -19,6 +19,7 @@
     "@auth/drizzle-adapter": "^1.7.4",
     "@aws-sdk/client-s3": "^3.975.0",
     "@aws-sdk/client-ses": "^3.721.0",
+    "@heroicons/react": "^2.2.0",
     "@neondatabase/serverless": "^0.10.4",
     "@next/env": "^16.0.10",
     "@radix-ui/react-accordion": "^1.2.12",

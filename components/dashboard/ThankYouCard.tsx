@@ -33,11 +33,11 @@ export const ThankYouCard = ({ role }: ThankYouCardProps) => {
           fill="currentColor"
         />
         <div className="flex-1">
-          <h3 className="mb-2 text-xl font-semibold text-white">
+          <h3 className="mb-2 text-xl font-semibold text-textPrimary">
             You&apos;re Amazing! 💖
           </h3>
-          <p className="text-white/60">{messages[role]}</p>
-          <div className="mt-4 flex items-center gap-2 text-sm text-white/60">
+          <p className="text-textMuted">{messages[role]}</p>
+          <div className="mt-4 flex items-center gap-2 text-sm text-textMuted">
             <Star className="text-warning size-4" fill="currentColor" />
             <span>
               The adventure continues at Hack Canada {hackathonYear + 1}!

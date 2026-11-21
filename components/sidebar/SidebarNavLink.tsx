@@ -17,43 +17,33 @@ const SidebarNavLink = ({
   href,
   icon: Icon,
   setIsOpen,
-  dark = true,
 }: SidebarNavLinkProps) => {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const external = href.startsWith("http");
+  const isActive =
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <Link
       href={href}
-      target={href.includes("http") ? "_blank" : "_self"}
+      target={external ? "_blank" : undefined}
+      aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group flex cursor-pointer items-center space-x-4 rounded-lg p-2.5 transition-all duration-300",
-        dark
-          ? isActive
-            ? "bg-white/10 text-white"
-            : "text-white/60 hover:bg-white/10 hover:text-white"
-          : isActive
-            ? "bg-primary/10 text-primary"
-            : "text-textSecondary hover:bg-backgroundMuted",
+        "group flex items-center gap-3 rounded-lg px-3 py-2 text-[15px] transition-colors duration-150",
+        isActive
+          ? "bg-brand text-white shadow-card"
+          : "text-textSecondary hover:bg-black/[0.04] hover:text-textPrimary",
       )}
-      onClick={() => setTimeout(() => setIsOpen?.(false), 300)}
+      onClick={() => setIsOpen?.(false)}
     >
       <Icon
+        strokeWidth={1.75}
         className={cn(
-          "size-6 transition-transform",
-          isActive && "lg:scale-[1.2]",
+          "size-[18px] shrink-0",
+          isActive ? "text-white" : "text-textPrimary/80",
         )}
       />
-      <span
-        className={cn(
-          "transition-all duration-300",
-          isActive
-            ? "translate-x-2 tracking-wider lg:font-semibold"
-            : "font-normal lg:group-hover:translate-x-1",
-        )}
-      >
-        {name}
-      </span>
+      <span className="truncate">{name}</span>
     </Link>
   );
 };

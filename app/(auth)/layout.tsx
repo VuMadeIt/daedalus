@@ -19,7 +19,7 @@ export default function AuthLayout({
 
   return (
     <div
-      className={`flex min-h-svh w-full bg-[#0a0a0f] ${fitViewport ? styles.viewport : ""}`}
+      className={`flex min-h-svh w-full bg-background ${fitViewport ? styles.viewport : ""}`}
     >
       <ApplyMark />
       <AuthScene />
@@ -30,7 +30,7 @@ export default function AuthLayout({
           <Link
             href="https://hackcanada.org"
             target="_blank"
-            className="auth-back mt-8 block text-center text-sm text-white/50 transition-colors hover:text-white"
+            className="auth-back mt-8 block text-center text-sm text-textMuted transition-colors hover:text-textPrimary"
           >
             Back to hackcanada.org
           </Link>

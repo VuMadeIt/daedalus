@@ -1,9 +1,22 @@
 "use client";
 
-import { Coins, Package, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { AlertCircle } from "lucide-react";
+import {
+  BoltIcon,
+  CakeIcon,
+  CpuChipIcon,
+  GiftIcon,
+  LightBulbIcon,
+  PuzzlePieceIcon,
+  SparklesIcon,
+  WrenchScrewdriverIcon,
+} from "@heroicons/react/24/outline";
 import { QRCodeSVG } from "qrcode.react";
 
 import type { ShopItem } from "@/lib/db/schema";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -16,14 +29,56 @@ import {
 interface ShopItemCardProps {
   item: ShopItem;
   userId: string;
+  points: number;
   purchaseCount?: number;
 }
 
-export function ShopItemCard({
-  item,
-  userId,
-  purchaseCount = 0,
-}: ShopItemCardProps) {
+const LOW_STOCK = 5;
+
+type Art = { re: RegExp; Icon: typeof GiftIcon; tone: string; photo?: string };
+
+const ART: Art[] = [
+  { re: /charg|cable|power|battery/i, Icon: BoltIcon, tone: "bg-brandSoft text-primary", photo: "/shop/charger.jpg" },
+  { re: /led|light|lamp/i, Icon: LightBulbIcon, tone: "bg-goldSoft text-goldInk", photo: "/shop/led-strips.jpg" },
+  { re: /screw|tool|wrench/i, Icon: WrenchScrewdriverIcon, tone: "bg-backgroundMuted text-textSecondary", photo: "/shop/screwdrivers.jpg" },
+  { re: /candy|sour|snack|chocolate|kids/i, Icon: CakeIcon, tone: "bg-mint text-success", photo: "/shop/sour-patch-kids.jpg" },
+  { re: /micro|arduino|pi\b|pico|board|chip/i, Icon: CpuChipIcon, tone: "bg-brandSoft text-primary", photo: "/shop/microcontroller.jpg" },
+  { re: /tamagotchi|game|toy/i, Icon: PuzzlePieceIcon, tone: "bg-goldSoft text-goldInk", photo: "/shop/tamagotchi.jpg" },
+  { re: /shirt|hoodie|sock|hat|sticker/i, Icon: SparklesIcon, tone: "bg-mint text-success" },
+];
+
+function artFor(name: string) {
+  return ART.find((a) => a.re.test(name)) ?? { Icon: GiftIcon, tone: "bg-backgroundMuted text-textMuted", photo: undefined };
+}
+
+function ItemImage({ item, className }: { item: ShopItem; className?: string }) {
+  const { Icon, tone, photo } = artFor(item.itemName);
+  const src = item.image || photo;
+  const [failed, setFailed] = useState(false);
+  const showPhoto = src && !failed;
+  return (
+    <div className={cn("relative grid place-items-center overflow-hidden", showPhoto ? "bg-[#f1f4f8] dark:bg-[#c3cfdc]" : tone, className)}>
+      {showPhoto ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={item.itemName}
+          onError={() => setFailed(true)}
+          className="absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.04]"
+        />
+      ) : (
+        <Icon className="size-12 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" strokeWidth={1.5} aria-hidden />
+      )}
+    </div>
+  );
+}
+
+export function ShopItemCard({ item, userId, points, purchaseCount = 0 }: ShopItemCardProps) {
+  const hasPhoto = Boolean(item.image || artFor(item.itemName).photo);
+  const soldOut = item.stock !== null && item.stock <= 0;
+  const lowStock = !soldOut && item.stock !== null && item.stock <= LOW_STOCK;
+  const after = points - item.purchasePrice;
+  const short = after < 0;
   const qrPayload = JSON.stringify({
     type: "shop-redeem",
     userId,
@@ -33,122 +88,126 @@ export function ShopItemCard({
   });
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-white/20 bg-gradient-to-b from-slate-800/90 to-slate-900/95 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/20">
-      {/* Stock Badge - Positioned absolutely */}
-      {item.stock !== null && (
-        <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
-          <Package className="h-3 w-3" />
-          <span>{item.stock} left</span>
-        </div>
-      )}
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow duration-200 hover:shadow-float">
+      <div className="pointer-events-none absolute top-3 right-3 left-3 z-10 flex justify-between gap-2">
+        {purchaseCount > 0 ? (
+          <span className="rounded-full bg-mint px-2.5 py-0.5 text-[11px] font-medium text-success">
+            Redeemed {purchaseCount}x
+          </span>
+        ) : (
+          <span />
+        )}
+        {lowStock && (
+          <span className="rounded-full bg-cream px-2.5 py-0.5 text-[11px] font-medium text-goldInk">
+            low stock
+          </span>
+        )}
+      </div>
 
-      {/* Purchase Count Badge */}
-      {purchaseCount > 0 && (
-        <div className="absolute left-3 top-3 z-10 flex items-center gap-1 rounded-full bg-emerald-500/90 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
-          <span>Owned x{purchaseCount}</span>
-        </div>
-      )}
-
-      {/* Image Section */}
-      {item.image ? (
-        <div className="relative h-40 w-full overflow-hidden">
-          <div className="absolute inset-0 z-[1] bg-gradient-to-t from-slate-900/60 to-transparent" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.image}
-            alt={item.itemName}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
+      {!hasPhoto ? (
+        <ItemImage item={item} className="h-44" />
       ) : (
-        <div className="relative flex h-40 w-full items-center justify-center bg-gradient-to-br from-primary/20 via-slate-800 to-sky-500/20">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.3),transparent_50%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(14,165,233,0.3),transparent_50%)]" />
-          </div>
-          <div className="relative rounded-full bg-white/10 p-4 backdrop-blur-sm">
-            <Sparkles className="h-8 w-8 text-primary/80" />
-          </div>
-        </div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <button type="button" aria-label={`See the full photo of ${item.itemName}`} className="block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+            <ItemImage item={item} className="h-44" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="overflow-hidden p-0 sm:max-w-[520px]">
+          <DialogTitle className="sr-only">{item.itemName}</DialogTitle>
+          <ItemImage item={item} className="mx-auto aspect-square max-h-[80vh] w-full" />
+        </DialogContent>
+      </Dialog>
       )}
 
-      {/* Content */}
-      <div className="flex flex-grow flex-col p-4">
-        <h3 className="mb-1.5 line-clamp-1 text-base font-semibold text-white">
-          {item.itemName}
-        </h3>
-        <p className="mb-4 line-clamp-2 min-h-[2.5rem] flex-grow text-sm leading-relaxed text-slate-400">
-          {item.itemDescription || "A special reward awaits you!"}
-        </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between border-t border-white/10 pt-3">
-          <div className="flex items-center gap-1.5">
-            <Coins className="h-4 w-4 text-amber-400" />
-            <span className="font-rubik text-lg font-bold text-white">
-              {item.purchasePrice}
-            </span>
-            <span className="text-xs text-slate-500">pts</span>
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="truncate text-[17px] font-medium text-textPrimary">{item.itemName}</h3>
+            <p className="line-clamp-1 text-[13px] text-textMuted">{item.itemDescription}</p>
           </div>
+          <span className="shrink-0 pt-0.5 text-[15px] font-bold text-textPrimary tabular-nums">
+            {item.purchasePrice} pts
+          </span>
+        </div>
 
+        {soldOut ? (
+          <Button disabled className="mt-auto w-full bg-backgroundMuted text-textSecondary opacity-100 shadow-none">
+            Sold out
+          </Button>
+        ) : (
           <Dialog>
             <DialogTrigger asChild>
-              <button className="rounded-lg bg-gradient-to-r from-primary to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 active:scale-95">
-                Redeem
-              </button>
+              <Button className="mt-auto w-full">Redeem</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-center">
-                  Redeem {item.itemName}
-                </DialogTitle>
-                <DialogDescription className="pt-2 text-center">
-                  Show this QR code to an organizer to complete your purchase.
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="flex flex-col items-center gap-4 py-4">
-                {/* QR Code */}
-                <div className="rounded-xl border bg-white p-4 shadow-lg">
-                  <QRCodeSVG
-                    value={qrPayload}
-                    size={200}
-                    level="H"
-                    includeMargin={false}
-                  />
-                </div>
-
-                {/* Item Details */}
-                <div className="w-full space-y-2 rounded-lg bg-slate-100 p-4 dark:bg-slate-800">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">
-                      Item
-                    </span>
-                    <span className="font-medium text-slate-900 dark:text-white">
-                      {item.itemName}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600 dark:text-slate-400">
-                      Price
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <Coins className="h-4 w-4 text-amber-500" />
-                      <span className="font-bold text-primary">
-                        {item.purchasePrice} pts
-                      </span>
+            <DialogContent className="gap-0 p-0 sm:max-w-[640px]">
+              <div className="grid sm:grid-cols-2">
+                <div className="flex flex-col gap-4 border-border p-6 max-sm:border-b sm:border-r">
+                  <DialogHeader className="text-left">
+                    <DialogTitle className="text-xl font-medium">Checkout</DialogTitle>
+                    <DialogDescription>
+                      {short ? "You're a few points short for this one." : "Show this code to an organizer at the prize desk."}
+                    </DialogDescription>
+                  </DialogHeader>
+                  {short ? (
+                    <ItemImage item={item} className="aspect-square rounded-xl" />
+                  ) : (
+                    <div className="mx-auto rounded-xl border border-border bg-white p-3 shadow-card">
+                      <QRCodeSVG value={qrPayload} size={196} level="H" />
                     </div>
-                  </div>
+                  )}
+                  <p className="text-xs text-textMuted">
+                    Points come off your balance once the organizer scans this code.
+                  </p>
                 </div>
 
-                <p className="text-center text-xs text-slate-500">
-                  The organizer will scan this code to deduct points and give
-                  you the item.
-                </p>
+                <div className="flex flex-col gap-4 p-6">
+                  <h3 className="text-lg font-medium text-textPrimary">Order summary</h3>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-textSecondary">{item.itemName}</span>
+                    <span className="font-medium text-textPrimary">{item.purchasePrice} pts</span>
+                  </div>
+                  <div className="h-px bg-border" />
+                  <div className="flex justify-between text-sm">
+                    <span className="text-textMuted">Available balance</span>
+                    <span className="text-textSecondary tabular-nums">{points} pts</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-textPrimary">Total</span>
+                    <span className="text-lg font-bold text-textPrimary tabular-nums">{item.purchasePrice} pts</span>
+                  </div>
+
+                  {short ? (
+                    <div className="flex gap-2 rounded-lg border border-brand/30 bg-brandSoft p-3 text-brand">
+                      <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                      <div className="text-xs">
+                        <p className="font-bold">Not enough points</p>
+                        <p>You need {-after} more points for this item.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-1.5 rounded-lg border border-border p-3">
+                      <div className="flex justify-between text-[11px] text-textMuted">
+                        <span>Points after redeeming</span>
+                        <span>Current balance</span>
+                      </div>
+                      <div className="flex justify-between text-sm font-bold text-textPrimary tabular-nums">
+                        <span>{after} pts</span>
+                        <span>{points} pts</span>
+                      </div>
+                      <div className="h-1.5 overflow-hidden rounded-full bg-backgroundMuted">
+                        <div
+                          className="h-full rounded-full bg-ink"
+                          style={{ width: `${points ? (after / points) * 100 : 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </DialogContent>
           </Dialog>
-        </div>
+        )}
       </div>
     </div>
   );

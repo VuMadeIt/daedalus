@@ -35,13 +35,11 @@ export const ApplicationCard = ({
   return (
     <div
       className={cn(
-        "group hover:border-primary/40 relative block overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(30,144,255,0.15)]",
-        disabled && "opacity-60",
+        "group hover:border-primary/40 relative block overflow-hidden rounded-xl border border-border bg-surface p-6 backdrop-blur-sm transition-all duration-500 shadow-card hover:-translate-y-0.5 hover:shadow-float",
+        disabled && "bg-backgroundMuted/60 shadow-none",
         alreadyApplied && "border-primary/50 cursor-default",
       )}
     >
-      {/* Gradient overlay */}
-      <div className="from-primary/5 pointer-events-none absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-75" />
 
       {!alreadyApplied && (
         <Link
@@ -55,11 +53,11 @@ export const ApplicationCard = ({
         />
       )}
       {alreadyApplied && (
-        <div className="border-primary/30 bg-primary/20 text-primary pointer-events-none absolute -top-2 -right-2 z-20 rounded-full border px-2 py-1 text-xs font-medium">
+        <div className="border-primary/30 bg-primary/20 text-primary pointer-events-none absolute top-4 right-4 z-20 rounded-full border px-2.5 py-1 text-xs font-semibold">
           Applied
         </div>
       )}
-      <div className="pointer-events-none relative z-10">
+      <div className={cn("pointer-events-none relative z-10", alreadyApplied && "pr-20")}>
         <ApplicationCardHeader
           title={
             <div className="flex items-center gap-2">
@@ -87,7 +85,7 @@ export const ApplicationCard = ({
         <div className="max-xs:w-full relative z-30 mt-4">
           <Link
             href="/apply"
-            className="border-primary/30 bg-primary/10 text-primary hover:border-primary/50 hover:bg-primary/20 max-xs:w-full max-xs:justify-center pointer-events-auto inline-flex cursor-pointer items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-all"
+            className="border-transparent bg-primary text-white hover:bg-primaryDark max-xs:w-full max-xs:justify-center pointer-events-auto inline-flex cursor-pointer items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

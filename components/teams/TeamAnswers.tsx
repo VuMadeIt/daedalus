@@ -17,9 +17,9 @@ import { WordCount } from "@/components/apply/WordCount";
 
 import { postTeam, useTeamAction } from "./use-team-action";
 
-const promptLabel = "flex gap-3 text-lg leading-relaxed text-white";
+const promptLabel = "flex gap-3 text-lg leading-relaxed text-textPrimary";
 const promptNumber =
-  "font-display mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#85B7F1] text-base text-[#043251]";
+  "font-display mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-primary text-base text-white";
 const answerBox = "rounded-xl px-5 py-4 text-lg leading-relaxed";
 
 function editedLabel(iso: string) {
@@ -63,18 +63,18 @@ export function TeamAnswers({
         <div className="space-y-1">
           <h2
             id="team-answers-title"
-            className="font-display flex items-center gap-3 text-3xl text-white md:text-4xl"
+            className="font-display flex items-center gap-3 text-3xl text-textPrimary md:text-4xl"
           >
             Team answers
             {locked && (
               <Lock
-                className="size-5 text-white/40"
+                className="size-5 text-textMuted"
                 aria-label="Locked"
                 role="img"
               />
             )}
           </h2>
-          <p className="text-base text-white/60">
+          <p className="text-base text-textMuted">
             Your Mars answer is yours. The shared answer is one for the whole
             team.
           </p>
@@ -82,13 +82,13 @@ export function TeamAnswers({
         {team.isOwner ? (
           <label
             htmlFor="lock-answers"
-            className="flex min-h-11 items-center justify-between gap-4 rounded-2xl bg-white/[0.04] px-5 py-3.5"
+            className="flex min-h-11 items-center justify-between gap-4 rounded-2xl bg-black/[0.03] px-5 py-3.5"
           >
-            <span className="text-white">
+            <span className="text-textPrimary">
               Lock answers
               <span
                 id="lock-answers-why"
-                className="block text-sm text-white/50"
+                className="block text-sm text-textMuted"
               >
                 Stops teammates from editing. Unlock any time before
                 applications close.
@@ -108,7 +108,7 @@ export function TeamAnswers({
           </label>
         ) : (
           locked && (
-            <p role="status" className="text-sm text-white/55">
+            <p role="status" className="text-sm text-textMuted">
               The owner locked these answers.
             </p>
           )
@@ -120,7 +120,7 @@ export function TeamAnswers({
           <span className={promptNumber}>1</span>
           {TEAM_PROMPTS.mars}
         </label>
-        <p id="mars-hint" className="pl-11 text-white/50">
+        <p id="mars-hint" className="pl-11 text-textMuted">
           Everyone answers individually. Be creative, talk with your teammates,
           and make sure your answers come together into a cohesive story.
         </p>
@@ -163,7 +163,7 @@ export function TeamAnswers({
           <span className={promptNumber}>2</span>
           {TEAM_PROMPTS.essay}
         </label>
-        <p id="essay-hint" className="pl-11 text-white/50">
+        <p id="essay-hint" className="pl-11 text-textMuted">
           One answer for the whole team.
           {team.essayUpdatedAt &&
             ` Last edited by ${team.essayUpdatedByName || "a teammate"}, ${editedLabel(team.essayUpdatedAt)}.`}

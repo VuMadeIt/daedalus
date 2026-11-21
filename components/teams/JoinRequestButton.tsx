@@ -49,13 +49,13 @@ export function JoinRequestButton({
   const fieldId = teamId ?? token ?? "team";
 
   if (mine) {
-    return <p className="text-sm text-white/60">This is your team.</p>;
+    return <p className="text-sm text-textMuted">This is your team.</p>;
   }
 
   if (requestStatus === "pending" && requestId) {
     return (
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="flex items-center gap-2 text-sm text-white/75">
+        <p className="flex items-center gap-2 text-sm text-textSecondary">
           <span className="size-2 rounded-full bg-sky-300" aria-hidden />
           Request sent
         </p>
@@ -77,12 +77,12 @@ export function JoinRequestButton({
   }
 
   if (full) {
-    return <p className="text-sm text-white/60">This team is full.</p>;
+    return <p className="text-sm text-textMuted">This team is full.</p>;
   }
 
   if (cooldownUntil) {
     return (
-      <p className="text-sm text-white/60">
+      <p className="text-sm text-textMuted">
         You can ask this team again in 24 hours.
       </p>
     );
@@ -101,7 +101,7 @@ export function JoinRequestButton({
       <Dialog open={shown} onOpenChange={setShown}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-white">
+            <DialogTitle className="text-textPrimary">
               Ask to join {teamName}
             </DialogTitle>
             <DialogDescription>
@@ -110,7 +110,7 @@ export function JoinRequestButton({
             </DialogDescription>
           </DialogHeader>
           {!share.ready && (
-            <p className="text-sm text-white">
+            <p className="text-sm text-textPrimary">
               Save your name, school, and level of study on your application
               first.{" "}
               <Link href="/apply" className="underline">
@@ -121,8 +121,8 @@ export function JoinRequestButton({
           <dl className="max-h-52 space-y-2 overflow-y-auto text-sm">
             {SHARE_FIELDS.map((field) => (
               <div key={field.key} className="grid grid-cols-[9rem_1fr] gap-2">
-                <dt className="text-white/50">{field.label}</dt>
-                <dd className="text-white">
+                <dt className="text-textMuted">{field.label}</dt>
+                <dd className="text-textPrimary">
                   <ShareValue value={share.profile[field.key]} />
                 </dd>
               </div>
@@ -130,7 +130,7 @@ export function JoinRequestButton({
           </dl>
           <label
             htmlFor={`join-note-${fieldId}`}
-            className="text-sm text-white"
+            className="text-sm text-textPrimary"
           >
             Note for the owner (optional)
           </label>
@@ -141,7 +141,7 @@ export function JoinRequestButton({
             rows={3}
             onChange={(event) => setNote(event.target.value)}
           />
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-textMuted">
             {note.length}/{REQUEST_NOTE_LIMIT}
           </p>
           <div className="flex items-start gap-3">
@@ -152,13 +152,13 @@ export function JoinRequestButton({
             />
             <label
               htmlFor={`join-consent-${fieldId}`}
-              className="text-sm text-white"
+              className="text-sm text-textPrimary"
             >
               I agree the owner of {teamName} can see the details listed above.
             </label>
           </div>
           {message && (
-            <p role="status" className="text-sm text-white">
+            <p role="status" className="text-sm text-textPrimary">
               {message}
             </p>
           )}

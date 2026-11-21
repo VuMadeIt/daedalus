@@ -28,13 +28,13 @@ export default async function TeamsPage() {
         title={team.name}
         backHref={backHref}
         meta={
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-white/60">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-textMuted">
             <span>
               {ready
                 ? "Ready to apply as a team"
                 : `Needs ${MIN_TEAM_APPLY - team.members.length} more to apply as a team`}
             </span>
-            <span aria-hidden className="text-white/25">
+            <span aria-hidden className="text-textMuted/70">
               ·
             </span>
             <span className="inline-flex items-center gap-1.5">

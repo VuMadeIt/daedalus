@@ -36,10 +36,10 @@ export default async function ApplyPage({
       <div className="flex h-dvh items-center justify-center px-6 text-center">
         <ApplyMark />
         <div className="max-w-md space-y-3">
-          <h1 className="font-display text-3xl font-semibold text-white md:text-4xl">
+          <h1 className="font-display text-3xl font-semibold text-textPrimary md:text-4xl">
             Applications are not open yet
           </h1>
-          <p className="text-white/70">
+          <p className="text-textSecondary">
             Hack Canada applications have not opened. Check back when
             registration starts.
           </p>

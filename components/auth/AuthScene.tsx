@@ -103,9 +103,9 @@ export function AuthScene() {
       aria-hidden
       className="relative hidden flex-1 overflow-hidden bg-linear-to-b from-[#c4defb] via-[#9cc5f4] to-[#5f9be2] lg:block"
     >
-      <Cloud className="motion-safe:animate-drift absolute top-[10%] right-[8%] w-36 text-white/80" />
-      <Cloud className="motion-safe:animate-drift absolute top-[52%] left-[8%] w-24 text-white/60 [animation-delay:-8s]" />
-      <Cloud className="motion-safe:animate-drift absolute top-[56%] right-[18%] w-28 text-white/40 [animation-delay:-15s]" />
+      <Cloud className="motion-safe:animate-drift absolute top-[10%] right-[8%] w-36 text-textSecondary" />
+      <Cloud className="motion-safe:animate-drift absolute top-[52%] left-[8%] w-24 text-textMuted [animation-delay:-8s]" />
+      <Cloud className="motion-safe:animate-drift absolute top-[56%] right-[18%] w-28 text-textMuted [animation-delay:-15s]" />
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -117,10 +117,10 @@ export function AuthScene() {
           className="absolute inset-0"
         >
           <div className="absolute top-[18%] left-12 xl:left-16">
-            <p className="font-display text-7xl leading-[0.9] text-[#043251] xl:text-8xl">
+            <p className="font-display text-7xl leading-[0.9] text-textPrimary xl:text-8xl">
               {COPY[scene].title}
             </p>
-            <p className="mt-5 max-w-xs text-lg text-[#043251]/70">
+            <p className="mt-5 max-w-xs text-lg text-textSecondary">
               {COPY[scene].line}
             </p>
           </div>
@@ -153,7 +153,7 @@ export function AuthScene() {
             height={115}
             className="h-40 w-auto"
           />
-          <span className="mt-2 h-2.5 w-3/4 rounded-full bg-[#043251]/15 blur-sm" />
+          <span className="mt-2 h-2.5 w-3/4 rounded-full bg-ink/15 blur-sm" />
         </div>
       </motion.div>
     </aside>

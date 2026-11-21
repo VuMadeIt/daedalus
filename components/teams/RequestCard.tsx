@@ -16,12 +16,12 @@ export function RequestCard({
   const { pending, message, run } = useTeamAction();
 
   return (
-    <article className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+    <article className="space-y-4 rounded-2xl border border-border bg-black/[0.03] p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-medium text-white">
+        <h3 className="font-medium text-textPrimary">
           {request.profile.name || "Applicant"}
         </h3>
-        <p className="text-xs text-white/50">
+        <p className="text-xs text-textMuted">
           {request.via === "link"
             ? "From your team link"
             : "From the public list"}
@@ -34,13 +34,13 @@ export function RequestCard({
         </p>
       </div>
       {request.message && (
-        <p className="text-sm text-white/80">{request.message}</p>
+        <p className="text-sm text-textSecondary">{request.message}</p>
       )}
       <dl className="grid gap-2 text-sm sm:grid-cols-2">
         {SHARE_FIELDS.map((field) => (
           <div key={field.key}>
-            <dt className="text-white/45">{field.label}</dt>
-            <dd className="text-white">
+            <dt className="text-textMuted">{field.label}</dt>
+            <dd className="text-textPrimary">
               <ShareValue value={request.profile[field.key]} />
             </dd>
           </div>
@@ -80,7 +80,7 @@ export function RequestCard({
         </Button>
       </div>
       {message && (
-        <p role="status" className="text-sm text-white">
+        <p role="status" className="text-sm text-textPrimary">
           {message}
         </p>
       )}

@@ -217,11 +217,11 @@ export function ApplyForm({
         <div className="space-y-4">
           <Link
             href="/apply"
-            className="inline-block text-[1.3rem] text-white/55 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="inline-block text-[1.3rem] text-textMuted underline-offset-4 transition-colors hover:text-textPrimary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
           >
             Go back (all application types)
           </Link>
-          <h1 className="font-display text-4xl font-semibold text-white md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold text-textPrimary md:text-6xl">
             {title}
           </h1>
           {hasSecondPage && (
@@ -231,12 +231,12 @@ export function ApplyForm({
                   <span
                     key={index}
                     className={`h-1.5 flex-1 rounded-full transition-colors duration-500 ${
-                      index <= step ? "bg-[#85B7F1]" : "bg-white/15"
+                      index <= step ? "bg-primary" : "bg-black/[0.05]"
                     }`}
                   />
                 ))}
               </div>
-              <p className="text-base text-white/60">Step {step + 1} of 2</p>
+              <p className="text-base text-textMuted">Step {step + 1} of 2</p>
             </div>
           )}
         </div>

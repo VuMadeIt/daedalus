@@ -24,17 +24,17 @@ const THEMES: Record<
   { panel: string; muted: string }
 > = {
   quick: {
-    panel: "bg-[#0a0a0f] text-white",
-    muted: "text-white",
+    panel: "bg-background text-textPrimary",
+    muted: "text-textPrimary",
   },
   normal: {
     panel:
-      "bg-linear-to-b from-[#5f9be2] via-[#3c7bcc] to-[#1c58a1] text-white",
+      "bg-linear-to-b from-[#2b8be6] via-[#1c74c9] to-[#155a9e] text-white",
     muted: "text-white/80",
   },
   team: {
     panel:
-      "bg-linear-to-b from-[#0d426d] via-[#062f52] to-[#031b31] text-white",
+      "bg-linear-to-b from-[#173a52] via-[#102b3d] to-[#0a1d2a] text-white",
     muted: "text-white/75",
   },
 };
@@ -238,8 +238,8 @@ function Scenery({ id }: { id: ApplyTrack }) {
     return (
       <div aria-hidden>
         <div className={frame} style={parallax(10)}>
-          <Cloud className="motion-safe:animate-drift absolute top-[12%] right-[6%] w-28 text-white/80" />
-          <Cloud className="motion-safe:animate-drift absolute top-[34%] left-[2%] w-20 text-white/60 [animation-delay:-8s]" />
+          <Cloud className="motion-safe:animate-drift absolute top-[12%] right-[6%] w-28 text-textSecondary" />
+          <Cloud className="motion-safe:animate-drift absolute top-[34%] left-[2%] w-20 text-textMuted [animation-delay:-8s]" />
         </div>
         <div className={frame} style={parallax(22)}>
           <div className={stage}>
@@ -263,7 +263,7 @@ function Scenery({ id }: { id: ApplyTrack }) {
           {STARS.map(([left, top, size, delay]) => (
             <span
               key={`${left}-${top}`}
-              className="motion-safe:animate-twinkle absolute rounded-full bg-white"
+              className="motion-safe:animate-twinkle absolute rounded-full bg-surface"
               style={{
                 left: `${left}%`,
                 top: `${top}%`,

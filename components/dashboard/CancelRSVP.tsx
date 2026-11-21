@@ -52,7 +52,7 @@ const CancelRSVP = () => {
     <>
       {showConfirmation ? (
         <div className="space-y-2">
-          <p className="text-xs text-white/50 md:text-sm">
+          <p className="text-xs text-textMuted md:text-sm">
             Are you sure you want to cancel your acceptance? This action cannot
             be undone.
           </p>
@@ -78,7 +78,7 @@ const CancelRSVP = () => {
         </div>
       ) : (
         <div className="space-y-2">
-          <p className="text-xs text-white/50 md:text-sm">
+          <p className="text-xs text-textMuted md:text-sm">
             No longer able to attend? You can give your spot to someone on the
             waitlist!{" "}
           </p>

@@ -68,3 +68,16 @@
     height: 36px;
   }
 }
+
+/* Leave room for the fixed logo in the corner on phones and tablets. */
+@media (max-width: 1023px) {
+  .viewport {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .viewport main {
+    padding-top: 72px;
+  }
+}

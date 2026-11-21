@@ -99,17 +99,14 @@ export default async function ChallengesPage() {
   return (
     <PageWrapper>
       <div className="flex flex-col gap-6 md:gap-8">
-        {/* Page Header */}
-        <div className="space-y-2">
-          <div className="w-fit bg-linear-to-r from-primary via-sky-400 to-primary bg-clip-text text-transparent">
-            <h1 className="font-rubik text-3xl font-bold">Challenges</h1>
-          </div>
-          <p className="text-textMuted max-md:text-sm">
-            Complete challenges to earn points and unlock rewards. Click a card
-            to view full details and submission steps.
+        <div className="space-y-1">
+          <h1 className="text-[28px] leading-tight font-medium text-textPrimary md:text-[32px]">
+            Challenges
+          </h1>
+          <p className="text-sm text-textMuted md:text-[15px]">
+            Finish missions around the venue to earn points for the shop.
           </p>
         </div>
-
         {/* Challenge Grid */}
         <ChallengeGrid
           challenges={challengesWithStatus}

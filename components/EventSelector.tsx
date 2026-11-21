@@ -225,7 +225,7 @@ export function EventSelector({
                   className={cn(
                     "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all",
                     selectedEvent === event
-                      ? "bg-violet-500 text-white"
+                      ? "bg-violet-500 text-textPrimary"
                       : "bg-violet-500/20 text-violet-600 group-hover:bg-violet-500/30",
                   )}
                 >
