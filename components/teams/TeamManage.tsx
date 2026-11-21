@@ -430,7 +430,7 @@ export function TeamManage({
           )}
           <button
             type="button"
-            className="flex min-h-11 items-center gap-2 text-red-300/75 transition-colors hover:text-red-300 disabled:opacity-50"
+            className="flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-red-700 transition-colors hover:bg-red-50 hover:text-red-800 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950/40 dark:hover:text-red-300"
             disabled={!open || pending}
             onClick={() => {
               const prompt =
