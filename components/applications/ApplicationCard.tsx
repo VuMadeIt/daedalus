@@ -57,7 +57,7 @@ export const ApplicationCard = ({
           Applied
         </div>
       )}
-      <div className="pointer-events-none relative z-10">
+      <div className={cn("pointer-events-none relative z-10", alreadyApplied && "pr-20")}>
         <ApplicationCardHeader
           title={
             <div className="flex items-center gap-2">
