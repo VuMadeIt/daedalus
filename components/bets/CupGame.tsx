@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -54,27 +55,19 @@ function Cup({
           lifted && ball ? "opacity-100" : "opacity-0",
         )}
       />
-      <span
+      <Image
+        src="/games/cup.svg"
+        alt=""
+        width={140}
+        height={180}
+        draggable={false}
         style={shuffling ? { animationDelay: `${index * 90}ms` } : undefined}
         className={cn(
-          "relative mb-3 block h-28 w-20 transition-transform duration-500 sm:h-32 sm:w-24",
-          lifted && "-translate-y-12",
+          "relative mb-1 h-32 w-auto select-none transition-transform duration-500 sm:h-40",
+          lifted && "-translate-y-14",
           shuffling && "animate-[cup-shuffle_0.45s_ease-in-out_infinite]",
         )}
-      >
-        <span
-          className="shadow-float absolute inset-0 bg-gradient-to-r from-[#155a9e] via-[#2b8be6] to-[#155a9e]"
-          style={{
-            clipPath: "polygon(16% 0, 84% 0, 100% 100%, 0 100%)",
-            borderRadius: "6px",
-          }}
-        />
-        <span className="absolute inset-x-[14%] top-0 h-2.5 rounded-full bg-[#0f4a85]" />
-        <span className="absolute inset-x-[22%] top-[38%] h-1 rounded-full bg-white/25" />
-        <span className="absolute inset-x-[18%] top-[58%] h-1 rounded-full bg-white/20" />
-        <span className="absolute -inset-x-0.5 bottom-0 h-3 rounded-md bg-[#0f4a85]" />
-      </span>
-      <span className="bg-ink/10 absolute bottom-1 h-2 w-20 rounded-full blur-[2px]" />
+      />
     </button>
   );
 }
