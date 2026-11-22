@@ -36,8 +36,8 @@ export default async function GamesPage() {
       cta: "Play Timber Tycoon",
       art: (
         <Image
-          src="/games/timber-preview.jpg"
-          alt="Timber Tycoon gameplay"
+          src="/games/timber-title.jpg"
+          alt="Timber Tycoon title card"
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -83,7 +83,7 @@ export default async function GamesPage() {
               href={g.href}
               className="group border-border bg-surface shadow-card hover:border-primary/40 hover:shadow-float focus-visible:ring-primary/40 flex flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:outline-none"
             >
-              <div className="border-border relative aspect-[16/10] overflow-hidden border-b">
+              <div className="border-border relative aspect-[3/2] overflow-hidden border-b">
                 {g.art}
               </div>
               <div className="flex flex-1 flex-col p-6">

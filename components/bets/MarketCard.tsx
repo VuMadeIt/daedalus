@@ -43,7 +43,7 @@ export function MarketCard({
             {status.label}
           </span>
           <span className="text-textMuted">
-            {market.betCount} {market.betCount === 1 ? "bet" : "bets"} ·{" "}
+            {market.betCount} {market.betCount === 1 ? "bet" : "bets"},{" "}
             {market.yesPool + market.noPool} pts in the pool
           </span>
         </div>

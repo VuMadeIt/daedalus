@@ -27,8 +27,8 @@ export function SpotsMeter({
       <span>
         {memberCount} of {MAX_TEAM_SIZE}
         {spotsLeft > 0
-          ? ` · ${spotsLeft} ${spotsLeft === 1 ? "spot" : "spots"} open`
-          : " · full"}
+          ? `, ${spotsLeft} ${spotsLeft === 1 ? "spot" : "spots"} open`
+          : ", team is full"}
       </span>
     </p>
   );

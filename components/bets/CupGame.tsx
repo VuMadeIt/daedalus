@@ -205,7 +205,7 @@ export function CupGame({
         </h2>
         <p className="text-textMuted mt-1 text-sm">
           {phase === "reveal" && result
-            ? `${result.delta > 0 ? "+" : ""}${result.delta} pts · ${playsLeft} ${playsLeft === 1 ? "play" : "plays"} left today`
+            ? `${result.delta > 0 ? `You won ${result.delta} pts.` : `You lost ${Math.abs(result.delta)} pts.`} ${playsLeft} ${playsLeft === 1 ? "play" : "plays"} left today.`
             : `Find the ball to double your stake. ${playsLeft} ${playsLeft === 1 ? "play" : "plays"} left today.`}
         </p>
       </div>

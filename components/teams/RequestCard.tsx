@@ -25,7 +25,7 @@ export function RequestCard({
           {request.via === "link"
             ? "From your team link"
             : "From the public list"}
-          {" · "}
+          {". "}
           {new Date(request.createdAt).toLocaleString("en-US", {
             timeZone: "America/Toronto",
             dateStyle: "medium",

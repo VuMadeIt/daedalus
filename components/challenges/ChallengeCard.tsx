@@ -112,7 +112,7 @@ export function ChallengeCard({
       <DialogContent className="gap-5 sm:max-w-[680px] [&>*]:min-w-0">
         <DialogHeader className="text-left">
           <span className={cn("w-fit rounded-full px-2.5 py-0.5 text-xs text-textSecondary", p.band)}>
-            {categoryLabel(challenge.category)} · {challenge.points} pts · {challenge.difficulty}
+            {categoryLabel(challenge.category)}, {challenge.points} pts, {challenge.difficulty}
           </span>
           <DialogTitle className="pt-1 text-2xl font-medium">{challenge.name}</DialogTitle>
           <DialogDescription>{challenge.instructions || challenge.shortDescription}</DialogDescription>
