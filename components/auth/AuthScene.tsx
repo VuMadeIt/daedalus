@@ -54,7 +54,7 @@ export function AuthScene() {
     return (
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden lg:[container-type:size] lg:inset-y-0 lg:bg-[#d9ae73]"
+        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden max-lg:[mask-image:linear-gradient(to_bottom,#000_60%,transparent_96%)] lg:[container-type:size] lg:inset-y-0 lg:bg-[#d9ae73]"
       >
         <div className="relative aspect-[4096/2285.83203125] w-full lg:absolute lg:top-1/2 lg:right-0 lg:w-[max(100cqw,179.19cqh,1400px)] lg:-translate-y-1/2">
           <Image
@@ -74,7 +74,7 @@ export function AuthScene() {
             className="absolute top-[63.295%] left-[73.548%] h-auto w-[25.323%]"
           />
         </div>
-        <div className="to-background lg:via-background/45 lg:to-background/85 absolute inset-x-0 top-0 -bottom-px bg-linear-to-b from-transparent from-60% lg:bg-linear-to-r lg:from-transparent lg:from-35% lg:via-60%" />
+        <div className="via-background/45 to-background/85 absolute inset-0 hidden bg-linear-to-r from-transparent from-35% via-60% lg:block" />
       </div>
     );
   }
