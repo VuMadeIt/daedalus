@@ -86,7 +86,7 @@ export function HackathonConfirmDialog({
             <div
               className={cn(
                 "flex h-9 w-9 shrink-0 items-center justify-center rounded-full",
-                userData.isUnder18 ? "bg-goldSoft" : "bg-primary/20",
+                userData.isUnder18 ? "bg-goldSoft" : "bg-surface",
               )}
             >
               {userData.isUnder18 ? (

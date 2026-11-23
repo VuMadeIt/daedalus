@@ -81,7 +81,7 @@ export function MarketCard({
           <button
             type="button"
             onClick={() => setSide("no")}
-            className="border-border text-ink flex-1 rounded-lg border bg-white px-4 py-2 text-sm font-bold transition-colors hover:bg-slate-100 dark:border-transparent dark:bg-[#c9d5e2] dark:hover:bg-[#dbe4ee]"
+            className="border-border bg-surface text-textPrimary hover:bg-backgroundMuted flex-1 rounded-lg border px-4 py-2 text-sm font-bold transition-colors"
           >
             NO
           </button>

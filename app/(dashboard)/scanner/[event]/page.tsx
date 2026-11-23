@@ -8,10 +8,8 @@ import PageWrapper from "@/components/PageWrapper";
 import { Scanner } from "@/components/scanner/Scanner";
 
 const formatEventName = (event: string) => {
-  return event
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const text = event.replace("hackathon-check-in", "hackathon-check--in").split("-").join(" ").replace("  ", "-");
+  return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
 export default async function ScannerEventPage(props: {
@@ -46,7 +44,7 @@ export default async function ScannerEventPage(props: {
             </h1>
           </div>
           <p className="text-textMuted max-md:text-sm">
-            Point the camera at a participant&apos;s QR code to check them in.
+            Point the camera at a hacker&apos;s QR code.
           </p>
         </div>
 
