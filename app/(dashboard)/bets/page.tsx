@@ -31,10 +31,10 @@ export default async function BetsPage() {
 
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
-            ["Your balance", `${points}`, "pts"],
+            ["Your balance", points.toLocaleString("en-CA"), "pts"],
             ["Bets placed", `${mine.length}`, ""],
-            ["Points staked", `${spent}`, "pts"],
-            ["Points returned", `${returned}`, "pts"],
+            ["Points staked", spent.toLocaleString("en-CA"), "pts"],
+            ["Points returned", returned.toLocaleString("en-CA"), "pts"],
           ].map(([label, value, unit], i) => (
             <div key={label} className={cn("rounded-2xl border border-border bg-surface p-4 shadow-card", i === 0 && "border-transparent bg-ink text-white")}>
               <p className={cn("text-xs", i === 0 ? "text-white/70" : "text-textMuted")}>{label}</p>
