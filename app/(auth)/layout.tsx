@@ -1,5 +1,6 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,6 +10,17 @@ import { PageTransition } from "@/components/PageTransition";
 
 import styles from "./AuthLayout.module.css";
 
+const noop = () => () => {};
+
+// The beach pages open in dark mode unless the hacker already picked light in the dashboard.
+function useAuthDark() {
+  return useSyncExternalStore(
+    noop,
+    () => localStorage.getItem("theme") !== "light",
+    () => true,
+  );
+}
+
 export default function AuthLayout({
   children,
 }: {
@@ -16,6 +28,7 @@ export default function AuthLayout({
 }) {
   const pathname = usePathname();
   const fitViewport = pathname === "/sign-in" || pathname === "/sign-up";
+  const dark = useAuthDark();
 
   const back = (
     <Link
@@ -30,7 +43,7 @@ export default function AuthLayout({
   if (fitViewport) {
     return (
       <div
-        className={`bg-background relative flex min-h-svh w-full ${styles.viewport}`}
+        className={`bg-background text-textPrimary relative flex min-h-svh w-full ${dark ? "dark" : ""} ${styles.viewport}`}
       >
         <ApplyMark />
         <AuthScene />
