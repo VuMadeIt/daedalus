@@ -91,7 +91,7 @@ export function ChallengeCard({
         >
           <div className="flex items-center justify-between px-4 py-2">
             <span className="text-sm text-textSecondary">{categoryLabel(challenge.category)}</span>
-            <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-medium text-textPrimary">
+            <span className={cn("rounded-full bg-surface px-2 py-0.5 text-[11px]", done ? "font-medium text-textPrimary" : "font-semibold text-goldInk")}>
               {done ? "Completed" : `${challenge.points} pts`}
             </span>
           </div>
