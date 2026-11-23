@@ -2,34 +2,62 @@
 
 import Link from "next/link";
 import {
-  CheckCircle2,
+  ChevronRight,
   Coins,
   Cookie,
   Plus,
+  ScanQrCode,
   ShoppingBag,
   Trophy,
   Utensils,
+  type LucideIcon,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-const eventCategories = {
-  main: {
-    label: "Main Check-In",
-    events: ["hackathon-check-in"],
-    icon: CheckCircle2,
-    color: "primary",
-    description: "Main event check-in - Required before other events",
+type Tool = {
+  href: string;
+  title: string;
+  body: string;
+  icon: LucideIcon;
+  organizersOnly?: boolean;
+  points?: boolean;
+};
+
+const tools: Tool[] = [
+  {
+    href: "/scanner/hackathon-check-in",
+    title: "Hackathon check-in",
+    body: "Check hackers in at the door. Do this before any meal or snack scan.",
+    icon: ScanQrCode,
   },
-  challenges: {
-    label: "Challenges",
-    events: ["challenge"],
+  {
+    href: "/scanner/challenge",
+    title: "Challenges",
+    body: "Scan a hacker's challenge QR code to mark it done and give the points.",
     icon: Trophy,
-    color: "sky",
-    description: "Scan challenge-specific QR codes from participants",
   },
-  meals: {
+  {
+    href: "/scanner/shop-redeem",
+    title: "Store pickups",
+    body: "Scan a redeem code from the Store and hand over the prize.",
+    icon: ShoppingBag,
+    organizersOnly: true,
+  },
+  {
+    href: "/points-manager",
+    title: "Points manager",
+    body: "Find a hacker and give or take back points by hand.",
+    icon: Coins,
+    organizersOnly: true,
+    points: true,
+  },
+];
+
+const groups: { label: string; icon: LucideIcon; events: string[] }[] = [
+  {
     label: "Meals",
+    icon: Utensils,
     events: [
       "friday-dinner",
       "saturday-breakfast",
@@ -38,262 +66,78 @@ const eventCategories = {
       "sunday-breakfast",
       "sunday-lunch",
     ],
-    icon: Utensils,
-    color: "emerald",
-    description: "Meal check-ins for participants",
   },
-  snacks: {
+  {
     label: "Snacks",
-    events: ["snack-1", "snack-2", "snack-3", "snack-4", "snack-5"],
     icon: Cookie,
-    color: "amber",
-    description: "Snack distribution check-ins",
+    events: ["snack-1", "snack-2", "snack-3", "snack-4", "snack-5"],
   },
-  other: {
-    label: "Other Events",
-    events: ["extra-1", "extra-2"],
-    icon: Plus,
-    color: "violet",
-    description: "Additional event check-ins",
-  },
-} as const;
+  { label: "Other events", icon: Plus, events: ["extra-1", "extra-2"] },
+];
 
 const formatEventName = (event: string) => {
-  return event
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const words = event.split("-");
+  return [words[0][0].toUpperCase() + words[0].slice(1), ...words.slice(1)].join(" ");
 };
 
 export function EventSelectionGrid() {
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-semibold text-textPrimary">Select Event</h2>
-        <p className="text-sm text-textSecondary/80">
-          Choose the event you want to check participants into
-        </p>
-      </div>
-
-      {/* Main Hackathon Check-In */}
-      <Link
-        href="/scanner/hackathon-check-in"
-        className={cn(
-          "group relative block w-full overflow-hidden rounded-lg border-2 p-6 text-left transition-all duration-300",
-          "border-primary/30 bg-gradient-to-br from-primary/5 to-sky-500/5 hover:border-primary/50 hover:shadow-md hover:shadow-primary/10",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div
-            className={cn(
-              "flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-300",
-              "bg-primary/20 text-primary group-hover:bg-primary/30",
-            )}
-          >
-            <CheckCircle2 className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-bold text-textPrimary group-hover:text-primary transition-colors">
-              HACKATHON CHECK IN
-            </h3>
-            <p className="text-sm text-textSecondary">
-              Main event check-in - Required before other events
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* Challenge QR Scanner */}
-      <Link
-        href="/scanner/challenge"
-        className={cn(
-          "group relative block w-full overflow-hidden rounded-lg border-2 p-6 text-left transition-all duration-300",
-          "border-sky-500/30 bg-gradient-to-br from-sky-500/5 to-cyan-500/5 hover:border-sky-500/50 hover:shadow-md hover:shadow-sky-500/10",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div
-            className={cn(
-              "flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-300",
-              "bg-sky-500/20 text-sky-600 group-hover:bg-sky-500/30",
-            )}
-          >
-            <Trophy className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-bold text-textPrimary group-hover:text-sky-600 transition-colors">
-              CHALLENGE SCANNER
-            </h3>
-            <p className="text-sm text-textSecondary">
-              Scan challenge-specific QR codes from participants
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* Shop Redemption Scanner */}
-      <Link
-        href="/scanner/shop-redeem"
-        className={cn(
-          "group relative block w-full overflow-hidden rounded-lg border-2 p-6 text-left transition-all duration-300",
-          "border-rose-500/30 bg-gradient-to-br from-rose-500/5 to-pink-500/5 hover:border-rose-500/50 hover:shadow-md hover:shadow-rose-500/10",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div
-            className={cn(
-              "flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-300",
-              "bg-rose-500/20 text-rose-600 group-hover:bg-rose-500/30",
-            )}
-          >
-            <ShoppingBag className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-bold text-textPrimary group-hover:text-rose-600 transition-colors">
-              SHOP REDEMPTION
-            </h3>
-            <p className="text-sm text-textSecondary">
-              Scan shop QR codes to process purchases (Organizers only)
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* Points Manager (Organizers only) */}
-      <Link
-        href="/points-manager"
-        className={cn(
-          "group relative block w-full overflow-hidden rounded-lg border-2 p-6 text-left transition-all duration-300",
-          "border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-yellow-500/5 hover:border-amber-500/50 hover:shadow-md hover:shadow-amber-500/10",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div
-            className={cn(
-              "flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-300",
-              "bg-amber-500/20 text-amber-600 group-hover:bg-amber-500/30",
-            )}
-          >
-            <Coins className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-bold text-textPrimary group-hover:text-amber-600 transition-colors">
-              POINTS MANAGER
-            </h3>
-            <p className="text-sm text-textSecondary">
-              Give or take back points from hackers (Organizers only)
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* Meals Category */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Utensils className="h-5 w-5 text-emerald-500" />
-          <h3 className="font-semibold text-textPrimary">
-            {eventCategories.meals.label}
-          </h3>
-        </div>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-          {eventCategories.meals.events.map((event) => (
+    <div className="space-y-8">
+      <section className="space-y-3">
+        <h2 className="text-textPrimary text-base font-bold">Scanners</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {tools.map(({ href, title, body, icon: Icon, organizersOnly, points }) => (
             <Link
-              key={event}
-              href={`/scanner/${event}`}
-              className={cn(
-                "group relative overflow-hidden rounded-lg border p-3 text-left transition-all duration-200",
-                "border-border bg-background hover:border-emerald-400 hover:bg-emerald-500/5",
-              )}
+              key={href}
+              href={href}
+              className="group border-border bg-surface shadow-card hover:shadow-float focus-visible:ring-primary/40 flex items-start gap-4 rounded-2xl border p-5 transition-shadow focus-visible:ring-2 focus-visible:outline-hidden"
             >
-              <div className="flex items-center gap-2">
-                <div
-                  className={cn(
-                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all",
-                    "bg-emerald-500/20 text-emerald-600 group-hover:bg-emerald-500/30",
+              <span
+                className={cn(
+                  "flex size-10 shrink-0 items-center justify-center rounded-xl",
+                  points ? "bg-goldSoft text-goldInk" : "bg-primaryLight text-primary",
+                )}
+              >
+                <Icon className="size-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex flex-wrap items-center gap-2">
+                  <span className="text-textPrimary group-hover:text-primary text-base font-bold transition-colors">
+                    {title}
+                  </span>
+                  {organizersOnly && (
+                    <span className="bg-backgroundMuted text-textSecondary rounded-full px-2 py-0.5 text-xs font-medium">
+                      Organizers
+                    </span>
                   )}
-                >
-                  <Utensils className="h-4 w-4" />
-                </div>
-                <span className="text-sm font-medium text-textPrimary group-hover:text-emerald-600 transition-colors">
-                  {formatEventName(event)}
                 </span>
-              </div>
+                <span className="text-textMuted mt-1 block text-sm">{body}</span>
+              </span>
+              <ChevronRight className="text-textMuted mt-2 size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
             </Link>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Snacks Category */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Cookie className="h-5 w-5 text-amber-500" />
-          <h3 className="font-semibold text-textPrimary">
-            {eventCategories.snacks.label}
-          </h3>
-        </div>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-          {eventCategories.snacks.events.map((event) => (
-            <Link
-              key={event}
-              href={`/scanner/${event}`}
-              className={cn(
-                "group relative overflow-hidden rounded-lg border p-3 text-left transition-all duration-200",
-                "border-border bg-background hover:border-amber-400 hover:bg-amber-500/5",
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={cn(
-                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all",
-                    "bg-amber-500/20 text-amber-600 group-hover:bg-amber-500/30",
-                  )}
-                >
-                  <Cookie className="h-4 w-4" />
-                </div>
-                <span className="text-sm font-medium text-textPrimary group-hover:text-amber-600 transition-colors">
-                  {formatEventName(event)}
+      {groups.map(({ label, icon: Icon, events }) => (
+        <section key={label} className="space-y-3">
+          <h2 className="text-textPrimary text-base font-bold">{label}</h2>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+            {events.map((event) => (
+              <Link
+                key={event}
+                href={`/scanner/${event}`}
+                className="group border-border bg-surface hover:border-primary/40 focus-visible:ring-primary/40 flex h-14 items-center gap-3 rounded-2xl border px-4 transition-colors focus-visible:ring-2 focus-visible:outline-hidden"
+              >
+                <span className="bg-backgroundMuted text-textSecondary group-hover:bg-primaryLight group-hover:text-primary flex size-8 shrink-0 items-center justify-center rounded-lg transition-colors">
+                  <Icon className="size-4" />
                 </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Other Events Category */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Plus className="h-5 w-5 text-violet-500" />
-          <h3 className="font-semibold text-textPrimary">
-            {eventCategories.other.label}
-          </h3>
-        </div>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-          {eventCategories.other.events.map((event) => (
-            <Link
-              key={event}
-              href={`/scanner/${event}`}
-              className={cn(
-                "group relative overflow-hidden rounded-lg border p-3 text-left transition-all duration-200",
-                "border-border bg-background hover:border-violet-400 hover:bg-violet-500/5",
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={cn(
-                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all",
-                    "bg-violet-500/20 text-violet-600 group-hover:bg-violet-500/30",
-                  )}
-                >
-                  <Plus className="h-4 w-4" />
-                </div>
-                <span className="text-sm font-medium text-textPrimary group-hover:text-violet-600 transition-colors">
-                  {formatEventName(event)}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+                <span className="text-textPrimary truncate text-sm font-medium">{formatEventName(event)}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

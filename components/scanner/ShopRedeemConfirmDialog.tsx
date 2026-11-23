@@ -2,6 +2,7 @@
 
 import { Coins, Mail, ShoppingBag, User, X } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import type { ShopRedeemData } from "@/hooks/useQRScanner";
 import type { UserVerifyData } from "@/app/api/check-ins/verify/route";
 
@@ -33,40 +34,41 @@ export function ShopRedeemConfirmDialog({
       />
 
       {/* Dialog */}
-      <div className="relative z-10 mx-4 w-full max-w-md rounded-lg border border-rose-500/25 bg-background p-6 shadow-xl">
+      <div className="relative z-10 mx-4 w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-float">
         {/* Close button */}
         <button
           onClick={onCancel}
-          className="absolute right-4 top-4 text-textSecondary transition hover:text-textPrimary"
+          aria-label="Close"
+          className="absolute top-4 right-4 rounded-md p-1 text-textMuted transition-colors hover:text-textPrimary"
         >
-          <X className="h-5 w-5" />
+          <X className="size-5" aria-hidden />
         </button>
 
         {/* Header */}
         <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-rose-500/20">
-            <ShoppingBag className="h-7 w-7 text-rose-500" />
+          <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-2xl bg-primaryLight">
+            <ShoppingBag className="size-6 text-primary" />
           </div>
-          <h2 className="text-xl font-bold text-textPrimary">
-            Confirm Shop Redemption
+          <h2 className="text-lg font-bold text-textPrimary">
+            Hand over this prize?
           </h2>
-          <p className="mt-1 text-sm text-textSecondary">
-            This will deduct points from the user&apos;s balance
+          <p className="mt-1 text-sm text-textMuted">
+            The points come off their balance when you confirm.
           </p>
         </div>
 
         {/* Item Details */}
-        <div className="mb-4 rounded-lg border border-rose-500/20 bg-rose-500/5 p-4">
+        <div className="mb-4 rounded-xl bg-backgroundMuted p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-textSecondary">Item</p>
+              <p className="text-xs font-medium text-textMuted">Item</p>
               <p className="text-lg font-semibold text-textPrimary">
                 {shopData.itemName}
               </p>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full bg-rose-500/20 px-3 py-1.5">
-              <Coins className="h-4 w-4 text-rose-500" />
-              <span className="font-bold text-rose-600">
+            <div className="flex items-center gap-1.5 rounded-full bg-goldSoft px-3 py-1.5">
+              <Coins className="size-4 text-goldInk" />
+              <span className="font-bold text-goldInk">
                 {shopData.price} pts
               </span>
             </div>
@@ -74,15 +76,15 @@ export function ShopRedeemConfirmDialog({
         </div>
 
         {/* User Details */}
-        <div className="space-y-3 rounded-lg border border-primary/10 bg-primary/5 p-4">
-          {/* Full Name */}
+        <div className="space-y-3 rounded-xl bg-backgroundMuted p-4">
+          {/* Full name */}
           <div className="flex items-start gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/20">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-surface">
               <User className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <p className="text-xs font-medium text-textSecondary">
-                Hacker Name
+              <p className="text-xs font-medium text-textMuted">
+                Hacker
               </p>
               <p className="text-lg font-semibold text-textPrimary">
                 {userData.fullName}
@@ -92,32 +94,24 @@ export function ShopRedeemConfirmDialog({
 
           {/* Email */}
           <div className="flex items-start gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/20">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-surface">
               <Mail className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <p className="text-xs font-medium text-textSecondary">Email</p>
+              <p className="text-xs font-medium text-textMuted">Email</p>
               <p className="text-base text-textPrimary">{userData.email}</p>
             </div>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="mt-6 flex gap-3">
-          <button
-            onClick={onCancel}
-            disabled={isLoading}
-            className="flex-1 rounded-lg border border-rose-500/25 px-4 py-2.5 font-medium text-textPrimary transition hover:bg-rose-500/5 disabled:opacity-50"
-          >
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Button onClick={onConfirm} disabled={isLoading} loading={isLoading} className="flex-1">
+            {isLoading ? "Handing over…" : "Hand over prize"}
+          </Button>
+          <Button onClick={onCancel} disabled={isLoading} variant="outline" className="flex-1">
             Cancel
-          </button>
-          <button
-            onClick={onConfirm}
-            disabled={isLoading}
-            className="flex-1 rounded-lg bg-rose-500 px-4 py-2.5 font-medium text-textPrimary transition hover:bg-rose-600 disabled:opacity-50"
-          >
-            {isLoading ? "Processing..." : "Confirm Redemption"}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

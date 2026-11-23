@@ -72,7 +72,7 @@ export function Scanner({ selectedEvent }: ScannerProps) {
       )}
 
       {/* Settings */}
-      <div className="border-primary/25 hover:border-primary/50 hover:shadow-primaryLight/50 flex flex-col gap-4 rounded-md border-2 p-4 transition-all duration-500 hover:shadow-2xl md:p-6">
+      <div className="border-border bg-surface shadow-card flex flex-col gap-4 rounded-2xl border p-4 md:px-5">
         <div className="flex items-center gap-2">
           <Checkbox
             id="keep-camera-on"
@@ -82,7 +82,7 @@ export function Scanner({ selectedEvent }: ScannerProps) {
             }}
           />
           <label htmlFor="keep-camera-on" className="text-textPrimary text-sm">
-            Keep Camera On After Scan
+            Keep the camera on after each scan
           </label>
         </div>
       </div>
@@ -96,8 +96,8 @@ export function Scanner({ selectedEvent }: ScannerProps) {
       ) : (
         <div className="relative flex flex-col items-center gap-4">
           {/* Camera container */}
-          <div className="group relative mx-auto w-full max-w-96 rounded-md border-2 border-primary/25 bg-primary/25 p-2 transition-all duration-500">
-            <div className="relative mx-auto aspect-square w-full overflow-hidden rounded-md">
+          <div className="group relative mx-auto w-full max-w-96 rounded-2xl border border-border bg-surface p-2 shadow-card">
+            <div className="relative mx-auto aspect-square w-full overflow-hidden rounded-xl">
               <video
                 ref={videoRef}
                 style={{
@@ -125,7 +125,7 @@ export function Scanner({ selectedEvent }: ScannerProps) {
                 {startingCamera ? (
                   <Loader2 className="size-8 animate-spin" />
                 ) : !isCameraOn ? (
-                  "Turn On Camera"
+                  "Turn on camera"
                 ) : null}
               </button>
 
@@ -155,7 +155,7 @@ export function Scanner({ selectedEvent }: ScannerProps) {
               <select
                 value={selectedCameraId || ""}
                 onChange={(e) => switchCamera(e.target.value)}
-                className="rounded-md border border-primary/25 bg-background px-2 py-1 text-textPrimary focus:border-primary focus:outline-none"
+                className="rounded-lg border border-border bg-surface px-2 py-1 text-textPrimary focus:border-primary focus:outline-none"
               >
                 {availableCameras.map((camera) => (
                   <option key={camera.deviceId} value={camera.deviceId}>
@@ -169,30 +169,30 @@ export function Scanner({ selectedEvent }: ScannerProps) {
       )}
 
       {scannedUserName && (
-        <div className="border-primary/10 bg-primary/5 mt-4 rounded-lg border p-4 text-center">
-          <p className="text-textPrimary text-lg font-semibold">
-            Successfully scanned:{" "}
-            <span className="text-primary">{scannedUserName}</span>
+        <div className="bg-mint mt-4 rounded-2xl p-4 text-center">
+          <p className="text-success text-base font-bold">
+            Scanned{" "}
+            <span className="text-textPrimary">{scannedUserName}</span>
           </p>
         </div>
       )}
 
       {scanData.length > 0 && (
         <div className="mt-4 md:mt-6">
-          <h3 className="text-textPrimary mb-4 text-lg font-semibold">
-            User&apos;s Check-in History
+          <h3 className="text-textPrimary mb-3 text-base font-bold">
+            Check-in history
           </h3>
           <div className="space-y-2">
             {scanData.map((checkIn) => (
               <div
                 key={checkIn.id}
-                className="border-primary/10 bg-primary/5 flex items-center justify-between gap-4 rounded-md border p-3"
+                className="border-border bg-surface flex items-center justify-between gap-4 rounded-xl border px-4 py-3"
               >
                 <div className="flex flex-1 items-center justify-between">
-                  <span className="text-textPrimary font-medium">
+                  <span className="text-textPrimary font-medium first-letter:uppercase">
                     {checkIn.eventName.split("-").join(" ")}
                   </span>
-                  <span className="text-textPrimary/70 text-sm">
+                  <span className="text-textMuted text-sm">
                     {formatDate(checkIn.createdAt)}
                   </span>
                 </div>
@@ -200,8 +200,9 @@ export function Scanner({ selectedEvent }: ScannerProps) {
                   onClick={() =>
                     handleResetEvent(checkIn.userId, checkIn.eventName)
                   }
-                  className="text-destructive/70 hover:text-destructive transition"
+                  className="text-textMuted hover:text-error rounded-md p-1 transition-colors"
                   title="Delete check-in"
+                  aria-label="Delete check-in"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>

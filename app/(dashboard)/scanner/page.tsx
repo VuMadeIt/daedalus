@@ -22,10 +22,10 @@ export default async function ScannerPage() {
       <div className="flex flex-col gap-6 md:gap-8">
         <div className="space-y-2">
           <div className="w-fit text-textPrimary">
-            <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">QR Code Scanner</h1>
+            <h1 className="text-[28px] leading-tight font-medium md:text-[32px]">Scanner</h1>
           </div>
           <p className="text-textMuted max-md:text-sm">
-            Select an event below to start scanning participant QR codes.
+            Pick what you’re scanning for, then point the camera at a hacker’s QR code.
           </p>
         </div>
 

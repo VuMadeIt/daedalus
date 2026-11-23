@@ -16,21 +16,21 @@ export function CameraPermissionPrompt({
 }: CameraPermissionPromptProps) {
   if (permissionState === "prompt") {
     return (
-      <div className="flex flex-col items-center gap-6 rounded-lg border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-sky-500/5 p-8 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20">
-          <Camera className="h-10 w-10 text-primary" />
+      <div className="flex flex-col items-center gap-6 rounded-2xl border border-border bg-surface p-8 shadow-card text-center">
+        <div className="flex size-14 items-center justify-center rounded-2xl bg-primaryLight">
+          <Camera className="size-7 text-primary" />
         </div>
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-textPrimary">
-            Camera Access Required
+          <h3 className="text-lg font-bold text-textPrimary">
+            Turn on the camera
           </h3>
           <p className="text-textSecondary">
-            We need camera access to scan QR codes for check-ins.
+            The scanner reads hackers’ QR codes through your camera.
           </p>
         </div>
-        <Button onClick={onRequestPermission} size="lg" className="min-w-[200px]">
-          <Camera className="mr-2 h-5 w-5" />
-          Enable Camera Access
+        <Button onClick={onRequestPermission} size="lg" className="min-w-48">
+          <Camera className="size-5" />
+          Allow camera
         </Button>
       </div>
     );
@@ -38,13 +38,13 @@ export function CameraPermissionPrompt({
 
   if (permissionState === "denied") {
     return (
-      <div className="flex flex-col items-center gap-6 rounded-lg border-2 border-error/20 bg-error/5 p-8 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-error/20">
-          <AlertCircle className="h-10 w-10 text-error" />
+      <div className="flex flex-col items-center gap-6 rounded-2xl border border-border bg-surface p-8 shadow-card text-center">
+        <div className="flex size-14 items-center justify-center rounded-2xl bg-error/10">
+          <AlertCircle className="size-7 text-error" />
         </div>
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-textPrimary">
-            Camera Access Denied
+          <h3 className="text-lg font-bold text-textPrimary">
+            Camera is blocked
           </h3>
           <p className="text-textSecondary">
             Please enable camera access in your browser settings to use the
@@ -52,9 +52,9 @@ export function CameraPermissionPrompt({
           </p>
         </div>
 
-        <div className="w-full max-w-md space-y-4 rounded-lg bg-backgroundMuted p-4 text-left">
+        <div className="w-full max-w-md space-y-4 rounded-xl bg-backgroundMuted p-4 text-left">
           <p className="text-sm font-semibold text-textPrimary">
-            How to enable camera access:
+            To allow the camera:
           </p>
           <ol className="space-y-2 text-sm text-textSecondary">
             <li className="flex gap-2">
@@ -78,9 +78,9 @@ export function CameraPermissionPrompt({
           onClick={onRequestPermission}
           variant="outline"
           size="lg"
-          className="min-w-[200px]"
+          className="min-w-48"
         >
-          <RefreshCw className="mr-2 h-5 w-5" />
+          <RefreshCw className="size-5" />
           Retry
         </Button>
       </div>
@@ -92,13 +92,13 @@ export function CameraPermissionPrompt({
     const isInsecureContext = typeof window !== "undefined" && !window.isSecureContext;
     
     return (
-      <div className="flex flex-col items-center gap-6 rounded-lg border-2 border-error/20 bg-error/5 p-8 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-error/20">
-          <AlertCircle className="h-10 w-10 text-error" />
+      <div className="flex flex-col items-center gap-6 rounded-2xl border border-border bg-surface p-8 shadow-card text-center">
+        <div className="flex size-14 items-center justify-center rounded-2xl bg-error/10">
+          <AlertCircle className="size-7 text-error" />
         </div>
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-textPrimary">
-            {isInsecureContext ? "Secure Connection Required" : "Camera Not Available"}
+          <h3 className="text-lg font-bold text-textPrimary">
+            {isInsecureContext ? "Needs a secure connection" : "No camera found"}
           </h3>
           {isInsecureContext ? (
             <>

@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 
 import { getBetLeaderboard, getUserBets, listMarkets } from "@/lib/db/queries/betting";
 import { loadBettor } from "@/lib/betting/page-guard";
-import { cn } from "@/lib/utils";
+import { cn, isOrganizer } from "@/lib/utils";
 import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
 import { BetsHeader } from "@/components/bets/BetsTabs";
 import { LeaderList, Panel } from "@/components/bets/Leaderboard";
 import { MarketCard } from "@/components/bets/MarketCard";
+import { OpenMarketForm } from "@/components/bets/MarketAdmin";
 
 export const metadata: Metadata = { title: "Bet Points" };
 
 export default async function BetsPage() {
-  const { userId, points, allowed } = await loadBettor();
+  const { user, userId, points, allowed } = await loadBettor();
+  const organizer = isOrganizer(user.role);
   if (!allowed) return <EmptyPage title="Bet Points" message="Betting is only open to event participants." />;
 
   const [markets, mine, leaders] = await Promise.all([listMarkets(), getUserBets(userId), getBetLeaderboard(5)]);
@@ -66,7 +68,8 @@ export default async function BetsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-textPrimary">Your activity</h2>
+            {organizer && <OpenMarketForm />}
+            <h2 className={cn("text-base font-bold text-textPrimary", organizer && "pt-3")}>Your activity</h2>
             <Panel title="Your bets">
               {mine.length === 0 ? (
                 <p className="px-5 py-6 text-sm text-textMuted">You haven&apos;t placed a bet yet.</p>

@@ -139,7 +139,7 @@ export function PointsManager() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-textMuted" />
             <Input
-              placeholder="Search hacker by name or email..."
+              placeholder="Search hackers by name or email"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="pl-10 pr-10"
@@ -151,23 +151,23 @@ export function PointsManager() {
           </div>
 
           {showDropdown && results.length > 0 && (
-            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-surface shadow-xl">
+            <div className="absolute z-50 mt-2 w-full overflow-hidden rounded-2xl border border-border bg-surface shadow-float">
               {results.map((user) => (
                 <button
                   key={user.id}
                   onClick={() => handleSelectUser(user)}
-                  className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-backgroundMuted first:rounded-t-lg last:rounded-b-lg"
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-backgroundMuted"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/20">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primaryLight">
                     <User className="h-4 w-4 text-primary" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium text-textPrimary">{user.name}</p>
                     <p className="truncate text-sm text-textMuted">{user.email}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-sm font-semibold text-primary">
-                    <Coins className="h-3.5 w-3.5" />
-                    {user.points}
+                  <div className="flex items-center gap-1 text-sm font-bold text-goldInk tabular-nums">
+                    <Coins className="size-3.5" />
+                    {user.points.toLocaleString("en-CA")}
                   </div>
                 </button>
               ))}
@@ -175,7 +175,7 @@ export function PointsManager() {
           )}
 
           {showDropdown && query.length >= 2 && results.length === 0 && !searching && (
-            <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-[#0f0f1a] p-4 text-center text-sm text-textMuted shadow-xl">
+            <div className="absolute z-50 mt-2 w-full rounded-2xl border border-border bg-surface p-4 text-center text-sm text-textMuted shadow-float">
               No hackers found
             </div>
           )}
@@ -184,27 +184,28 @@ export function PointsManager() {
 
       {/* Selected User Card */}
       {selectedUser && (
-        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+        <div className="rounded-2xl border border-border bg-surface p-5 shadow-card">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/20">
+              <div className="flex size-11 items-center justify-center rounded-full bg-primaryLight">
                 <User className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-semibold text-textPrimary">{selectedUser.name}</p>
+                <p className="text-base font-bold text-textPrimary">{selectedUser.name}</p>
                 <p className="text-sm text-textMuted">{selectedUser.email}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1.5 rounded-full bg-primary/20 px-4 py-1.5">
-                <Coins className="h-4 w-4 text-primary" />
-                <span className="font-rubik text-lg font-bold text-primary">
-                  {selectedUser.points}
+              <div className="flex items-center gap-1.5 rounded-full bg-goldSoft px-3 py-1">
+                <Coins className="size-4 text-goldInk" />
+                <span className="text-base font-bold text-goldInk tabular-nums">
+                  {selectedUser.points.toLocaleString("en-CA")} pts
                 </span>
               </div>
               <button
                 onClick={handleClearUser}
-                className="rounded-full p-1.5 text-textMuted transition-colors hover:bg-black/[0.05] hover:text-textPrimary"
+                className="rounded-full p-1.5 text-textMuted transition-colors hover:bg-backgroundMuted hover:text-textPrimary"
+                aria-label="Pick a different hacker"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -215,12 +216,12 @@ export function PointsManager() {
 
       {/* Points Adjustment Form */}
       {selectedUser && (
-        <div className="space-y-4 rounded-lg border border-border bg-surface p-5">
+        <div className="space-y-4 rounded-2xl border border-border bg-surface p-5 shadow-card">
           <div className="space-y-2">
             <label className="text-sm font-medium text-textSecondary">Points</label>
             <Input
               type="number"
-              placeholder="Enter points (1-500)"
+              placeholder="1 to 500"
               value={points}
               onChange={(e) => {
                 const val = e.target.value;
@@ -237,31 +238,31 @@ export function PointsManager() {
           <div className="space-y-2">
             <label className="text-sm font-medium text-textSecondary">Reason</label>
             <Input
-              placeholder="Reason for adjustment"
+              placeholder="For example, won the trivia round"
               value={reason}
               onChange={(e) => setReason(e.target.value)}
             />
           </div>
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <Button
               onClick={() => handleSubmit("give")}
               disabled={submitting || !points}
               loading={submitting}
-              className="flex-1 gap-2 bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]"
+              className="flex-1"
             >
               <Plus className="h-4 w-4" />
-              Give Points
+              Give points
             </Button>
             <Button
               onClick={() => handleSubmit("take")}
               disabled={submitting || !points}
               loading={submitting}
-              variant="destructive"
-              className="flex-1 gap-2"
+              variant="outline"
+              className="flex-1 hover:text-error"
             >
               <Minus className="h-4 w-4" />
-              Take Back Points
+              Take back points
             </Button>
           </div>
         </div>
@@ -271,17 +272,17 @@ export function PointsManager() {
       {lastResult && (
         <div
           className={cn(
-            "rounded-lg border p-4 text-center",
+            "rounded-2xl p-4 text-center",
             lastResult.points > 0
-              ? "border-emerald-500/20 bg-emerald-500/5"
-              : "border-rose-500/20 bg-rose-500/5",
+              ? "bg-mint"
+              : "bg-error/10",
           )}
         >
           <p className="font-medium text-textPrimary">
             {lastResult.points > 0 ? "+" : ""}
             {lastResult.points} points{" "}
             {lastResult.points > 0 ? "given to" : "taken from"}{" "}
-            <span className="text-primary">{lastResult.userName}</span>
+            <span className="font-bold">{lastResult.userName}</span>
           </p>
         </div>
       )}

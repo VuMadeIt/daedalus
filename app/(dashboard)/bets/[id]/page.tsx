@@ -6,9 +6,10 @@ import { ArrowLeft } from "lucide-react";
 import { isTakingBets, marketStatus, yesShare } from "@/lib/betting/market";
 import { loadBettor } from "@/lib/betting/page-guard";
 import { getMarket, getUserBets } from "@/lib/db/queries/betting";
-import { cn } from "@/lib/utils";
+import { cn, isOrganizer } from "@/lib/utils";
 import { Panel } from "@/components/bets/Leaderboard";
 import { BetSlip } from "@/components/bets/PlaceBetDialog";
+import { MarketAdmin } from "@/components/bets/MarketAdmin";
 import { EmptyPage } from "@/components/EmptyPage";
 import PageWrapper from "@/components/PageWrapper";
 
@@ -47,7 +48,7 @@ export default async function MarketPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { userId, points, allowed } = await loadBettor();
+  const { user, userId, points, allowed } = await loadBettor();
   if (!allowed) return <EmptyPage title="Bet Points" message="Betting is only open to event participants." />;
   const data = await getMarket(id);
   if (!data) notFound();
@@ -147,6 +148,7 @@ export default async function MarketPage({
                   : "Betting on this market is closed."}
               </p>
             )}
+            {isOrganizer(user.role) && <MarketAdmin marketId={market.id} status={market.status} />}
             {mine.length > 0 && (
               <Panel title="Your bets here">
                 <ul className="divide-border divide-y">
