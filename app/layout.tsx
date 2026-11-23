@@ -132,7 +132,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={cn(satoshi.variable, satoshi.className, rubik.variable, londrina.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
         <PhaseProvider value={phase}>
           <SiteBanner banners={banners} />
           <Toaster richColors position="bottom-center" />
