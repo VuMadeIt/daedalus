@@ -58,14 +58,15 @@
   }
 }
 
-/* next/font sets these on <body>, so the utilities must inline the var() */
+/* Inline so the utilities resolve var() where they are used: next/font sets the fonts on <body>, and a
+   .dark class on any element (the sign-in pages) re-themes everything inside it. */
 @theme inline {
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-satoshi), sans-serif;
   --font-rubik: var(--font-satoshi), sans-serif;
 }
 
-@theme {
+@theme inline {
   --breakpoint-xs: 500px;
   --breakpoint-3xl: 1850px;
 
