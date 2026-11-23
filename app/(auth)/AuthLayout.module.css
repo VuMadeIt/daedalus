@@ -18,7 +18,7 @@
    tabs pill at its top, stay put when switching between the shorter sign-in form. */
 .viewport main > div {
   height: 100%;
-  max-height: 776px;
+  max-height: 840px;
 }
 
 .viewport main > div > :global(.animate-page-in) {
@@ -26,9 +26,9 @@
 }
 
 /* Keep every sign-in and sign-up control visible on shorter laptop and mobile screens. */
-@media (max-height: 760px) {
+@media (max-height: 880px) {
   .viewport {
-    --auth-gap: clamp(8px, calc((100dvh - 550px) / 8), 16px);
+    --auth-gap: clamp(8px, calc((100dvh - 700px) / 8), 16px);
   }
 
   .viewport main {
@@ -55,6 +55,10 @@
   .viewport :global(.auth-back) {
     margin-top: var(--auth-gap);
   }
+
+  .viewport :global(.auth-panel) {
+    padding: 16px 24px;
+  }
 }
 
 @media (max-height: 600px) {
@@ -77,7 +81,10 @@
     overflow: visible;
   }
 
+  /* The beach shows whole above the form; the form starts where the art fades out. */
   .viewport main {
-    padding-top: 72px;
+    padding-top: max(72px, calc(55.8vw - 24px));
+    padding-bottom: 32px;
+    align-items: flex-start;
   }
 }

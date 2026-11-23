@@ -4,7 +4,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import signInBeachAccent from "@/public/scenes/sign-in-beach-accent.png";
 import signInBeach from "@/public/scenes/sign-in-beach.png";
-import signUpBeach from "@/public/scenes/sign-up-beach-hc27.png";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Cloud } from "@/components/apply/ApplyPicker";
@@ -49,52 +48,34 @@ export function AuthScene() {
   const scene = sceneFor(usePathname());
 
   if (scene === "sign-in" || scene === "sign-up") {
-    const signIn = scene === "sign-in";
+    // One full-bleed beach behind both forms. On desktop the art is right-aligned and at least
+    // 1400 px wide, so its right third (just sand and a log) is always wider than the form and
+    // the lettering and beaver stay clear of it. On phones it shows whole, above the form.
     return (
-      <aside
+      <div
         aria-hidden
-        className="[container-type:size] relative hidden flex-1 overflow-hidden bg-[#d9ae73] lg:block"
+        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden lg:[container-type:size] lg:inset-y-0 lg:bg-[#d9ae73]"
       >
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={scene}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* Anchor the lettering at the panel centre while the artwork covers its height. */}
-            <div
-              className={`absolute top-1/2 ${signIn ? "left-1/2 -translate-x-[49.5%] -translate-y-[52%]" : "left-[55%] -translate-x-1/2 -translate-y-1/2"}`}
-              style={{
-                width: signIn ? "max(100cqw, 197.12cqh)" : "max(100cqw, 148.74cqh)",
-                aspectRatio: signIn ? "4096 / 2285.83203125" : "2539 / 1707",
-              }}
-            >
-              <Image
-                src={signIn ? signInBeach : signUpBeach}
-                alt=""
-                fill
-                priority
-                quality={95}
-                unoptimized={!signIn}
-                sizes="(min-width: 1024px) 110vw, 100vw"
-                className="object-cover"
-              />
-              {signIn && (
-                <Image
-                  src={signInBeachAccent}
-                  alt=""
-                  quality={95}
-                  sizes="28vw"
-                  className="absolute top-[63.295%] left-[73.548%] h-auto w-[25.323%]"
-                />
-              )}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </aside>
+        <div className="relative aspect-[4096/2285.83203125] w-full lg:absolute lg:top-1/2 lg:right-0 lg:w-[max(100cqw,179.19cqh,1400px)] lg:-translate-y-1/2">
+          <Image
+            src={signInBeach}
+            alt=""
+            fill
+            priority
+            quality={95}
+            sizes="(min-width: 1024px) 180vh, 100vw"
+            className="object-cover"
+          />
+          <Image
+            src={signInBeachAccent}
+            alt=""
+            quality={95}
+            sizes="(min-width: 1024px) 46vh, 26vw"
+            className="absolute top-[63.295%] left-[73.548%] h-auto w-[25.323%]"
+          />
+        </div>
+        <div className="to-background lg:via-background/45 lg:to-background/85 absolute inset-x-0 top-0 -bottom-px bg-linear-to-b from-transparent from-60% lg:bg-linear-to-r lg:from-transparent lg:from-35% lg:via-60%" />
+      </div>
     );
   }
 
@@ -103,9 +84,9 @@ export function AuthScene() {
       aria-hidden
       className="relative hidden flex-1 overflow-hidden bg-linear-to-b from-[#c4defb] via-[#9cc5f4] to-[#5f9be2] lg:block"
     >
-      <Cloud className="motion-safe:animate-drift absolute top-[10%] right-[8%] w-36 text-textSecondary" />
-      <Cloud className="motion-safe:animate-drift absolute top-[52%] left-[8%] w-24 text-textMuted [animation-delay:-8s]" />
-      <Cloud className="motion-safe:animate-drift absolute top-[56%] right-[18%] w-28 text-textMuted [animation-delay:-15s]" />
+      <Cloud className="motion-safe:animate-drift text-textSecondary absolute top-[10%] right-[8%] w-36" />
+      <Cloud className="motion-safe:animate-drift text-textMuted absolute top-[52%] left-[8%] w-24 [animation-delay:-8s]" />
+      <Cloud className="motion-safe:animate-drift text-textMuted absolute top-[56%] right-[18%] w-28 [animation-delay:-15s]" />
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -117,10 +98,10 @@ export function AuthScene() {
           className="absolute inset-0"
         >
           <div className="absolute top-[18%] left-12 xl:left-16">
-            <p className="font-display text-7xl leading-[0.9] text-textPrimary xl:text-8xl">
+            <p className="font-display text-textPrimary text-7xl leading-[0.9] xl:text-8xl">
               {COPY[scene].title}
             </p>
-            <p className="mt-5 max-w-xs text-lg text-textSecondary">
+            <p className="text-textSecondary mt-5 max-w-xs text-lg">
               {COPY[scene].line}
             </p>
           </div>
@@ -153,7 +134,7 @@ export function AuthScene() {
             height={115}
             className="h-40 w-auto"
           />
-          <span className="mt-2 h-2.5 w-3/4 rounded-full bg-ink/15 blur-sm" />
+          <span className="bg-ink/15 mt-2 h-2.5 w-3/4 rounded-full blur-sm" />
         </div>
       </motion.div>
     </aside>
