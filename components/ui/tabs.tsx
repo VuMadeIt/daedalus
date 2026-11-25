@@ -12,20 +12,20 @@ export function Tabs() {
   const isSignUp = pathname?.includes("sign-up");
 
   return (
-    <div className="relative grid w-full grid-cols-2 rounded-full bg-surface p-1 ring-1 ring-border">
-      {/* Animated background indicator */}
+    <div className="relative grid w-full grid-cols-2 border-b border-border">
+      {/* Underline that slides to the active tab */}
       <motion.div
-        className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-primary"
+        className="absolute -bottom-px left-0 h-0.5 w-1/2 rounded-full bg-primary"
         initial={false}
         animate={{ x: isSignUp ? "100%" : "0%" }}
-        transition={{ duration: 0.6, ease: [0.65, 0, 0.35, 1] }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
       <Link
         href="/sign-in"
         className={cn(
-          "relative z-10 cursor-pointer px-5 py-2 text-center text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
-          isSignIn ? "text-white" : "text-textMuted hover:text-textSecondary",
+          "relative z-10 cursor-pointer rounded-md pt-2 pb-3 text-center text-base font-medium transition-colors duration-300 ease-out focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-hidden",
+          isSignIn ? "text-textPrimary" : "text-textMuted hover:text-textSecondary",
         )}
       >
         Sign in
@@ -33,8 +33,8 @@ export function Tabs() {
       <Link
         href="/sign-up"
         className={cn(
-          "relative z-10 cursor-pointer px-5 py-2 text-center text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
-          isSignUp ? "text-white" : "text-textMuted hover:text-textSecondary",
+          "relative z-10 cursor-pointer rounded-md pt-2 pb-3 text-center text-base font-medium transition-colors duration-300 ease-out focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-hidden",
+          isSignUp ? "text-textPrimary" : "text-textMuted hover:text-textSecondary",
         )}
       >
         Sign up

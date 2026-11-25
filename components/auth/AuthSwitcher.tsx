@@ -15,8 +15,8 @@ import SignUpHeader from "./sign-up/SignUpHeader";
 
 const easeOutCubic = [0.33, 1, 0.68, 1] as const;
 const TITLES: Record<string, string> = {
-  "/sign-in": "Sign In",
-  "/sign-up": "Sign Up - Join Hack Canada",
+  "/sign-in": "Sign in",
+  "/sign-up": "Sign up",
 };
 
 // Opacity and transform only, so it stays on the compositor. The old form
@@ -26,11 +26,11 @@ const fade = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: easeOutCubic },
+    transition: { duration: 0.3, ease: easeOutCubic },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.22, ease: "easeInOut" as const },
+    transition: { duration: 0.2, ease: "easeOut" as const },
   },
 };
 
