@@ -12,7 +12,7 @@ export function Tabs() {
   const isSignUp = pathname?.includes("sign-up");
 
   return (
-    <div className="relative flex w-fit rounded-full bg-black/[0.03] p-1">
+    <div className="relative grid w-full grid-cols-2 rounded-full bg-surface p-1 ring-1 ring-border">
       {/* Animated background indicator */}
       <motion.div
         className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-primary"
@@ -24,20 +24,20 @@ export function Tabs() {
       <Link
         href="/sign-in"
         className={cn(
-          "relative z-10 cursor-pointer px-5 py-2 text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
+          "relative z-10 cursor-pointer px-5 py-2 text-center text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
           isSignIn ? "text-white" : "text-textMuted hover:text-textSecondary",
         )}
       >
-        Sign In
+        Sign in
       </Link>
       <Link
         href="/sign-up"
         className={cn(
-          "relative z-10 cursor-pointer px-5 py-2 text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
+          "relative z-10 cursor-pointer px-5 py-2 text-center text-sm font-medium transition-colors duration-500 md:px-6 md:text-base",
           isSignUp ? "text-white" : "text-textMuted hover:text-textSecondary",
         )}
       >
-        Sign Up
+        Sign up
       </Link>
     </div>
   );

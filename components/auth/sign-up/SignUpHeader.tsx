@@ -3,11 +3,11 @@ type Props = {};
 const SignUpHeader = ({}: Props) => {
   return (
     <div className="space-y-1">
-      <h1 className="font-display text-4xl text-textPrimary md:text-5xl">
-        Sign Up
+      <h1 className="font-display text-3xl text-textPrimary md:text-4xl">
+        Create your account
       </h1>
       <p className="text-textMuted text-sm md:text-base">
-        to get started with Hack Canada
+        Then apply to Hack Canada.
       </p>
     </div>
   );

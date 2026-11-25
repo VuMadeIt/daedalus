@@ -83,17 +83,12 @@ export function AuthSwitcher() {
                 <>
                   <SignUpHeader />
                   <SignUpForm />
-                  <AuthFooter
-                    showResetPassword={false}
-                    showContactUs={false}
-                    showSignUp={false}
-                  />
                 </>
               ) : (
                 <>
                   <SignInHeader />
                   <SignInForm />
-                  <AuthFooter showSignIn={false} />
+                  <AuthFooter showSignIn={false} showSignUp={false} />
                 </>
               )}
             </motion.div>

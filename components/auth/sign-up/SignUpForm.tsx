@@ -102,7 +102,7 @@ const SignUpForm = ({}: Props) => {
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel className="font-medium text-textSecondary">
-                Full Name
+                Full name
               </FormLabel>
               <FormControl>
                 <Input
@@ -125,7 +125,7 @@ const SignUpForm = ({}: Props) => {
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel className="font-medium text-textSecondary">
-                Email Address
+                Email address
               </FormLabel>
               <FormControl>
                 <Input
@@ -167,14 +167,14 @@ const SignUpForm = ({}: Props) => {
           className="mt-1 h-11 w-full cursor-pointer text-base font-semibold"
           disabled={isPending}
         >
-          {isPending ? "Creating Account..." : "Create Account"}
+          {isPending ? "Creating account..." : "Create account"}
         </Button>
       </form>
 
       <div className="relative flex items-center gap-3 py-1">
-        <div className="h-px flex-1 bg-black/10" />
+        <div className="h-px flex-1 bg-border" />
         <span className="shrink-0 text-sm text-textMuted">or</span>
-        <div className="h-px flex-1 bg-black/10" />
+        <div className="h-px flex-1 bg-border" />
       </div>
 
       <OAuthButtons mode="sign-up" callbackUrl="/apply" />

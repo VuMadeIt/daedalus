@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AuthSwitcher } from "@/components/auth/AuthSwitcher";
 
 export const metadata: Metadata = {
-  title: "Sign In",
+  title: "Sign in",
   description: "Sign in to Hack Canada to start, finish, or check on your application.",
   keywords: [
     "Hack Canada login",

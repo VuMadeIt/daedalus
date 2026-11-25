@@ -28,7 +28,7 @@ const AuthFooter = ({
                 href="/sign-in"
                 className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
               >
-                Sign In
+                Sign in
               </Link>
             </p>
           )}
@@ -39,7 +39,7 @@ const AuthFooter = ({
                 href="/sign-up"
                 className="cursor-pointer font-medium text-primary transition-all hover:text-textPrimary hover:underline"
               >
-                Sign Up
+                Sign up
               </Link>
             </p>
           )}
